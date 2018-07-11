@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MasterDetailPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:pages="clr-namespace:PeelseDartBond.UI.Page;assembly=PeelseDartBond"
+    xmlns:constants="clr-namespace:PeelseDartBond.Constants;assembly=PeelseDartBond"
+    x:Class="PeelseDartBond.UI.Page.ContainerPage"
+    BackgroundColor="{x:Static constants:Colors.WhiteNormal}">
+    <MasterDetailPage.Master>
+        <pages:MenuPage />
+    </MasterDetailPage.Master>
+    <MasterDetailPage.Detail>
+        <NavigationPage
+            BarBackgroundColor="{x:Static constants:Colors.GreenDark}"
+            BarTextColor="{x:Static constants:Colors.WhiteNormal}">
+            <x:Arguments>
+                <pages:NewsPage />
+            </x:Arguments>  
+        </NavigationPage>
+    </MasterDetailPage.Detail>
+</MasterDetailPage>

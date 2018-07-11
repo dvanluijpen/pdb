@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:constants="clr-namespace:PeelseDartBond.Constants;assembly=PeelseDartBond"
+    xmlns:customrenderers="clr-namespace:PeelseDartBond.CustomRenderers;assembly=PeelseDartBond"
+    x:Class="PeelseDartBond.UI.Page.NewsDetailPage">
+    <ContentPage.Content>
+        <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+                <Label
+                    Margin="8,0"
+                    VerticalOptions="Start" HorizontalOptions="Fill" 
+                    FontSize="{x:Static constants:Fonts.SizePhoneTitle}"
+                    FontAttributes="Bold"
+                    TextColor="{x:Static constants:Colors.Gray1}"
+                    Text="{Binding News.Title}" />
+                <Label
+                    Margin="8,0"
+                    VerticalOptions="Start" HorizontalOptions="Fill" 
+                    FontSize="{x:Static constants:Fonts.SizePhoneSubTitle}"
+                    TextColor="{x:Static constants:Colors.Gray3}"
+                    Text="{Binding News.Date}" />
+                <customrenderers:HtmlLabel
+                    Margin="8,0"
+                    VerticalOptions="StartAndExpand" HorizontalOptions="Fill" 
+                    FontSize="{x:Static constants:Fonts.SizePhoneText}"
+                    TextColor="{x:Static constants:Colors.Gray2}"
+                    Text="{Binding News.Text}" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
