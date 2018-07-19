@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:constants="clr-namespace:PeelseDartBond.Constants;assembly=PeelseDartBond"
+    x:Class="PeelseDartBond.UI.Cell.ResultsCell">
+    <ViewCell.View>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="44" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="44" />
+                <ColumnDefinition Width="20" />
+            </Grid.ColumnDefinitions>
+            <Label
+                Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Margin="12"
+                VerticalOptions="Fill" HorizontalOptions="Fill"
+                VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
+                FontSize="{x:Static constants:Fonts.SizePhoneSubTitle}"
+                TextColor="{x:Static constants:Colors.Gray1}"
+                Text="{Binding Week}" />
+            <Label
+                Grid.Row="0" Grid.Column="1"
+                VerticalOptions="Fill" HorizontalOptions="Fill"
+                VerticalTextAlignment="End" HorizontalTextAlignment="Start"
+                FontSize="{x:Static constants:Fonts.SizePhoneSubTitle}"
+                TextColor="{x:Static constants:Colors.Gray1}"
+                Text="{Binding TeamHome}" />
+            <Label
+                Grid.Row="1" Grid.Column="1"
+                VerticalOptions="Fill" HorizontalOptions="Fill"
+                VerticalTextAlignment="Start" HorizontalTextAlignment="Start"
+                FontSize="{x:Static constants:Fonts.SizePhoneSubTitle}"
+                TextColor="{x:Static constants:Colors.Gray1}"
+                Text="{Binding TeamAway}" />
+            <Label
+                Grid.Row="0" Grid.Column="2"
+                VerticalOptions="Fill" HorizontalOptions="Fill"
+                VerticalTextAlignment="End" HorizontalTextAlignment="Center"
+                FontSize="{x:Static constants:Fonts.SizePhoneSubTitle}"
+                TextColor="{x:Static constants:Colors.Gray1}"
+                Text="{Binding ResultHome}" />
+            <Label
+                Grid.Row="1" Grid.Column="2"
+                VerticalOptions="Fill" HorizontalOptions="Fill"
+                VerticalTextAlignment="Start" HorizontalTextAlignment="Center"
+                FontSize="{x:Static constants:Fonts.SizePhoneSubTitle}"
+                TextColor="{x:Static constants:Colors.Gray1}"
+                Text="{Binding ResultAway}" />
+            <Label
+                Grid.Row="0" Grid.RowSpan="2" Grid.Column="3"
+                VerticalOptions="Fill" HorizontalOptions="Fill"
+                VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
+                FontSize="{x:Static constants:Fonts.SizePhoneSubTitle}"
+                TextColor="{x:Static constants:Colors.Gray1}"
+                Text="V" />
+        </Grid>
+    </ViewCell.View>
+</ViewCell>

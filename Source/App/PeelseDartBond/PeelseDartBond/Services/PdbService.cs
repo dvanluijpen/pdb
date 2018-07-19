@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using PeelseDartBond.Model;
 using PeelseDartBond.Model.EventArgs;
 using PeelseDartBond.Utilities;
@@ -19,9 +20,9 @@ namespace PeelseDartBond.Services
         List<Model.Entities.News> _news;
         List<Model.Entities.Competition> _competitions;
         List<Model.Entities.Ranking> _rankings;
-        //List<Model.Entities.Schedule> _schedule;
-        //List<Model.Entities.Results> _results;
-        //List<Model.Entities.Matrix> _matrix;
+        List<Model.Entities.Schedule> _schedule;
+        List<Model.Entities.WeekResult> _results;
+        List<Model.Entities.MatrixRow> _matrix;
         List<Model.Entities.Player180s> _player180s;
         List<Model.Entities.PlayerRanking> _playerRankings;
         List<Model.Entities.PlayerFinish> _playerFinishes;
@@ -33,9 +34,9 @@ namespace PeelseDartBond.Services
             _news = new List<Model.Entities.News>();
             _competitions = new List<Model.Entities.Competition>();
             _rankings = new List<Model.Entities.Ranking>();
-            //_schedule = new List<Model.Entities.Schedule>();
-            //_results = new List<Model.Entities.Results>();
-            //_matrix = new List<Model.Entities.Matrix>();
+            _schedule = new List<Model.Entities.Schedule>();
+            _results = new List<Model.Entities.WeekResult>();
+            _matrix = new List<Model.Entities.MatrixRow>();
             _player180s = new List<Model.Entities.Player180s>();
             _playerRankings = new List<Model.Entities.PlayerRanking>();
             _playerFinishes = new List<Model.Entities.PlayerFinish>();
@@ -48,9 +49,9 @@ namespace PeelseDartBond.Services
         public static event EventHandler<NewsEventArgs> NewsLoaded;
         public static event EventHandler CompetitionsLoaded;
         public static event EventHandler<RankingEventArgs> RankingsLoaded;
-        //public static event EventHandler ScheduleLoaded;
-        //public static event EventHandler ResultsLoaded;
-        //public static event EventHandler MatrixLoaded;
+        public static event EventHandler<ScheduleEventArgs> ScheduleLoaded;
+        public static event EventHandler<ResultsEventArgs> ResultsLoaded;
+        public static event EventHandler<MatrixEventArgs> MatrixLoaded;
         public static event EventHandler<Player180sEventArgs> Player180sLoaded;
         public static event EventHandler<PlayerRankingsEventArgs> PlayerRankingsLoaded;
         public static event EventHandler<PlayerFinishesEventArgs> PlayerFinishesLoaded;
@@ -83,23 +84,23 @@ namespace PeelseDartBond.Services
             set { _rankings = value; RankingsLoaded?.Invoke(null, new RankingEventArgs(value)); }
         }
 
-        //public List<Model.Entities.Schedule> Schedule
-        //{
-        //    get { return _schedule; }
-        //    set { _schedule = value; ScheduleLoaded?.Invoke(null, EventArgs.Empty); }
-        //}
+        public List<Model.Entities.Schedule> Schedule
+        {
+            get { return _schedule; }
+            set { _schedule = value; ScheduleLoaded?.Invoke(null, new ScheduleEventArgs(value)); }
+        }
 
-        //public List<Model.Entities.Result> Results
-        //{
-        //    get { return _results; }
-        //    set { _results = value; ResultsLoaded?.Invoke(null, EventArgs.Empty); }
-        //}
+        public List<Model.Entities.WeekResult> Results
+        {
+            get { return _results; }
+            set { _results = value; ResultsLoaded?.Invoke(null, new ResultsEventArgs(value)); }
+        }
 
-        //public List<Model.Entities.Matrix> Matrix
-        //{
-        //    get { return _matrix; }
-        //    set { _matrix = value; MatrixLoaded?.Invoke(null, EventArgs.Empty); }
-        //}
+        public List<Model.Entities.MatrixRow> Matrix
+        {
+            get { return _matrix; }
+            set { _matrix = value; MatrixLoaded?.Invoke(null, new MatrixEventArgs(value)); }
+        }
 
         public List<Model.Entities.Player180s> Player180s
         {
@@ -126,9 +127,9 @@ namespace PeelseDartBond.Services
 
             Debug.WriteLine($"Selected Competition: {SelectedCompetition.Name}");
             await GetRankings();
-            //await GetSchedule();
-            //await GetResults();
-            //await GetMatrix();
+            await GetSchedule();
+            await GetResults();
+            await GetMatrix();
             await GetPlayer180s();
             //await GetPlayerRankings();
             await GetPlayerFinishes();
@@ -137,14 +138,12 @@ namespace PeelseDartBond.Services
         public async Task GetNews()
         {
             var result = await PerformAndDeserializeRequestAsync<IEnumerable<Model.DataTransferObjects.News>>(Constants.Urls.News);
-
             News = result.ToList().Flatten();
         }
 
         public async Task GetCompetitions()
         {
             var result = await PerformAndDeserializeRequestAsync<IEnumerable<Model.DataTransferObjects.Competition>>(Constants.Urls.Competitions);
-
             Competitions = result.ToList().Flatten();
         }
 
@@ -154,42 +153,35 @@ namespace PeelseDartBond.Services
                 return;
 
             var result = await PerformAndDeserializeRequestAsync<IEnumerable<Model.DataTransferObjects.Ranking>>(SelectedCompetition.Rankings);
-
             Rankings = result.ToList().Flatten();
         }
 
-        //public async Task GetSchedule()
-        //{
-            //if (SelectedCompetition?.Schedule == null)
-                //return;
-        
-        //    var json = await GetData(SelectedCompetition.Schedule);
-        //    var result = JsonConvert.DeserializeObject<IEnumerable<Model.DataTransferObjects.Schedule>>(json);
+        public async Task GetSchedule()
+        {
+            if (SelectedCompetition?.Schedule == null)
+                return;
 
-        //    Schedule = result.ToList().Flatten();
-        //}
+            var results = await PerformAndDeserializeRequestAsync<IEnumerable<Model.Entities.Schedule>>(SelectedCompetition.Schedule);
+            Schedule = results.ToList();
+        }
 
-        //public async Task GetResults()
-        //{
-            //if (SelectedCompetition?.Results == null)
-                //return;
-        
-        //    var json = await GetData(SelectedCompetition.Results);
-        //    var result = JsonConvert.DeserializeObject<IEnumerable<Model.DataTransferObjects.Results>>(json);
+        public async Task GetResults()
+        {
+            if (SelectedCompetition?.Results == null)
+                return;
+            
+            var results = await PerformAndDeserializeRequestAsync<IEnumerable<Model.Entities.WeekResult>>(SelectedCompetition.Results);
+            Results = results.ToList();
+        }
 
-        //    Results = result.ToList().Flatten();
-        //}
+        public async Task GetMatrix()
+        {
+            if (SelectedCompetition?.Matrix == null)
+                return;
 
-        //public async Task GetMatrix()
-        //{
-            //if (SelectedCompetition?.Matrix == null)
-                //return;
-        
-        //    var json = await GetData(SelectedCompetition.Matrix);
-        //    var result = JsonConvert.DeserializeObject<IEnumerable<Model.DataTransferObjects.Matrix>>(json);
-
-        //    Matrix = result.ToList().Flatten();
-        //}
+            var result = await PerformAndDeserializeRequestAsync<IEnumerable<Model.DataTransferObjects.MatrixRow>>(SelectedCompetition.Matrix);
+            Matrix = result.ToList().Flatten();
+        }
 
         public async Task GetPlayer180s()
         {
@@ -197,7 +189,6 @@ namespace PeelseDartBond.Services
                 return;
 
             var result = await PerformAndDeserializeRequestAsync<IEnumerable<Model.DataTransferObjects.Player180s>>(SelectedCompetition.Player180s);
-
             Player180s = result.ToList().Flatten();
         }
 
@@ -207,7 +198,6 @@ namespace PeelseDartBond.Services
                 return;
 
             var result = await PerformAndDeserializeRequestAsync<IEnumerable<Model.DataTransferObjects.PlayerRankings>>(SelectedCompetition.PlayerRankings);
-
             PlayerRankings = result.ToList().Flatten();
         }
 
@@ -217,7 +207,6 @@ namespace PeelseDartBond.Services
                 return;
 
             var result = await PerformAndDeserializeRequestAsync<IEnumerable<Model.DataTransferObjects.PlayerFinishes>>(SelectedCompetition.PlayerFinishes);
-
             PlayerFinishes = result.ToList().Flatten();
         }
     }

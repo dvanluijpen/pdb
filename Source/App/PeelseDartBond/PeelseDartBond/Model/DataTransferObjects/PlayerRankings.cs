@@ -7,6 +7,7 @@ namespace PeelseDartBond.Model.DataTransferObjects
     {
         public PlayerRankings()
         {
+            Players = new List<Player>();
         }
 
         public int Position { get; set; }

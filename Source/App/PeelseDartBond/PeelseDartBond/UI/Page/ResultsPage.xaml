@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:cells="clr-namespace:PeelseDartBond.UI.Cell;assembly=PeelseDartBond"
+    xmlns:constants="clr-namespace:PeelseDartBond.Constants;assembly=PeelseDartBond"
+    x:Class="PeelseDartBond.UI.Page.ResultsPage">
+    <ContentPage.Content>
+        <Grid
+            VerticalOptions="Fill" HorizontalOptions="Fill"
+            RowSpacing="0" ColumnSpacing="0"
+            BackgroundColor="{x:Static constants:Colors.WhiteNormal}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label 
+                VerticalOptions="CenterAndExpand" HorizontalOptions="Fill"
+                VerticalTextAlignment="Center" HorizontalTextAlignment="Start"
+                Grid.Row="0" Grid.Column="0"
+                Text="Team" />
+            <Picker 
+                x:Name="pickerTeam"
+                VerticalOptions="CenterAndExpand" HorizontalOptions="Fill"
+                Grid.Row="0" Grid.Column="1"
+                Title="Selecteer een Team"
+                ItemsSource="{Binding Teams}"
+                SelectedItem="{Binding SelectedTeam}"
+                Unfocused="FilterByTeam" />
+            <Label 
+                VerticalOptions="CenterAndExpand" HorizontalOptions="Fill"
+                VerticalTextAlignment="Center" HorizontalTextAlignment="Start"
+                Grid.Row="1" Grid.Column="0"
+                Text="Week" />
+            <Picker 
+                x:Name="pickerWeek"
+                VerticalOptions="CenterAndExpand" HorizontalOptions="Fill"
+                Grid.Row="1" Grid.Column="1"
+                Title="Selecteer een Week"
+                ItemsSource="{Binding Weeks}"
+                SelectedItem="{Binding SelectedWeek}"
+                Unfocused="FilterByWeek" />
+            <ListView 
+                x:Name="listView"
+                Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                HorizontalOptions="Fill" VerticalOptions="StartAndExpand"
+                ItemSelected="OnItemSelected" 
+                ItemsSource="{Binding FilteredResults}"
+                SeparatorColor="{x:Static constants:Colors.Gray1}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <cells:ResultsCell Match="{Binding .}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

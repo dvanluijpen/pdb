@@ -87,26 +87,64 @@ namespace PeelseDartBond.Utilities
             return entities;
         }
 
-        //public static List<Model.Entities.Schedule> Flatten(this List<Model.DataTransferObjects.Schedule> dataTransferObjects)
-        //{
-        //    var entities = new List<Model.Entities.Schedule>();
+        public static Model.Entities.Schedule FlattenSchedule(this Dictionary<string, object> dataTransferObject)
+        {
+            var mdString = dataTransferObject["match_day"].ToString();
+            var mdYear = Convert.ToInt32(mdString.Substring(0, 4));
+            var mdMonth = Convert.ToInt32(mdString.Substring(5, 2));
+            var mdDay = Convert.ToInt32(mdString.Substring(8, 2));
+            var matchDate = new DateTime(mdYear, mdMonth, mdDay);
 
-        //    return entities;
-        //}
+            var entity = new Model.Entities.Schedule
+            {
+                MatchDay = matchDate.DayOfWeek.ToString(),
+                MatchDate = matchDate,
+                Week = Convert.ToInt32(dataTransferObject["weeknumber"]),
+                TeamHome = dataTransferObject["home_team"].ToString(),
+                TeamHomeUrl = dataTransferObject["home_team_url"].ToString(),
+                TeamAway = dataTransferObject["out_team"].ToString(),
+                TeamAwayUrl = dataTransferObject["out_team_url"].ToString(),
+            };
 
-        //public static List<Model.Entities.Results> Flatten(this List<Model.DataTransferObjects.Results> dataTransferObjects)
-        //{
-        //    var entities = new List<Model.Entities.Results>();
+            return entity;
+        }
 
-        //    return entities;
-        //}
+        public static Model.Entities.WeekResult FlattenWeekResult(this Dictionary<string, object> dataTransferObject)
+        {
+            var result = dataTransferObject["result"].ToString();
 
-        //public static List<Model.Entities.Matrix> Flatten(this List<Model.DataTransferObjects.Matrix> dataTransferObjects)
-        //{
-        //    var entities = new List<Model.Entities.Matrix>();
+            var entity = new Model.Entities.WeekResult
+            {
+                MatchUrl = dataTransferObject["match_url"].ToString(),
+                Week = Convert.ToInt32(dataTransferObject["weeknumber"]),
+                TeamHome = dataTransferObject["home_team"].ToString(),
+                TeamHomeUrl = dataTransferObject["home_team_url"].ToString(),
+                TeamAway = dataTransferObject["out_team"].ToString(),
+                TeamAwayUrl = dataTransferObject["out_team_url"].ToString(),
+                Result = result,
+                ResultHome = result.GetResultHomeTeam(),
+                ResultAway = result.GetResultAwayTeam(),
+                Status = dataTransferObject["state"].ToString(),
+            };
 
-        //    return entities;
-        //}
+            return entity;
+        }
+
+        public static List<Model.Entities.MatrixRow> Flatten(this List<Model.DataTransferObjects.MatrixRow> dataTransferObjects)
+        {
+            var entities = new List<Model.Entities.MatrixRow>();
+
+            foreach (var dataTransferObject in dataTransferObjects)
+            {
+                entities.Add(new Model.Entities.MatrixRow
+                {
+                    RowNumber = dataTransferObject.RowNumber,
+                    Columns = dataTransferObject.Columns,
+                });
+            }
+
+            return entities;
+        }
 
         public static List<Model.Entities.Player180s> Flatten(this List<Model.DataTransferObjects.Player180s> dataTransferObjects)
         {

@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using PeelseDartBond.Utilities;
 
 namespace PeelseDartBond.Services
@@ -39,7 +42,9 @@ namespace PeelseDartBond.Services
                     Logger.WriteLine(System.Diagnostics.TraceLevel.Verbose, $"{(int)httpResponse.StatusCode} {httpResponse.ReasonPhrase} response from {url}", details, LogCategory);
                     Logger.Verbose($"Serializing content to: {typeof(T)}", LogCategory);
 
-                    serializedResult = JsonConvert.DeserializeObject<T>(content);
+                    if(url.Contains("uitslagen")) serializedResult = (T)SerializeWeekResults<T>(content);
+                    else if(url.Contains("speelschema")) serializedResult = (T)SerializeSchedule<T>(content);
+                    else serializedResult = JsonConvert.DeserializeObject<T>(content);
                 }
             }
             catch (JsonException ex)
@@ -103,6 +108,91 @@ namespace PeelseDartBond.Services
                     Logger.Error("Network error: Error while performing the REST request.", ex);
                     throw new Exception("Network error", ex);
                 }
+            }
+        }
+
+        private object SerializeSchedule<T>(string content)
+        {
+            var schedule = new List<Model.Entities.Schedule>();
+
+            try
+            {
+                var weeksObjectList = JsonHelper.Deserialize(content) as List<object>;
+
+                foreach (var weekObject in weeksObjectList)
+                {
+                    var weekDictionary = (Dictionary<string, object>)weekObject;
+                    var weekItem = weekDictionary.FirstOrDefault();
+                    var matchObjectList = (List<object>)weekItem.Value;
+
+                    foreach (var matchObject in matchObjectList)
+                    {
+                        var matchDictionary = (Dictionary<string, object>)matchObject;
+                        var match = matchDictionary.FlattenSchedule();
+                        schedule.Add(match);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error($"Serialization error: Error while manually serializing the JSON result for complex JSON: {typeof(T)}", ex);
+            }
+
+            return schedule;
+        }
+
+        private object SerializeWeekResults<T>(string content)
+        {
+            var weekResults = new List<Model.Entities.WeekResult>();
+
+            try
+            {
+                var weeksObjectList = JsonHelper.Deserialize(content) as List<object>;
+
+                foreach (var weekObject in weeksObjectList)
+                {
+                    var weekDictionary = (Dictionary<string, object>)weekObject;
+                    var weekItem = weekDictionary.FirstOrDefault();
+                    var matchObjectList = (List<object>)weekItem.Value;
+
+                    foreach (var matchObject in matchObjectList)
+                    {
+                        var matchDictionary = (Dictionary<string, object>)matchObject;
+                        var match = matchDictionary.FlattenWeekResult();
+                        weekResults.Add(match);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error($"Serialization error: Error while manually serializing the JSON result for complex JSON: {typeof(T)}", ex);
+            }
+
+            return weekResults;
+        }
+    }
+
+    public static class JsonHelper
+    {
+        public static object Deserialize(string json)
+        {
+            return ToObject(JToken.Parse(json));
+        }
+
+        private static object ToObject(JToken token)
+        {
+            switch (token.Type)
+            {
+                case JTokenType.Object:
+                    return token.Children<JProperty>()
+                                .ToDictionary(prop => prop.Name,
+                                              prop => ToObject(prop.Value));
+
+                case JTokenType.Array:
+                    return token.Select(ToObject).ToList();
+
+                default:
+                    return ((JValue)token).Value;
             }
         }
     }

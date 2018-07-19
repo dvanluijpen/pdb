@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:cells="clr-namespace:PeelseDartBond.UI.Cell;assembly=PeelseDartBond"
+    xmlns:constants="clr-namespace:PeelseDartBond.Constants;assembly=PeelseDartBond"
+    x:Class="PeelseDartBond.UI.Page.SchedulePage">
+    <ContentPage.Content>
+        <ListView 
+                x:Name="listView"
+                HorizontalOptions="Fill" VerticalOptions="StartAndExpand"
+                ItemSelected="OnItemSelected" 
+                ItemsSource="{Binding Schedule}"
+                SeparatorColor="{x:Static constants:Colors.Gray1}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <cells:ScheduleCell Match="{Binding .}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>
