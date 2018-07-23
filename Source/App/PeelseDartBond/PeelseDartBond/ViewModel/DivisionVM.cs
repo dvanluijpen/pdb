@@ -3,18 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using PeelseDartBond.Model.Entities;
+using PeelseDartBond.Model.EventArgs;
 using PeelseDartBond.Services;
+using PeelseDartBond.Utilities;
 
 namespace PeelseDartBond.ViewModel
 {
-    public class DivisionVM : BaseRefreshViewModel
+    public class DivisionVM : BaseViewModel
     {
         string _division;
 
         public DivisionVM() : base()
         {
-            Task.Run(async () => await Load());
-            PdbService.SelectedCompetitionChanged += SelectedCompetitionChanged;
+            Division = PdbService.SelectedCompetition?.Name ?? string.Empty;
+
+            PdbService.SelectedCompetitionChanged -= OnCompetitionChanged;
+            PdbService.SelectedCompetitionChanged += OnCompetitionChanged;
         }
 
         public string Division
@@ -23,27 +27,12 @@ namespace PeelseDartBond.ViewModel
             set { SetProperty(ref _division, value); }
         }
 
-        void SelectedCompetitionChanged(object sender, EventArgs e) => Division = PdbService.SelectedCompetition.Name;
-
-        public async override Task Load()
+        void OnCompetitionChanged(object sender, CompetitionEventArgs e)
         {
-            await Task.Delay(0);
-
-            if (PdbService.SelectedCompetition == null)
-            {
-                if(PdbService.Competitions == null)
-                {
-                    Division = string.Empty;
-                }
-                else
-                {
-                    Division = PdbService.Competitions.First().Name;
-                }
-            }
-            else
-            {
-                Division = PdbService.SelectedCompetition.Name;
-            }
+            if (e.Competition.IsNullOrEmpty())
+                return;
+            
+            Division = e.Competition.Name;
         }
     }
 }

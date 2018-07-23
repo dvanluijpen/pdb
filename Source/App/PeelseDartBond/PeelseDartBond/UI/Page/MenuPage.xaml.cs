@@ -22,6 +22,14 @@ namespace PeelseDartBond.UI.Page
             var item = e.SelectedItem as Competition;
             if (item != null)
             {
+                // don't do anything is the competition is the same
+                if (item == _vm.PdbService.SelectedCompetition)
+                {
+                    ((ContainerPage)App.Current.MainPage).IsPresented = false;
+                    return;
+                }
+                
+                // Show something else than a competition
                 if(string.IsNullOrWhiteSpace(item.Rankings))
                 {
                     if(item.Name.Equals(Strings.News))
@@ -37,6 +45,7 @@ namespace PeelseDartBond.UI.Page
                     return;
                 }
 
+                // Show a competition
                 var divisionNavigationPage = new NavigationPage(new DivisionPage());
                 divisionNavigationPage.BarBackgroundColor = Colors.GreenDark;
                 divisionNavigationPage.BarTextColor = Colors.WhiteNormal;

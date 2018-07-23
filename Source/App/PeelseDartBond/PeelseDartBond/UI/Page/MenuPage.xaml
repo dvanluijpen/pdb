@@ -5,7 +5,7 @@
     xmlns:constants="clr-namespace:PeelseDartBond.Constants;assembly=PeelseDartBond"
     xmlns:cells="clr-namespace:PeelseDartBond.UI.Cell;assembly=PeelseDartBond"
     x:Class="PeelseDartBond.UI.Page.MenuPage"
-    Title="Wijzig divisie">
+    Title="Menu">
     <ContentPage.Content>
         <Grid RowSpacing="0" ColumnSpacing="0">
             <Grid.RowDefinitions>

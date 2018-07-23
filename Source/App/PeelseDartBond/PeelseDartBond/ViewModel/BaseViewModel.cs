@@ -13,7 +13,7 @@ namespace PeelseDartBond.ViewModel
 
         public BaseViewModel()
         {
-            _pdbService = new PdbService();
+            _pdbService = PdbService.Instance;
         }
 
         public NavigationService NavigationService { get { return DependencyService.Get<NavigationService>(); } }

@@ -15,6 +15,8 @@ namespace PeelseDartBond.Services
 {
     public class PdbService : RestService
     {
+        static PdbService _instance;
+
         Model.Entities.Competition _selectedCompetition;
 
         List<Model.Entities.News> _news;
@@ -45,7 +47,17 @@ namespace PeelseDartBond.Services
             SelectedCompetitionChanged += OnCompetitionChanged;
         }
 
-        public static event EventHandler SelectedCompetitionChanged;
+        public static PdbService Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = new PdbService();
+                return _instance;
+            }
+        }
+
+        public static event EventHandler<CompetitionEventArgs> SelectedCompetitionChanged;
         public static event EventHandler<NewsEventArgs> NewsLoaded;
         public static event EventHandler CompetitionsLoaded;
         public static event EventHandler<RankingEventArgs> RankingsLoaded;
@@ -61,9 +73,11 @@ namespace PeelseDartBond.Services
             get { return _selectedCompetition; }
             set 
             { 
+                if (value.IsNullOrEmpty() || _selectedCompetition == value)
+                    return;
+                
                 _selectedCompetition = value; 
-                SelectedCompetitionChanged?.Invoke(null, EventArgs.Empty); 
-            }
+                SelectedCompetitionChanged?.Invoke(null, new CompetitionEventArgs(value)); }
         }
 
         public List<Model.Entities.News> News
@@ -120,11 +134,8 @@ namespace PeelseDartBond.Services
             set { _playerFinishes = value; PlayerFinishesLoaded?.Invoke(null, new PlayerFinishesEventArgs(value)); }
         }
 
-        async void OnCompetitionChanged(object sender, EventArgs e)
+        async void OnCompetitionChanged(object sender, CompetitionEventArgs e)
         {
-            if (SelectedCompetition.IsNullOrEmpty())
-                return;
-
             Debug.WriteLine($"Selected Competition: {SelectedCompetition.Name}");
             await GetRankings();
             await GetSchedule();

@@ -13,7 +13,6 @@ namespace PeelseDartBond
             InitializeComponent();
 
             DependencyService.Register<NavigationService, NavigationService>();
-            DependencyService.Register<PdbService, PdbService>();
             MainPage = new ContainerPage();
         }
     }
