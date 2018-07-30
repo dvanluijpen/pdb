@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using PeelseDartBond.Services;
+using PeelseDartBond.Constants;
 using Xamarin.Forms;
+using Xamarin.Essentials;
+using PeelseDartBond.Model.Exceptions;
 
 namespace PeelseDartBond.ViewModel
 {
@@ -18,6 +22,16 @@ namespace PeelseDartBond.ViewModel
 
         public NavigationService NavigationService { get { return DependencyService.Get<NavigationService>(); } }
         public PdbService PdbService { get { return _pdbService; } }
+
+        protected async Task ShowNoConnectionError() => await NavigationService.DisplayAlert(Strings.ConnectionErrorTitle, Strings.ConnectionErrorText, Strings.Ok);
+        protected async Task ShowServiceErrorAsync() => await NavigationService.DisplayAlert(Strings.ServiceErrorTitle, Strings.ServiceErrorText, Strings.Ok);
+
+        protected bool HasInternetAccess() => Connectivity.NetworkAccess == NetworkAccess.Internet;
+
+
+
+
+
 
         #region INotifyPropertyChanged
 

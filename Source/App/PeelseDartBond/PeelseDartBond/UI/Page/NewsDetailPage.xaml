@@ -7,24 +7,24 @@
     x:Class="PeelseDartBond.UI.Page.NewsDetailPage">
     <ContentPage.Content>
         <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
-            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+            <StackLayout VerticalOptions="Start" HorizontalOptions="Fill">
                 <Label
                     Margin="8,0"
                     VerticalOptions="Start" HorizontalOptions="Fill" 
-                    FontSize="{x:Static constants:Fonts.SizePhoneTitle}"
+                    FontSize="{x:Static constants:Fonts.SizePhoneXXL}"
                     FontAttributes="Bold"
                     TextColor="{x:Static constants:Colors.Gray1}"
                     Text="{Binding News.Title}" />
                 <Label
                     Margin="8,0"
                     VerticalOptions="Start" HorizontalOptions="Fill" 
-                    FontSize="{x:Static constants:Fonts.SizePhoneSubTitle}"
-                    TextColor="{x:Static constants:Colors.Gray3}"
-                    Text="{Binding News.Date}" />
+                    FontSize="{x:Static constants:Fonts.SizePhoneXL}"
+                    TextColor="{x:Static constants:Colors.Gray2}"
+                    Text="{Binding News.Date, StringFormat='{0:dd MMMM yyyy}'}" />
                 <customrenderers:HtmlLabel
                     Margin="8,0"
                     VerticalOptions="StartAndExpand" HorizontalOptions="Fill" 
-                    FontSize="{x:Static constants:Fonts.SizePhoneText}"
+                    FontSize="{x:Static constants:Fonts.SizePhoneL}"
                     TextColor="{x:Static constants:Colors.Gray2}"
                     Text="{Binding News.Text}" />
             </StackLayout>

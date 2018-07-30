@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <ViewCell 
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
@@ -19,35 +19,35 @@
                 Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Margin="12"
                 VerticalOptions="Fill" HorizontalOptions="Fill"
                 VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
-                FontSize="{x:Static constants:Fonts.SizePhoneSubTitle}"
+                FontSize="{x:Static constants:Fonts.SizePhoneXL}"
                 TextColor="{x:Static constants:Colors.Gray1}"
                 Text="{Binding Week}" />
             <Label
                 Grid.Row="0" Grid.Column="1"
                 VerticalOptions="Fill" HorizontalOptions="Fill"
                 VerticalTextAlignment="End" HorizontalTextAlignment="Start"
-                FontSize="{x:Static constants:Fonts.SizePhoneSubTitle}"
+                FontSize="{x:Static constants:Fonts.SizePhoneXL}"
                 TextColor="{x:Static constants:Colors.Gray1}"
                 Text="{Binding MatchDay}" />
             <Label
                 Grid.Row="1" Grid.Column="1"
                 VerticalOptions="Fill" HorizontalOptions="Fill"
                 VerticalTextAlignment="Start" HorizontalTextAlignment="Start"
-                FontSize="{x:Static constants:Fonts.SizePhoneSubTitle}"
+                FontSize="{x:Static constants:Fonts.SizePhoneXL}"
                 TextColor="{x:Static constants:Colors.Gray1}"
                 Text="{Binding MatchDate, StringFormat='{0:dd-MM-yyyy}'}" />
             <Label
                 Grid.Row="0" Grid.Column="2"
                 VerticalOptions="Fill" HorizontalOptions="Fill"
                 VerticalTextAlignment="End" HorizontalTextAlignment="Start"
-                FontSize="{x:Static constants:Fonts.SizePhoneSubTitle}"
+                FontSize="{x:Static constants:Fonts.SizePhoneXL}"
                 TextColor="{x:Static constants:Colors.Gray1}"
                 Text="{Binding TeamHome}" />
             <Label
                 Grid.Row="1" Grid.Column="2"
                 VerticalOptions="Fill" HorizontalOptions="Fill"
                 VerticalTextAlignment="Start" HorizontalTextAlignment="Start"
-                FontSize="{x:Static constants:Fonts.SizePhoneSubTitle}"
+                FontSize="{x:Static constants:Fonts.SizePhoneXL}"
                 TextColor="{x:Static constants:Colors.Gray1}"
                 Text="{Binding TeamAway}" />
         </Grid>

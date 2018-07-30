@@ -6,9 +6,12 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using PeelseDartBond.Helpers;
 using PeelseDartBond.Model;
 using PeelseDartBond.Model.EventArgs;
+using PeelseDartBond.Model.Exceptions;
 using PeelseDartBond.Utilities;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace PeelseDartBond.Services
@@ -136,7 +139,8 @@ namespace PeelseDartBond.Services
 
         async void OnCompetitionChanged(object sender, CompetitionEventArgs e)
         {
-            Debug.WriteLine($"Selected Competition: {SelectedCompetition.Name}");
+            ConnectivityHelper.CheckForInternetAccess();
+
             await GetRankings();
             await GetSchedule();
             await GetResults();
@@ -148,12 +152,16 @@ namespace PeelseDartBond.Services
 
         public async Task GetNews()
         {
+            ConnectivityHelper.CheckForInternetAccess();
+
             var result = await PerformAndDeserializeRequestAsync<IEnumerable<Model.DataTransferObjects.News>>(Constants.Urls.News);
             News = result.ToList().Flatten();
         }
 
         public async Task GetCompetitions()
         {
+            ConnectivityHelper.CheckForInternetAccess();
+
             var result = await PerformAndDeserializeRequestAsync<IEnumerable<Model.DataTransferObjects.Competition>>(Constants.Urls.Competitions);
             Competitions = result.ToList().Flatten();
         }

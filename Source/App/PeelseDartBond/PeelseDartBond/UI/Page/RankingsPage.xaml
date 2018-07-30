@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage 
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
@@ -12,7 +12,7 @@
                 ItemSelected="OnItemSelected" 
                 ItemsSource="{Binding Teams}"
                 SeparatorColor="{x:Static constants:Colors.Gray1}">
-            <ListView.Header>
+            <!--<ListView.Header>
                 <Grid 
                     HeightRequest="44"
                     BackgroundColor="{x:Static constants:Colors.Gray1}">
@@ -27,35 +27,35 @@
                     <Label
                         Grid.Column="0" Margin="4,0"
                         VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" 
-                        FontSize="{x:Static constants:Fonts.SizePhoneSubTitle}"
+                        FontSize="{x:Static constants:Fonts.SizePhoneXL}"
                         TextColor="{x:Static constants:Colors.Gray4}"
                         Text="" />
                     <Label
                         Grid.Column="1" Margin="4,0"
                         VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" 
-                        FontSize="{x:Static constants:Fonts.SizePhoneSubTitle}"
+                        FontSize="{x:Static constants:Fonts.SizePhoneXL}"
                         TextColor="{x:Static constants:Colors.Gray4}"
                         Text="Team" />
                     <Label
                         Grid.Column="2" Margin="4,0"
                         VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" 
-                        FontSize="{x:Static constants:Fonts.SizePhoneSubTitle}"
+                        FontSize="{x:Static constants:Fonts.SizePhoneXL}"
                         TextColor="{x:Static constants:Colors.Gray4}"
                         Text="Gesp." />
                     <Label
                         Grid.Column="3" Margin="4,0"
                         VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" 
-                        FontSize="{x:Static constants:Fonts.SizePhoneSubTitle}"
+                        FontSize="{x:Static constants:Fonts.SizePhoneXL}"
                         TextColor="{x:Static constants:Colors.Gray4}"
                         Text="Pt." />
                     <Label
                         Grid.Column="4" Margin="4,0"
                         VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" 
-                        FontSize="{x:Static constants:Fonts.SizePhoneSubTitle}"
+                        FontSize="{x:Static constants:Fonts.SizePhoneXL}"
                         TextColor="{x:Static constants:Colors.Gray4}"
                         Text="WPt." />
                 </Grid>
-            </ListView.Header>
+            </ListView.Header>-->
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <cells:RankingCell Ranking="{Binding .}" />

@@ -7,11 +7,11 @@
     x:Class="PeelseDartBond.UI.Page.MatrixPage">
     <ContentPage.Content>
         <ListView 
-                x:Name="listView"
-                HorizontalOptions="Fill" VerticalOptions="StartAndExpand"
-                ItemSelected="OnItemSelected" 
-                ItemsSource="{Binding Matrix}"
-                SeparatorColor="{x:Static constants:Colors.Gray1}">
+            x:Name="listView"
+            HorizontalOptions="Fill" VerticalOptions="StartAndExpand"
+            ItemSelected="OnItemSelected" 
+            ItemsSource="{Binding Matrix}"
+            SeparatorColor="{x:Static constants:Colors.Gray1}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <cells:MatrixCell MatrixRow="{Binding .}" />

@@ -1,47 +1,83 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <ViewCell 
     xmlns="http://xamarin.com/schemas/2014/forms" 
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:constants="clr-namespace:PeelseDartBond.Constants;assembly=PeelseDartBond" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:constants="clr-namespace:PeelseDartBond.Constants;assembly=PeelseDartBond"
+    xmlns:customRenderers="clr-namespace:PeelseDartBond.CustomRenderers;assembly=PeelseDartBond"
     x:Class="PeelseDartBond.UI.Cell.Player180sCell">
     <ViewCell.View>
-        <Grid BackgroundColor="{Binding Position, Converter={StaticResource RowColorConverter}}">
+        <Grid 
+            BackgroundColor="{x:Static constants:Colors.WhiteNormal}"
+            RowSpacing="0" ColumnSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="8*" />
-                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="44" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="60" />
+                <ColumnDefinition Width="24" />
             </Grid.ColumnDefinitions>
-
+            
+            <customRenderers:RoundedBox
+                Grid.Row="0" Grid.RowSpan="2" Grid.Column="0"
+                VerticalOptions="Center" HorizontalOptions="Center" 
+                WidthRequest="32" HeightRequest="32"
+                Margin="6"
+                BackgroundColor="{Binding Position, Converter={StaticResource PositionColorConverter}}"
+                BorderWidth="1"
+                BorderColor="{x:Static constants:Colors.PositionBorder}">
+            </customRenderers:RoundedBox>
             <Label
-                Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Margin="4,0"
-                VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" 
-                FontSize="{x:Static constants:Fonts.SizePhoneSubTitle}"
+                Grid.Row="0" Grid.RowSpan="2" Grid.Column="0"
+                VerticalOptions="Center" HorizontalOptions="Center" 
+                VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
+                FontSize="{x:Static constants:Fonts.SizePhoneXXL}"
                 TextColor="{x:Static constants:Colors.Gray1}"
                 Text="{Binding Position}" />
+
             <Label
-                Grid.Row="0" Grid.Column="1" Margin="4,0"
-                VerticalOptions="CenterAndExpand" HorizontalOptions="Fill" 
+                Grid.Row="0" Grid.Column="1"
+                VerticalOptions="EndAndExpand" HorizontalOptions="Fill" 
                 VerticalTextAlignment="End"
-                FontSize="{x:Static constants:Fonts.SizePhoneSubTitle}"
+                FontSize="{x:Static constants:Fonts.SizePhoneXL}"
                 TextColor="{x:Static constants:Colors.Gray1}"
                 Text="{Binding Name}" />
+
             <Label
-                Grid.Row="1" Grid.Column="1" Margin="4,0"
-                VerticalOptions="CenterAndExpand" HorizontalOptions="Fill" 
+                Grid.Row="1" Grid.Column="1"
+                VerticalOptions="StartAndExpand" HorizontalOptions="Fill" 
                 VerticalTextAlignment="Start"
-                FontSize="{x:Static constants:Fonts.SizePhoneSubTitle}"
+                FontSize="{x:Static constants:Fonts.SizePhoneM}"
                 TextColor="{x:Static constants:Colors.Gray1}"
                 Text="{Binding Team}" />
-            <Label
-                Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Margin="4,0"
-                VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" 
-                FontSize="{x:Static constants:Fonts.SizePhoneText}"
-                TextColor="{x:Static constants:Colors.Gray1}"
-                Text="{Binding Amount}" />
+
+            <Grid
+                Grid.Row="0" Grid.RowSpan="2" Grid.Column="2"
+                Padding="4,4,1,4">
+
+                <customRenderers:RoundedBox
+                    VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" 
+                    CornerRadius="8"
+                    BorderWidth="3"
+                    BorderColor="{x:Static constants:Colors.PointsGreenBorder}"
+                    BackgroundColor="{x:Static constants:Colors.PointsGreenFill}">
+                </customRenderers:RoundedBox>
+
+                <Label
+                    VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" 
+                    VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
+                    FontSize="{x:Static constants:Fonts.SizePhoneL}"
+                    TextColor="{x:Static constants:Colors.Gray1}"
+                    Text="{Binding Amount}" />
+            </Grid>
+
+            <Image
+                Grid.Row="0" Grid.RowSpan="2" Grid.Column="3"
+                VerticalOptions="Center" HorizontalOptions="Center"
+                WidthRequest="16" HeightRequest="16"
+                Source="{Binding StatusImage}" />
         </Grid>
     </ViewCell.View>
 </ViewCell>

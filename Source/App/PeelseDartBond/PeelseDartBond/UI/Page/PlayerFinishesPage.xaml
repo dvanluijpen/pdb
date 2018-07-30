@@ -12,39 +12,9 @@
                 ItemSelected="OnItemSelected" 
                 ItemsSource="{Binding Players}"
                 SeparatorColor="{x:Static constants:Colors.Gray1}">
-            <ListView.Header>
-                <Grid 
-                    HeightRequest="44"
-                    BackgroundColor="{x:Static constants:Colors.Gray1}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*" />
-                        <ColumnDefinition Width="8*" />
-                        <ColumnDefinition Width="2*" />
-                    </Grid.ColumnDefinitions>
-
-                    <Label
-                        Grid.Column="0" Margin="4,0"
-                        VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" 
-                        FontSize="{x:Static constants:Fonts.SizePhoneSubTitle}"
-                        TextColor="{x:Static constants:Colors.Gray4}"
-                        Text="" />
-                    <Label
-                        Grid.Column="1" Margin="4,0"
-                        VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" 
-                        FontSize="{x:Static constants:Fonts.SizePhoneSubTitle}"
-                        TextColor="{x:Static constants:Colors.Gray4}"
-                        Text="Speler" />
-                    <Label
-                        Grid.Column="2" Margin="4,0"
-                        VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" 
-                        FontSize="{x:Static constants:Fonts.SizePhoneSubTitle}"
-                        TextColor="{x:Static constants:Colors.Gray4}"
-                        Text="Finish" />
-                </Grid>
-            </ListView.Header>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <cells:PlayerFinishesCell PlayerFinish="{Binding .}" />
+                    <cells:PlayerFinishesCell Player="{Binding .}" />
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

@@ -12,12 +12,12 @@ namespace PeelseDartBond.UI.Cell
             InitializeComponent();
         }
 
-        public static readonly BindableProperty PlayerFinishProperty = BindableProperty.Create(nameof(PlayerFinish), typeof(PlayerFinish), typeof(PlayerFinishesCell), default(PlayerFinish));
+        public static readonly BindableProperty PlayerProperty = BindableProperty.Create(nameof(Player), typeof(PlayerFinish), typeof(PlayerFinishesCell), default(PlayerFinish));
 
-        public PlayerFinish PlayerFinish
+        public PlayerFinish Player
         {
-            get { return (PlayerFinish)GetValue(PlayerFinishProperty); }
-            set { SetValue(PlayerFinishProperty, value); }
+            get { return (PlayerFinish)GetValue(PlayerProperty); }
+            set { SetValue(PlayerProperty, value); }
         }
     }
 }

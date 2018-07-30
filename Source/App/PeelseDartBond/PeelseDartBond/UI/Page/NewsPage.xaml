@@ -5,17 +5,19 @@
     xmlns:cells="clr-namespace:PeelseDartBond.UI.Cell;assembly=PeelseDartBond"
     xmlns:constants="clr-namespace:PeelseDartBond.Constants;assembly=PeelseDartBond"
     Title = "Nieuws"
+    BackgroundColor="Lime"
     x:Class="PeelseDartBond.UI.Page.NewsPage">
     <ContentPage.Content>
         <ListView 
             x:Name="listView"
-            HorizontalOptions="Fill" VerticalOptions="Start"
+            HorizontalOptions="Fill" VerticalOptions="StartAndExpand"
             ItemSelected="OnItemSelected" 
             ItemsSource="{Binding News}"
+            RowHeight="88"
             SeparatorColor="{x:Static constants:Colors.Gray1}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding Title}" />
+                    <cells:NewsCell News="{Binding .}" />
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

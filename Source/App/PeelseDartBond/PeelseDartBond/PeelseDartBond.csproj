@@ -8,6 +8,7 @@
     <PackageReference Include="Xamarin.Forms" Version="3.1.0.583944" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="Xamarin.Essentials" Version="0.8.0-preview" />
+    <PackageReference Include="SegmentedControl.FormsPlugin" Version="2.0.1" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />
@@ -24,11 +25,18 @@
     <Folder Include="UI\Cell\" />
     <Folder Include="CustomRenderers\" />
     <Folder Include="DependencyServices\" />
+    <Folder Include="Model\Types\" />
+    <Folder Include="Model\Exceptions\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Model\DataTransferObjects\Result.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="UI\Cell\MenuCell.xaml %28copy%29.cs">
+      <DependentUpon>UI\Cell\MenuCell.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="UI\Cell\MenuCell.xaml %28copy%29.cs">
       <DependentUpon>UI\Cell\MenuCell.xaml</DependentUpon>
       <SubType>Code</SubType>

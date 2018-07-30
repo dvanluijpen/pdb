@@ -1,4 +1,5 @@
 ﻿using System;
+using Xamarin.Forms;
 namespace PeelseDartBond.Model.Entities
 {
     public class PlayerFinish : BaseEntity
@@ -43,6 +44,10 @@ namespace PeelseDartBond.Model.Entities
         {
             get { return _status; }
             set { SetProperty(ref _status, value); }
+        }
+        public ImageSource StatusImage
+        {
+            get { return Status.ToLower() == "confirmed" ? ImageSource.FromFile("CheckmarkGreen.png") : ImageSource.FromFile("CheckmarkYellow.png"); }
         }
     }
 }

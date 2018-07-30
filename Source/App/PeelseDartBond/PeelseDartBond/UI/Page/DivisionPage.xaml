@@ -9,9 +9,11 @@
     <TabbedPage.Children>
         <pages:RankingsPage Title="Stand" />
         <pages:ResultsPage Title="Uitslagen" />
-        <pages:Player180sPage Title="180s" />
-        <pages:PlayerRankingsPage Title="Singels" />
-        <pages:PlayerFinishesPage Title="Finishes" />
+        <pages:MatrixPage Title="Matrix" />
         <pages:SchedulePage Title="Speelschema" />
+        <pages:PlayersPage Title="Individueel" />
+        <!--<pages:Player180sPage Title="180s" />
+        <pages:PlayerRankingsPage Title="Singels" />
+        <pages:PlayerFinishesPage Title="Finishes" />-->
     </TabbedPage.Children>
 </TabbedPage>

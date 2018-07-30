@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using SegmentedControl.FormsPlugin.iOS;
 using UIKit;
 
 namespace PeelseDartBond.iOS
@@ -23,6 +24,10 @@ namespace PeelseDartBond.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+
+            // Segmented Control stuff
+            SegmentedControlRenderer.Init();
+
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

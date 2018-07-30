@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:constants="clr-namespace:PeelseDartBond.Constants;assembly=PeelseDartBond" 
+    xmlns:plugins="clr-namespace:SegmentedControl.FormsPlugin.Abstractions;assembly=SegmentedControl.FormsPlugin.Abstractions"
+    x:Class="PeelseDartBond.UI.Page.PlayersPage">
+    <ContentPage.Content>
+        <Grid
+            VerticalOptions="FillAndExpand" HorizontalOptions="Fill" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <plugins:SegmentedControl 
+                x:Name="segControl" 
+                Grid.Row="0"
+                VerticalOptions="Start" HorizontalOptions="Fill"
+                IsEnabled="true"
+                TintColor="{x:Static constants:Colors.GreenDark}"
+                SelectedSegment="{Binding SelectedPageType}">
+                <plugins:SegmentedControl.Children>
+                    <plugins:SegmentedControlOption Text="180s" />
+                    <plugins:SegmentedControlOption Text="Finishes" />
+                    <plugins:SegmentedControlOption Text="Singels" />
+                </plugins:SegmentedControl.Children>
+            </plugins:SegmentedControl>
+            <ListView 
+                x:Name="listView"
+                Grid.Row="1"
+                VerticalOptions="FillAndExpand" HorizontalOptions="Fill" 
+                ItemSelected="OnItemSelected" 
+                SeparatorColor="{x:Static constants:Colors.Gray1}" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

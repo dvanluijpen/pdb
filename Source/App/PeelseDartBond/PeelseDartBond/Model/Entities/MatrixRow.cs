@@ -18,6 +18,7 @@ namespace PeelseDartBond.Model.Entities
             get { return _rowNumber; }
             set { SetProperty(ref _rowNumber, value); }
         }
+
         public List<string> Columns
         {
             get { return _columns; }

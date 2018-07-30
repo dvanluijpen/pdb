@@ -17,7 +17,7 @@ namespace PeelseDartBond.UI.Page
             BindingContext = _vm;
         }
 
-        protected void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+        protected async void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var item = e.SelectedItem as Competition;
             if (item != null)
@@ -50,7 +50,7 @@ namespace PeelseDartBond.UI.Page
                 divisionNavigationPage.BarBackgroundColor = Colors.GreenDark;
                 divisionNavigationPage.BarTextColor = Colors.WhiteNormal;
                 ((ContainerPage)App.Current.MainPage).Detail = divisionNavigationPage;
-                _vm.ChangeSelection(item);
+                await _vm.ChangeSelection(item);
                 listView.SelectedItem = null;
                 ((ContainerPage)App.Current.MainPage).IsPresented = false;
             }

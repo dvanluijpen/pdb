@@ -96,6 +96,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CustomRenderers\HtmlLabelRenderer.cs" />
     <Compile Include="DependencyServicesImpl\DeviceService.cs" />
+    <Compile Include="CustomRenderers\RoundedBoxRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -105,16 +106,10 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon1024.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon180.png">
-      <Visible>false</Visible>
-    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon167.png">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon152.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon120.png">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon87.png">
@@ -141,6 +136,8 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon180.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon120.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -149,14 +146,17 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms">
-      <Version>3.1.0.583944</Version>
-    </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>11.0.2</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Essentials">
       <Version>0.8.0-preview</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Forms">
+      <Version>3.1.0.637273</Version>
+    </PackageReference>
+    <PackageReference Include="SegmentedControl.FormsPlugin">
+      <Version>2.0.1</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
@@ -169,5 +169,13 @@
   <ItemGroup>
     <Folder Include="CustomRenderers\" />
     <Folder Include="DependencyServicesImpl\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="..\..\..\..\Assets\Common\CheckmarkGreen.png">
+      <Link>Resources\CheckmarkGreen.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\..\Assets\Common\CheckmarkYellow.png">
+      <Link>Resources\CheckmarkYellow.png</Link>
+    </BundleResource>
   </ItemGroup>
 </Project>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:constants="clr-namespace:PeelseDartBond.Constants;assembly=PeelseDartBond"
+    xmlns:customrenderers="clr-namespace:PeelseDartBond.CustomRenderers;assembly=PeelseDartBond"
+    x:Class="PeelseDartBond.UI.Cell.NewsCell">
+    <ViewCell.View>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Label
+                Grid.Row="0"
+                Margin="8,0"
+                VerticalOptions="Start" HorizontalOptions="Fill" 
+                FontSize="{x:Static constants:Fonts.SizePhoneXXL}"
+                FontAttributes="Bold"
+                TextColor="{x:Static constants:Colors.Gray1}"
+                Text="{Binding Title}" />
+            <customrenderers:HtmlLabel
+                Grid.Row="1"
+                Margin="8,0"
+                VerticalOptions="Start" HorizontalOptions="Fill" 
+                FontSize="{x:Static constants:Fonts.SizePhoneL}"
+                TextColor="{x:Static constants:Colors.Gray2}"
+                Text="{Binding Text}" />
+        </Grid>
+    </ViewCell.View>
+</ViewCell>
