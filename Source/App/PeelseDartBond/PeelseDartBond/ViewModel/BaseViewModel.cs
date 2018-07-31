@@ -8,6 +8,7 @@ using PeelseDartBond.Constants;
 using Xamarin.Forms;
 using Xamarin.Essentials;
 using PeelseDartBond.Model.Exceptions;
+using PeelseDartBond.DependencyServices;
 
 namespace PeelseDartBond.ViewModel
 {
@@ -20,6 +21,7 @@ namespace PeelseDartBond.ViewModel
             _pdbService = PdbService.Instance;
         }
 
+        public IDialogService DialogService { get { return DependencyService.Get<IDialogService>(); } }
         public NavigationService NavigationService { get { return DependencyService.Get<NavigationService>(); } }
         public PdbService PdbService { get { return _pdbService; } }
 

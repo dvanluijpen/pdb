@@ -83,6 +83,7 @@
     <Compile Include="CustomRenderers\HtmlLabelRenderer.cs" />
     <Compile Include="DependencyServicesImpl\DeviceService.cs" />
     <Compile Include="CustomRenderers\RoundedBoxRenderer.cs" />
+    <Compile Include="DependencyServicesImpl\DialogService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -112,6 +113,7 @@
     <AndroidResource Include="..\..\..\..\Assets\Common\CheckmarkYellow.png">
       <Link>Resources\drawable\CheckmarkYellow.png</Link>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\FormsDialog_Droid.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

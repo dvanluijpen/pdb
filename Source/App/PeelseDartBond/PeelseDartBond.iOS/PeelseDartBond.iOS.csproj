@@ -97,6 +97,8 @@
     <Compile Include="CustomRenderers\HtmlLabelRenderer.cs" />
     <Compile Include="DependencyServicesImpl\DeviceService.cs" />
     <Compile Include="CustomRenderers\RoundedBoxRenderer.cs" />
+    <Compile Include="DependencyServicesImpl\DialogService.cs" />
+    <Compile Include="UI\Views\FormsDialog_iOS.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -169,6 +171,8 @@
   <ItemGroup>
     <Folder Include="CustomRenderers\" />
     <Folder Include="DependencyServicesImpl\" />
+    <Folder Include="UI\" />
+    <Folder Include="UI\Views\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="..\..\..\..\Assets\Common\CheckmarkGreen.png">

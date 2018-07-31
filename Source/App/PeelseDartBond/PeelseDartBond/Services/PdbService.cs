@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using PeelseDartBond.DependencyServices;
 using PeelseDartBond.Helpers;
 using PeelseDartBond.Model;
 using PeelseDartBond.Model.EventArgs;

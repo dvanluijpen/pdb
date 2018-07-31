@@ -1,3 +1,4 @@
+using PeelseDartBond.DependencyServices;
 using PeelseDartBond.Services;
 using PeelseDartBond.UI.Page;
 using Xamarin.Forms;

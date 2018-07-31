@@ -25,7 +25,7 @@ namespace PeelseDartBond.ViewModel
             set { SetProperty(ref _news, value); }
         }
 
-         void NewsLoaded(object sender, NewsEventArgs e) => News = PdbService.News;
+        void NewsLoaded(object sender, NewsEventArgs e) => News = PdbService.News;
 
         public async override Task Load()
         {
