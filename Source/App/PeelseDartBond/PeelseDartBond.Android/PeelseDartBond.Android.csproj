@@ -114,6 +114,21 @@
       <Link>Resources\drawable\CheckmarkYellow.png</Link>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\FormsDialog_Droid.axml" />
+    <AndroidResource Include="..\..\..\..\Assets\AndroidSpecific\Individual.png">
+      <Link>Resources\drawable\Individual.png</Link>
+    </AndroidResource>
+    <AndroidResource Include="..\..\..\..\Assets\AndroidSpecific\Matrix.png">
+      <Link>Resources\drawable\Matrix.png</Link>
+    </AndroidResource>
+    <AndroidResource Include="..\..\..\..\Assets\AndroidSpecific\Ranking.png">
+      <Link>Resources\drawable\Ranking.png</Link>
+    </AndroidResource>
+    <AndroidResource Include="..\..\..\..\Assets\AndroidSpecific\Result.png">
+      <Link>Resources\drawable\Result.png</Link>
+    </AndroidResource>
+    <AndroidResource Include="..\..\..\..\Assets\AndroidSpecific\Schedule.png">
+      <Link>Resources\drawable\Schedule.png</Link>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

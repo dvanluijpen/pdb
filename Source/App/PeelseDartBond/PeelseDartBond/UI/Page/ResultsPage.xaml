@@ -11,23 +11,36 @@
             RowSpacing="0" ColumnSpacing="0"
             BackgroundColor="{x:Static constants:Colors.WhiteNormal}">
             <Grid.RowDefinitions>
+                <RowDefinition Height="32" />
                 <RowDefinition Height="40" />
                 <RowDefinition Height="40" />
+                <RowDefinition Height="32" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
+            <StackLayout
+                Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                HorizontalOptions="Fill" VerticalOptions="StartAndExpand" 
+                BackgroundColor="{x:Static constants:Colors.Gray1}">
+                <Label
+                    Margin="24,0"
+                    VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" 
+                    FontSize="{x:Static constants:Fonts.SizePhoneXXL}"
+                    TextColor="{x:Static constants:Colors.Gray3}"
+                    Text="Filter" />
+            </StackLayout>
             <Label 
                 VerticalOptions="CenterAndExpand" HorizontalOptions="Fill"
                 VerticalTextAlignment="Center" HorizontalTextAlignment="Start"
-                Grid.Row="0" Grid.Column="0"
+                Grid.Row="1" Grid.Column="0"
                 Text="Team" />
             <Picker 
                 x:Name="pickerTeam"
                 VerticalOptions="CenterAndExpand" HorizontalOptions="Fill"
-                Grid.Row="0" Grid.Column="1"
+                Grid.Row="1" Grid.Column="1"
                 Title="Selecteer een Team"
                 ItemsSource="{Binding Teams}"
                 SelectedItem="{Binding SelectedTeam}"
@@ -35,19 +48,30 @@
             <Label 
                 VerticalOptions="CenterAndExpand" HorizontalOptions="Fill"
                 VerticalTextAlignment="Center" HorizontalTextAlignment="Start"
-                Grid.Row="1" Grid.Column="0"
+                Grid.Row="2" Grid.Column="0"
                 Text="Week" />
             <Picker 
                 x:Name="pickerWeek"
                 VerticalOptions="CenterAndExpand" HorizontalOptions="Fill"
-                Grid.Row="1" Grid.Column="1"
+                Grid.Row="2" Grid.Column="1"
                 Title="Selecteer een Week"
                 ItemsSource="{Binding Weeks}"
                 SelectedItem="{Binding SelectedWeek}"
                 Unfocused="FilterByWeek" />
+            <StackLayout
+                Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
+                HorizontalOptions="Fill" VerticalOptions="StartAndExpand" 
+                BackgroundColor="{x:Static constants:Colors.Gray1}">
+                <Label
+                    Margin="24,0"
+                    VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" 
+                    FontSize="{x:Static constants:Fonts.SizePhoneXXL}"
+                    TextColor="{x:Static constants:Colors.Gray3}"
+                    Text="Uitslagen" />
+            </StackLayout>
             <ListView 
                 x:Name="listView"
-                Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
                 HorizontalOptions="Fill" VerticalOptions="StartAndExpand"
                 ItemSelected="OnItemSelected" 
                 ItemsSource="{Binding FilteredResults}"

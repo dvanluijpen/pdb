@@ -181,5 +181,35 @@
     <BundleResource Include="..\..\..\..\Assets\Common\CheckmarkYellow.png">
       <Link>Resources\CheckmarkYellow.png</Link>
     </BundleResource>
+    <BundleResource Include="..\..\..\..\Assets\iOSSpecific\Individual%402x.png">
+      <Link>Resources\Individual%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\..\Assets\iOSSpecific\Individual%403x.png">
+      <Link>Resources\Individual%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\..\Assets\iOSSpecific\Matrix%402x.png">
+      <Link>Resources\Matrix%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\..\Assets\iOSSpecific\Matrix%403x.png">
+      <Link>Resources\Matrix%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\..\Assets\iOSSpecific\Ranking%402x.png">
+      <Link>Resources\Ranking%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\..\Assets\iOSSpecific\Ranking%403x.png">
+      <Link>Resources\Ranking%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\..\Assets\iOSSpecific\Result%402x.png">
+      <Link>Resources\Result%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\..\Assets\iOSSpecific\Result%403x.png">
+      <Link>Resources\Result%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\..\Assets\iOSSpecific\Schedule%402x.png">
+      <Link>Resources\Schedule%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\..\Assets\iOSSpecific\Schedule%403x.png">
+      <Link>Resources\Schedule%403x.png</Link>
+    </BundleResource>
   </ItemGroup>
 </Project>

@@ -2,18 +2,17 @@
 <TabbedPage 
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:constants="clr-namespace:PeelseDartBond.Constants;assembly=PeelseDartBond"
     xmlns:pages="clr-namespace:PeelseDartBond.UI.Page"
     x:Class="PeelseDartBond.UI.Page.DivisionPage"
     Title="{Binding Division}"
-    BackgroundColor="Purple">
+    BarBackgroundColor="{x:Static constants:Colors.Gray1}"
+    BarTextColor="{x:Static constants:Colors.Gray3}">
     <TabbedPage.Children>
-        <pages:RankingsPage Title="Stand" />
-        <pages:ResultsPage Title="Uitslagen" />
-        <pages:MatrixPage Title="Matrix" />
-        <pages:SchedulePage Title="Speelschema" />
-        <pages:PlayersPage Title="Individueel" />
-        <!--<pages:Player180sPage Title="180s" />
-        <pages:PlayerRankingsPage Title="Singels" />
-        <pages:PlayerFinishesPage Title="Finishes" />-->
+        <pages:RankingsPage Title="Stand" Icon="Ranking" />
+        <pages:ResultsPage Title="Uitslagen" Icon="Result" />
+        <pages:MatrixPage Title="Matrix" Icon="Matrix" />
+        <pages:SchedulePage Title="Speelschema" Icon="Schedule" />
+        <pages:PlayersPage Title="Individueel" Icon="Individual" />
     </TabbedPage.Children>
 </TabbedPage>
