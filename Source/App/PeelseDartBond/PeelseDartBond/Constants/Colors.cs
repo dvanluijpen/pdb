@@ -24,5 +24,15 @@ namespace PeelseDartBond.Constants
         public static Color Position2 = Color.FromHex("#9EBFED");
         public static Color Position3 = Color.FromHex("#CFDFF6");
         public static Color PositionX = Color.FromHex("#F5EEDD");
+        public static Color TeamHomeBorder = Color.FromHex("#00007F");
+        public static Color TeamHomeFill = Color.FromHex("#7F7FFF"); // 6e links
+        public static Color TeamAwayBorder = Color.FromHex("#7F7F00");
+        public static Color TeamAwayFill = Color.FromHex("#FFFF7F"); // 6e links
+        public static Color TeamWinBorder = Color.FromHex("#004000");
+        public static Color TeamWinFill = Color.FromHex("#7FBF7F"); // 6e links
+        public static Color TeamDrawBorder = Color.FromHex("#7F5200");
+        public static Color TeamDrawFill = Color.FromHex("#FFD27F"); // 6e links
+        public static Color TeamLoseBorder = Color.FromHex("#7F0000");
+        public static Color TeamLoseFill = Color.FromHex("#FF7F7F"); // 6e links
     }
 }

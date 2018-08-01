@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace PeelseDartBond.Utilities
@@ -216,5 +217,7 @@ namespace PeelseDartBond.Utilities
 
             return entities;
         }
+
+        public static ObservableCollection<T> ToObservableCollection<T>(this IEnumerable<T> enumerable) => new ObservableCollection<T>(enumerable);
     }
 }

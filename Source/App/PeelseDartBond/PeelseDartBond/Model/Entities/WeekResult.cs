@@ -68,5 +68,9 @@ namespace PeelseDartBond.Model.Entities
             get { return _status; }
             set { SetProperty(ref _status, value); }
         }
+        public int ResultMatch
+        {
+            get { return ResultHome > ResultAway ? 1 : ResultAway > ResultHome ? 2 : 0; }
+        }
     }
 }

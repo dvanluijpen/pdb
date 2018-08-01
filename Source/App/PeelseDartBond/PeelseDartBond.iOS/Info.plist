@@ -23,7 +23,7 @@
 	<key>MinimumOSVersion</key>
 	<string>8.0</string>
 	<key>CFBundleDisplayName</key>
-	<string>PeelseDartBond</string>
+	<string>PDB Darts</string>
 	<key>CFBundleIdentifier</key>
 	<string>nl.darts.PeelseDartBond</string>
 	<key>CFBundleVersion</key>

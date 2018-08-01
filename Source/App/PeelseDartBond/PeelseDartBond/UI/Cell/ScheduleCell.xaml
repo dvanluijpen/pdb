@@ -1,55 +1,71 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ViewCell 
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     xmlns:constants="clr-namespace:PeelseDartBond.Constants;assembly=PeelseDartBond"
+    xmlns:customRenderers="clr-namespace:PeelseDartBond.CustomRenderers;assembly=PeelseDartBond"
     x:Class="PeelseDartBond.UI.Cell.ScheduleCell">
     <ViewCell.View>
         <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition Height="1" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="1" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="44" />
                 <ColumnDefinition Width="100" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
+            <BoxView
+                Grid.Row="0" Grid.ColumnSpan="4"
+                BackgroundColor="{x:Static constants:Colors.Gray4}" />
+            <customRenderers:RoundedBox
+                Grid.Row="1" Grid.Column="0"
+                VerticalOptions="Center" HorizontalOptions="Center" 
+                WidthRequest="8" HeightRequest="8"
+                BackgroundColor="{x:Static constants:Colors.TeamHomeFill}"
+                BorderWidth="1"
+                BorderColor="{x:Static constants:Colors.TeamHomeBorder}" />
+            <customRenderers:RoundedBox
+                Grid.Row="2" Grid.Column="0"
+                VerticalOptions="Center" HorizontalOptions="Center" 
+                WidthRequest="8" HeightRequest="8"
+                BackgroundColor="{x:Static constants:Colors.TeamAwayFill}"
+                BorderWidth="1"
+                BorderColor="{x:Static constants:Colors.TeamAwayBorder}" />
             <Label
-                Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Margin="12"
-                VerticalOptions="Fill" HorizontalOptions="Fill"
-                VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
-                FontSize="{x:Static constants:Fonts.SizePhoneXL}"
-                TextColor="{x:Static constants:Colors.Gray1}"
-                Text="{Binding Week}" />
-            <Label
-                Grid.Row="0" Grid.Column="1"
+                Grid.Row="1" Grid.Column="1"
                 VerticalOptions="Fill" HorizontalOptions="Fill"
                 VerticalTextAlignment="End" HorizontalTextAlignment="Start"
                 FontSize="{x:Static constants:Fonts.SizePhoneXL}"
                 TextColor="{x:Static constants:Colors.Gray1}"
                 Text="{Binding MatchDay}" />
             <Label
-                Grid.Row="1" Grid.Column="1"
+                Grid.Row="2" Grid.Column="1"
                 VerticalOptions="Fill" HorizontalOptions="Fill"
                 VerticalTextAlignment="Start" HorizontalTextAlignment="Start"
                 FontSize="{x:Static constants:Fonts.SizePhoneXL}"
                 TextColor="{x:Static constants:Colors.Gray1}"
                 Text="{Binding MatchDate, StringFormat='{0:dd-MM-yyyy}'}" />
             <Label
-                Grid.Row="0" Grid.Column="2"
+                Grid.Row="1" Grid.Column="2"
                 VerticalOptions="Fill" HorizontalOptions="Fill"
                 VerticalTextAlignment="End" HorizontalTextAlignment="Start"
                 FontSize="{x:Static constants:Fonts.SizePhoneXL}"
                 TextColor="{x:Static constants:Colors.Gray1}"
                 Text="{Binding TeamHome}" />
             <Label
-                Grid.Row="1" Grid.Column="2"
+                Grid.Row="2" Grid.Column="2"
                 VerticalOptions="Fill" HorizontalOptions="Fill"
                 VerticalTextAlignment="Start" HorizontalTextAlignment="Start"
                 FontSize="{x:Static constants:Fonts.SizePhoneXL}"
                 TextColor="{x:Static constants:Colors.Gray1}"
                 Text="{Binding TeamAway}" />
+            <BoxView
+                Grid.Row="3" Grid.ColumnSpan="4"
+                BackgroundColor="{x:Static constants:Colors.Gray4}" />
         </Grid>
     </ViewCell.View>
 </ViewCell>

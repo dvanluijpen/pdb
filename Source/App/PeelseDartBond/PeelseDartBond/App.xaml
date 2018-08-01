@@ -6,6 +6,7 @@
     x:Class="PeelseDartBond.App">
     <Application.Resources>
         <ResourceDictionary>
+            <utilities:MatchColorConverter x:Key="MatchColorConverter" />
             <utilities:PositionColorConverter x:Key="PositionColorConverter" />
             <utilities:RowColorConverter x:Key="RowColorConverter" />
             <utilities:StringVisibilityConverter x:Key="StringVisibilityConverter" />

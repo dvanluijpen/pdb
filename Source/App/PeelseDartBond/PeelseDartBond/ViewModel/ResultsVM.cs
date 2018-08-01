@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using PeelseDartBond.Model;
 using PeelseDartBond.Model.Entities;
 using PeelseDartBond.Model.EventArgs;
 using PeelseDartBond.Services;
@@ -14,8 +14,9 @@ namespace PeelseDartBond.ViewModel
 {
     public class ResultsVM : BaseRefreshViewModel
     {
-        List<WeekResult> _filteredResults;
         List<WeekResult> _results;
+        ObservableCollection<Group<WeekResult>> _groups;
+        ObservableCollection<Group<WeekResult>> _filteredGroups;
         List<string> _teams;
         List<string> _weeks;
         string _selectedTeam;
@@ -25,8 +26,9 @@ namespace PeelseDartBond.ViewModel
 
         public ResultsVM() : base()
         {
-            FilteredResults = new List<WeekResult>();
             Results = new List<WeekResult>();
+            Groups = new ObservableCollection<Group<WeekResult>>();
+            FilteredGroups = new ObservableCollection<Group<WeekResult>>();
             Teams = new List<string>();
             Weeks = new List<string>();
             _filterByTeamCommand = new Command(OnFilterByTeam);
@@ -39,16 +41,22 @@ namespace PeelseDartBond.ViewModel
         public ICommand FilterByTeamCommand { get { return _filterByTeamCommand; } }
         public ICommand FilterByWeekCommand { get { return _filterByWeekCommand; } }
 
-        public List<WeekResult> FilteredResults
-        {
-            get { return _filteredResults; }
-            set { SetProperty(ref _filteredResults, value); }
-        }
-
         public List<WeekResult> Results
         {
             get { return _results; }
             set { SetProperty(ref _results, value); }
+        }
+
+        public ObservableCollection<Group<WeekResult>> Groups
+        {
+            get { return _groups; }
+            set { SetProperty(ref _groups, value); }
+        }
+
+        public ObservableCollection<Group<WeekResult>> FilteredGroups
+        {
+            get { return _filteredGroups; }
+            set { SetProperty(ref _filteredGroups, value); }
         }
 
         public List<string> Teams
@@ -78,8 +86,9 @@ namespace PeelseDartBond.ViewModel
         void ResultsLoaded(object sender, ResultsEventArgs e)
         {
             Results = e.Results;
-            FilteredResults = e.Results;
             FillWeeks(e.Results);
+
+            AssembleGroups();
         }
 
         void RankingsLoaded(object sender, RankingEventArgs e)
@@ -96,7 +105,6 @@ namespace PeelseDartBond.ViewModel
             else
             {
                 Results = PdbService.Results;
-                FilteredResults = PdbService.Results;
                 FillWeeks(PdbService.Results);
             }
             
@@ -148,20 +156,42 @@ namespace PeelseDartBond.ViewModel
         {
             try
             {
-                var filteredResults = Results;
+                var filteredGroups = Groups;
 
-                if(SelectedTeam != "Alle")
-                    filteredResults = filteredResults.Where(r => r.TeamHome == SelectedTeam || r.TeamAway == SelectedTeam).ToList();
+                if (SelectedTeam != "Alle")
+                {
+                    var subGroups = new ObservableCollection<Group<WeekResult>>();
+                    foreach (var group in filteredGroups)
+                    {
+                        subGroups.Add(new Group<WeekResult>(group.LongName, group.ShortName,
+                                                            group.Where(g => g.TeamHome == SelectedTeam || g.TeamAway == SelectedTeam)));
+                    }
+                    filteredGroups = subGroups;
+                }
 
                 if (SelectedWeek != "Alle")
-                    filteredResults = filteredResults.Where(r => r.Week.ToString() == SelectedWeek).ToList();
+                    filteredGroups = filteredGroups.Where(r => r.ShortName == SelectedWeek).ToObservableCollection();
 
-                FilteredResults = filteredResults;
+                FilteredGroups = filteredGroups;
             }
             catch (Exception ex)
             {
                 Logger.Error(ex.Message, ex);
             }
+        }
+
+        public void AssembleGroups()
+        {
+            var weeks = Results.Select(r => r.Week).Distinct();
+            var groups = new ObservableCollection<Group<WeekResult>>();
+
+            foreach (var week in weeks)
+            {
+                groups.Add(new Group<WeekResult>($"Week {week}", week.ToString(), Results.Where(r => r.Week == week)));
+            }
+
+            Groups = groups;
+            FilteredGroups = groups;
         }
     }
 }

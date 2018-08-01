@@ -31,10 +31,10 @@
                 x:Name="listView" 
                 Grid.Row="1"
                 HorizontalOptions="Fill" VerticalOptions="FillAndExpand"
+                ItemSelected="OnItemSelected" 
                 ItemsSource="{Binding GroupedCompetitions}"
                 IsGroupingEnabled="true" 
                 GroupDisplayBinding="{Binding LongName}"
-                ItemSelected="OnItemSelected" 
                 SeparatorColor="{x:Static constants:Colors.Gray4}"
                 RowHeight="32">
                 <ListView.GroupHeaderTemplate>

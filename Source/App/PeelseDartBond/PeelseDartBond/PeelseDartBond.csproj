@@ -28,6 +28,7 @@
     <Folder Include="Model\Types\" />
     <Folder Include="Model\Exceptions\" />
     <Folder Include="Helpers\" />
+    <Folder Include="Model\Entities\Interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Model\DataTransferObjects\Result.cs" />

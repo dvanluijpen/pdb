@@ -2,6 +2,7 @@
 <ContentPage 
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:cells="clr-namespace:PeelseDartBond.UI.Cell;assembly=PeelseDartBond"
     xmlns:constants="clr-namespace:PeelseDartBond.Constants;assembly=PeelseDartBond" 
     xmlns:plugins="clr-namespace:SegmentedControl.FormsPlugin.Abstractions;assembly=SegmentedControl.FormsPlugin.Abstractions"
     x:Class="PeelseDartBond.UI.Page.PlayersPage">
@@ -30,7 +31,14 @@
                 Grid.Row="1"
                 VerticalOptions="FillAndExpand" HorizontalOptions="Fill" 
                 ItemSelected="OnItemSelected" 
-                SeparatorColor="{x:Static constants:Colors.Gray1}" />
+                ItemsSource="{Binding Player180s}"
+                SeparatorColor="{x:Static constants:Colors.Gray1}" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <cells:Player180sCell Player="{Binding .}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

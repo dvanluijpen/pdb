@@ -1,26 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading;
 using System.Threading.Tasks;
 using PeelseDartBond.Model.Entities;
 using PeelseDartBond.Model.EventArgs;
 using PeelseDartBond.Model.Types;
 using PeelseDartBond.Services;
+using PeelseDartBond.Utilities;
 
 namespace PeelseDartBond.ViewModel
 {
     public class PlayersVM : BaseRefreshViewModel
     {
         IndividualPageType _selectedPageType;
-        List<Player180s> _player180s;
-        List<PlayerFinish> _playerFinishes;
-        List<PlayerRanking> _playerRankings;
+        ObservableCollection<Player180s> _player180s;
+        ObservableCollection<PlayerFinish> _playerFinishes;
+        ObservableCollection<PlayerRanking> _playerRankings;
 
         public PlayersVM() : base()
         {
-            Player180s = new List<Player180s>();
-            PlayerFinishes = new List<PlayerFinish>();
-            PlayerRankings = new List<PlayerRanking>();
+            SelectedPageType = IndividualPageType.Display180s;
+            
+            Player180s = new List<Player180s>().ToObservableCollection();
+            PlayerFinishes = new List<PlayerFinish>().ToObservableCollection();
+            PlayerRankings = new List<PlayerRanking>().ToObservableCollection();
 
             PdbService.Player180sLoaded += Player180sLoaded;
             PdbService.PlayerFinishesLoaded += PlayerFinishesLoaded;
@@ -33,27 +37,27 @@ namespace PeelseDartBond.ViewModel
             set { SetProperty(ref _selectedPageType, value); }
         }
 
-        public List<Player180s> Player180s
+        public ObservableCollection<Player180s> Player180s
         {
             get { return _player180s; }
             set { SetProperty(ref _player180s, value); }
         }
 
-        public List<PlayerFinish> PlayerFinishes
+        public ObservableCollection<PlayerFinish> PlayerFinishes
         {
             get { return _playerFinishes; }
             set { SetProperty(ref _playerFinishes, value); }
         }
 
-        public List<PlayerRanking> PlayerRankings
+        public ObservableCollection<PlayerRanking> PlayerRankings
         {
             get { return _playerRankings; }
             set { SetProperty(ref _playerRankings, value); }
         }
 
-        void Player180sLoaded(object sender, Player180sEventArgs e) => Player180s = e.Players;
-        void PlayerFinishesLoaded(object sender, PlayerFinishesEventArgs e) => PlayerFinishes = e.Players;
-        void PlayerRankingsLoaded(object sender, PlayerRankingsEventArgs e) => PlayerRankings = e.Players;
+        void Player180sLoaded(object sender, Player180sEventArgs e) => Player180s = e.Players.ToObservableCollection();
+        void PlayerFinishesLoaded(object sender, PlayerFinishesEventArgs e) => PlayerFinishes = e.Players.ToObservableCollection();
+        void PlayerRankingsLoaded(object sender, PlayerRankingsEventArgs e) => PlayerRankings = e.Players.ToObservableCollection();
 
         public async override Task Load()
         {
@@ -63,7 +67,7 @@ namespace PeelseDartBond.ViewModel
             }
             else
             {
-                Player180s = PdbService.Player180s;
+                Player180s = PdbService.Player180s.ToObservableCollection();
             }
             if (PdbService.PlayerFinishes == null)
             {
@@ -71,7 +75,7 @@ namespace PeelseDartBond.ViewModel
             }
             else
             {
-                PlayerFinishes = PdbService.PlayerFinishes;
+                PlayerFinishes = PdbService.PlayerFinishes.ToObservableCollection();
             }
             if (PdbService.PlayerRankings == null)
             {
@@ -79,7 +83,7 @@ namespace PeelseDartBond.ViewModel
             }
             else
             {
-                PlayerRankings = PdbService.PlayerRankings;
+                PlayerRankings = PdbService.PlayerRankings.ToObservableCollection();
             }
         }
 

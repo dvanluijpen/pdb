@@ -15,11 +15,12 @@ namespace PeelseDartBond.ViewModel
     public class MenuVM : BaseRefreshViewModel
     {
         List<Competition> _competitions;
-        ObservableCollection<GroupedCompetition> _groupedCompetitions;
+        ObservableCollection<Group<Competition>> _groupedCompetitions;
 
         public MenuVM() : base()
         {
             _competitions = new List<Competition> { new Competition { Name = Strings.Loading } };
+            _groupedCompetitions = new ObservableCollection<Group<Competition>>();
 
             Task.Run(async () => await Load());
 
@@ -32,13 +33,13 @@ namespace PeelseDartBond.ViewModel
             set { SetProperty(ref _competitions, value); }
         }
 
-        public ObservableCollection<GroupedCompetition> GroupedCompetitions
+        public ObservableCollection<Group<Competition>> GroupedCompetitions
         {
             get { return _groupedCompetitions; }
             set { SetProperty(ref _groupedCompetitions, value); }
         }
 
-        void CompetitionsLoaded(object sender, EventArgs e) => AssembleMenu();
+        void CompetitionsLoaded(object sender, EventArgs e) => AssembleGroups();
 
         public async override Task Load()
         {
@@ -51,7 +52,7 @@ namespace PeelseDartBond.ViewModel
             }
             else
             {
-                AssembleMenu();
+                AssembleGroups();
             }
         }
 
@@ -66,18 +67,18 @@ namespace PeelseDartBond.ViewModel
                 await ShowNoConnectionError();
         }
 
-        private void AssembleMenu()
+        private void AssembleGroups()
         {
             var competitions = new List<Competition> { new Competition { Name = Strings.News } };
             competitions.AddRange(PdbService.Competitions);
             Competitions = competitions;
 
-            var CGA = new GroupedCompetition(Strings.CompetitionGroupA, "A");
-            var CGE = new GroupedCompetition(Strings.CompetitionGroupE, "E");
-            var CG1 = new GroupedCompetition(Strings.CompetitionGroup1, "1");
-            var CG2 = new GroupedCompetition(Strings.CompetitionGroup2, "2");
-            var CG3 = new GroupedCompetition(Strings.CompetitionGroup3, "3");
-            var CG4 = new GroupedCompetition(Strings.CompetitionGroup4, "4");
+            var CGA = new Group<Competition>(Strings.CompetitionGroupA, "A");
+            var CGE = new Group<Competition>(Strings.CompetitionGroupE, "E");
+            var CG1 = new Group<Competition>(Strings.CompetitionGroup1, "1");
+            var CG2 = new Group<Competition>(Strings.CompetitionGroup2, "2");
+            var CG3 = new Group<Competition>(Strings.CompetitionGroup3, "3");
+            var CG4 = new Group<Competition>(Strings.CompetitionGroup4, "4");
 
             foreach (var competition in competitions)
             {
@@ -89,15 +90,15 @@ namespace PeelseDartBond.ViewModel
                 else if (competition.Name.Contains("4")) CG4.Add(competition);
             }
 
-            var groupedCompetitions = new ObservableCollection<GroupedCompetition>();
-            groupedCompetitions.Add(CGA);
-            groupedCompetitions.Add(CGE);
-            groupedCompetitions.Add(CG1);
-            groupedCompetitions.Add(CG2);
-            groupedCompetitions.Add(CG3);
-            groupedCompetitions.Add(CG4);
+            var groups = new ObservableCollection<Group<Competition>>();
+            groups.Add(CGA);
+            groups.Add(CGE);
+            groups.Add(CG1);
+            groups.Add(CG2);
+            groups.Add(CG3);
+            groups.Add(CG4);
 
-            GroupedCompetitions = groupedCompetitions;
+            GroupedCompetitions = groups;
         }
     }
 }

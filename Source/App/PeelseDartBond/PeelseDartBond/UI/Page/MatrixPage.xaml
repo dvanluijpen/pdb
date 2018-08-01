@@ -6,17 +6,21 @@
     xmlns:constants="clr-namespace:PeelseDartBond.Constants;assembly=PeelseDartBond"
     x:Class="PeelseDartBond.UI.Page.MatrixPage">
     <ContentPage.Content>
-        <ListView 
-            x:Name="listView"
-            HorizontalOptions="Fill" VerticalOptions="StartAndExpand"
-            ItemSelected="OnItemSelected" 
-            ItemsSource="{Binding Matrix}"
-            SeparatorColor="{x:Static constants:Colors.Gray1}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <cells:MatrixCell MatrixRow="{Binding .}" />
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        <ScrollView Orientation="Both">
+            <ListView 
+                x:Name="listView"
+                HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                WidthRequest="800"
+                RowHeight="32"
+                ItemSelected="OnItemSelected" 
+                ItemsSource="{Binding Matrix}"
+                SeparatorColor="{x:Static constants:Colors.Gray1}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <cells:MatrixCell MatrixRow="{Binding .}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
