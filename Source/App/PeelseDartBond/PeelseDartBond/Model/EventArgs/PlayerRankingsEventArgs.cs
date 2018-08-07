@@ -4,11 +4,11 @@ using PeelseDartBond.Model.Entities;
 
 namespace PeelseDartBond.Model.EventArgs
 {
-    public class PlayerRankingsEventArgs
+    public class PlayerRankingsEventArgs : System.EventArgs
     {
         readonly List<PlayerRanking> _players;
 
-        public PlayerRankingsEventArgs(List<PlayerRanking> players)
+        public PlayerRankingsEventArgs(List<PlayerRanking> players) : base()
         {
             _players = players;
         }

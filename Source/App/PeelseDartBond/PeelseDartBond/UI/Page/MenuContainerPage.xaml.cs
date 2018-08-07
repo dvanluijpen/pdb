@@ -5,11 +5,16 @@ using Xamarin.Forms;
 
 namespace PeelseDartBond.UI.Page
 {
-	public partial class ContainerPage : MasterDetailPage
+    public partial class MenuContainerPage : NavigationPage
     {
-        public ContainerPage()
+        MenuContainerVM _vm;
+
+        public MenuContainerPage()
         {
             InitializeComponent();
+
+            _vm = new MenuContainerVM();
+            BindingContext = _vm;
         }
     }
 }

@@ -29,6 +29,9 @@ namespace PeelseDartBond.ViewModel
 
         public async override Task Load()
         {
+            if (PdbService.CompetitionYears.IsNullOrEmpty())
+                await PdbService.GetCompetitionYears();
+
             if (PdbService.News.IsNullOrEmpty())
                 await PdbService.GetNews();
             else

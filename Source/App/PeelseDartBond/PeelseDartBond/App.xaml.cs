@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using PeelseDartBond.DependencyServices;
 using PeelseDartBond.Services;
 using PeelseDartBond.UI.Page;
@@ -13,7 +14,23 @@ namespace PeelseDartBond
         {
             InitializeComponent();
 
+            RegisterDependencyServices();
+            InitializeData();
+            SetMainPage();
+        }
+
+        private void RegisterDependencyServices()
+        {
             DependencyService.Register<NavigationService, NavigationService>();
+        }
+
+        private void InitializeData()
+        {
+            PdbService.Instance.Initialize();
+        }
+
+        private void SetMainPage()
+        {
             MainPage = new ContainerPage();
         }
     }

@@ -4,11 +4,11 @@ using PeelseDartBond.Model.Entities;
 
 namespace PeelseDartBond.Model.EventArgs
 {
-    public class MatrixEventArgs
+    public class MatrixEventArgs : System.EventArgs
     {
         readonly List<MatrixRow> _matrix;
 
-        public MatrixEventArgs(List<MatrixRow> matrix)
+        public MatrixEventArgs(List<MatrixRow> matrix) : base()
         {
             _matrix = matrix;
         }

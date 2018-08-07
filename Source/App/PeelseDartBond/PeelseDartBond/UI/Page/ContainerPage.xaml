@@ -7,12 +7,16 @@
     x:Class="PeelseDartBond.UI.Page.ContainerPage"
     BackgroundColor="{x:Static constants:Colors.WhiteNormal}">
     <MasterDetailPage.Master>
-        <pages:MenuPage />
+<!--        <pages:MenuContainerPage />-->
+        <NavigationPage
+            Title="Menu">
+            <x:Arguments>
+                <pages:MenuPage />
+            </x:Arguments>  
+        </NavigationPage>
     </MasterDetailPage.Master>
     <MasterDetailPage.Detail>
-        <NavigationPage
-            BarBackgroundColor="{x:Static constants:Colors.GreenDark}"
-            BarTextColor="{x:Static constants:Colors.WhiteNormal}">
+        <NavigationPage>
             <x:Arguments>
                 <pages:NewsPage />
             </x:Arguments>  

@@ -19,12 +19,29 @@ namespace PeelseDartBond.Services
 {
     public class PdbService : RestService
     {
+        #region Instance
+
         static PdbService _instance;
+        public static PdbService Instance
+        {
+            get
+            {
+                if (_instance == null) _instance = new PdbService();
+                return _instance;
+            }
+        }
+
+        #endregion Instance
+
+
+        #region Fields
 
         Model.Entities.Competition _selectedCompetition;
+        Model.Entities.CompetitionYear _selectedCompetitionYear;
 
         List<Model.Entities.News> _news;
         List<Model.Entities.Competition> _competitions;
+        List<Model.Entities.CompetitionYear> _competitionYears;
         List<Model.Entities.Ranking> _rankings;
         List<Model.Entities.Schedule> _schedule;
         List<Model.Entities.WeekResult> _results;
@@ -33,12 +50,25 @@ namespace PeelseDartBond.Services
         List<Model.Entities.PlayerRanking> _playerRankings;
         List<Model.Entities.PlayerFinish> _playerFinishes;
 
+        #endregion Fields
+
+
+        #region Constructors & Initialization
+
         public PdbService()
         {
+            InitializeProperties();
+            WireEvents();
+        }
+
+        private void InitializeProperties()
+        {
             _selectedCompetition = new Model.Entities.Competition();
+            _selectedCompetitionYear = new Model.Entities.CompetitionYear();
 
             _news = new List<Model.Entities.News>();
             _competitions = new List<Model.Entities.Competition>();
+            _competitionYears = new List<Model.Entities.CompetitionYear>();
             _rankings = new List<Model.Entities.Ranking>();
             _schedule = new List<Model.Entities.Schedule>();
             _results = new List<Model.Entities.WeekResult>();
@@ -46,24 +76,32 @@ namespace PeelseDartBond.Services
             _player180s = new List<Model.Entities.Player180s>();
             _playerRankings = new List<Model.Entities.PlayerRanking>();
             _playerFinishes = new List<Model.Entities.PlayerFinish>();
+        }
 
+        private void WireEvents()
+        {
             SelectedCompetitionChanged -= OnCompetitionChanged;
             SelectedCompetitionChanged += OnCompetitionChanged;
+
+            SelectedCompetitionYearChanged -= OnCompetitionYearChanged;
+            SelectedCompetitionYearChanged += OnCompetitionYearChanged;
         }
 
-        public static PdbService Instance
+        public void Initialize()
         {
-            get
-            {
-                if (_instance == null)
-                    _instance = new PdbService();
-                return _instance;
-            }
+            Task.Run(async () => await GetCompetitionYears());
         }
+
+        #endregion Constructors & Initialization
+
+
+        #region Events
 
         public static event EventHandler<CompetitionEventArgs> SelectedCompetitionChanged;
+        public static event EventHandler<CompetitionYearEventArgs> SelectedCompetitionYearChanged;
         public static event EventHandler<NewsEventArgs> NewsLoaded;
         public static event EventHandler CompetitionsLoaded;
+        public static event EventHandler<CompetitionYearsEventArgs> CompetitionYearsLoaded;
         public static event EventHandler<RankingEventArgs> RankingsLoaded;
         public static event EventHandler<ScheduleEventArgs> ScheduleLoaded;
         public static event EventHandler<ResultsEventArgs> ResultsLoaded;
@@ -71,6 +109,11 @@ namespace PeelseDartBond.Services
         public static event EventHandler<Player180sEventArgs> Player180sLoaded;
         public static event EventHandler<PlayerRankingsEventArgs> PlayerRankingsLoaded;
         public static event EventHandler<PlayerFinishesEventArgs> PlayerFinishesLoaded;
+
+        #endregion Events
+
+
+        #region Properties
 
         public Model.Entities.Competition SelectedCompetition
         {
@@ -84,6 +127,12 @@ namespace PeelseDartBond.Services
                 SelectedCompetitionChanged?.Invoke(null, new CompetitionEventArgs(value)); }
         }
 
+        public Model.Entities.CompetitionYear SelectedCompetitionYear
+        {
+            get { return _selectedCompetitionYear; }
+            set { _selectedCompetitionYear = value; SelectedCompetitionYearChanged?.Invoke(null, new CompetitionYearEventArgs(value)); }
+        }
+
         public List<Model.Entities.News> News
         {
             get { return _news; }
@@ -94,6 +143,12 @@ namespace PeelseDartBond.Services
         {
             get { return _competitions; }
             set { _competitions = value; CompetitionsLoaded?.Invoke(null, EventArgs.Empty); }
+        }
+
+        public List<Model.Entities.CompetitionYear> CompetitionYears
+        {
+            get { return _competitionYears; }
+            set { _competitionYears = value; CompetitionYearsLoaded?.Invoke(null, new CompetitionYearsEventArgs(value)); }
         }
 
         public List<Model.Entities.Ranking> Rankings
@@ -138,6 +193,16 @@ namespace PeelseDartBond.Services
             set { _playerFinishes = value; PlayerFinishesLoaded?.Invoke(null, new PlayerFinishesEventArgs(value)); }
         }
 
+        #endregion Properties
+
+
+        #region Event Handlers
+
+        void OnCompetitionYearChanged(object sender, CompetitionYearEventArgs e)
+        {
+            Competitions = e.CompetitionYear.Competitions;
+        }
+
         async void OnCompetitionChanged(object sender, CompetitionEventArgs e)
         {
             ConnectivityHelper.CheckForInternetAccess();
@@ -151,6 +216,11 @@ namespace PeelseDartBond.Services
             await GetPlayerFinishes();
         }
 
+        #endregion Event Handlers
+
+
+        #region Methods
+
         public async Task GetNews()
         {
             ConnectivityHelper.CheckForInternetAccess();
@@ -159,11 +229,45 @@ namespace PeelseDartBond.Services
             News = result.ToList().Flatten();
         }
 
-        public async Task GetCompetitions()
+        public async Task GetCompetitionYears()
         {
             ConnectivityHelper.CheckForInternetAccess();
 
-            var result = await PerformAndDeserializeRequestAsync<IEnumerable<Model.DataTransferObjects.Competition>>(Constants.Urls.Competitions);
+            var competitionYears = new List<Model.Entities.CompetitionYear>();
+            var year = 13;
+            var caughtException = false;
+
+            while (!caughtException)
+            {
+                try
+                {
+                    var title = $"20{year}-20{year + 1}";
+                    var url = $"http://pdbdarts.nl/seizoen/{year}{year + 1}/competitie.json";
+                    var result = await PerformAndDeserializeRequestAsync<IEnumerable<Model.DataTransferObjects.Competition>>(url);
+                    competitionYears.Add(new Model.Entities.CompetitionYear
+                    {
+                        Url = url,
+                        Title = title,
+                        Competitions = result.ToList().Flatten()
+                    });
+                    year += 1;
+                }
+                catch
+                {
+                    caughtException = true;
+                }
+            }
+
+            CompetitionYears = competitionYears.OrderByDescending(y => y.Title).ToList();
+            SelectedCompetitionYear = CompetitionYears.FirstOrDefault();
+
+        }
+
+        public async Task GetCompetitions(string url)
+        {
+            ConnectivityHelper.CheckForInternetAccess();
+
+            var result = await PerformAndDeserializeRequestAsync<IEnumerable<Model.DataTransferObjects.Competition>>(url);
             Competitions = result.ToList().Flatten();
         }
 
@@ -229,5 +333,7 @@ namespace PeelseDartBond.Services
             var result = await PerformAndDeserializeRequestAsync<IEnumerable<Model.DataTransferObjects.PlayerFinishes>>(SelectedCompetition.PlayerFinishes);
             PlayerFinishes = result.ToList().Flatten();
         }
+
+        #endregion Methods
     }
 }

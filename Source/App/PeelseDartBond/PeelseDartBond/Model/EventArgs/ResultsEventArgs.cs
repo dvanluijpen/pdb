@@ -4,11 +4,11 @@ using PeelseDartBond.Model.Entities;
 
 namespace PeelseDartBond.Model.EventArgs
 {
-    public class ResultsEventArgs
+    public class ResultsEventArgs : System.EventArgs
     {
         readonly List<WeekResult> _results;
 
-        public ResultsEventArgs(List<WeekResult> results)
+        public ResultsEventArgs(List<WeekResult> results) : base()
         {
             _results = results;
         }

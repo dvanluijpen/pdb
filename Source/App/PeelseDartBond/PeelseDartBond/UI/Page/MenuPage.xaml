@@ -5,9 +5,15 @@
     xmlns:constants="clr-namespace:PeelseDartBond.Constants;assembly=PeelseDartBond"
     xmlns:cells="clr-namespace:PeelseDartBond.UI.Cell;assembly=PeelseDartBond"
     x:Class="PeelseDartBond.UI.Page.MenuPage"
-    Title="Menu">
+    Title="{Binding SelectedYear}">
+                
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name= "Jaar"
+                     Command="{Binding OpenYearCommand}" />
+    </ContentPage.ToolbarItems>
+    
     <ContentPage.Content>
-        <Grid RowSpacing="0" ColumnSpacing="0">
+        <!--<Grid RowSpacing="0" ColumnSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="64"/>
                 <RowDefinition Height="*"/>
@@ -26,10 +32,10 @@
                     FontSize="{x:Static constants:Fonts.SizePhoneXXL}"
                     TextColor="{x:Static constants:Colors.WhiteNormal}"
                     Text="Kies een divisie:" /> 
-            </StackLayout>
+            </StackLayout>-->
+<!--                Grid.Row="1"-->
             <ListView 
                 x:Name="listView" 
-                Grid.Row="1"
                 HorizontalOptions="Fill" VerticalOptions="FillAndExpand"
                 ItemSelected="OnItemSelected" 
                 ItemsSource="{Binding GroupedCompetitions}"
@@ -49,6 +55,6 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-        </Grid>
+<!--        </Grid>-->
     </ContentPage.Content>
 </ContentPage>

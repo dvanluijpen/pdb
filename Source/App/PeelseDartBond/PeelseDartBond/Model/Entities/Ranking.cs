@@ -85,7 +85,7 @@ namespace PeelseDartBond.Model.Entities
 
         public ImageSource StatusImage
         {
-            get { return Status.ToLower() == "confirmed" ? ImageSource.FromFile("CheckmarkGreen.png") : ImageSource.FromFile("CheckmarkYellow.png"); }
+            get { return string.IsNullOrEmpty(Status) ? ImageSource.FromFile("") : Status.ToLower() == "confirmed" ? ImageSource.FromFile("CheckmarkGreen.png") : ImageSource.FromFile("CheckmarkYellow.png"); }
         }
         public string PlayedTotals
         {

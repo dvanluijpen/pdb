@@ -6,14 +6,17 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using PeelseDartBond.Constants;
 using PeelseDartBond.Model.Entities;
+using PeelseDartBond.UI.Page;
 using PeelseDartBond.Services;
 using PeelseDartBond.Utilities;
 using Xamarin.Forms;
+using PeelseDartBond.Model.EventArgs;
 
 namespace PeelseDartBond.ViewModel
 {
     public class MenuVM : BaseRefreshViewModel
     {
+        string _selectedYear = "Competities";
         List<Competition> _competitions;
         ObservableCollection<Group<Competition>> _groupedCompetitions;
 
@@ -25,7 +28,10 @@ namespace PeelseDartBond.ViewModel
             Task.Run(async () => await Load());
 
             PdbService.CompetitionsLoaded += CompetitionsLoaded;
+            PdbService.SelectedCompetitionYearChanged += OnCompetitionYearChanged;
         }
+
+        public ICommand OpenYearCommand { get { return new Command(async () => await OpenYearPage()); } }
 
         public List<Competition> Competitions
         {
@@ -39,14 +45,21 @@ namespace PeelseDartBond.ViewModel
             set { SetProperty(ref _groupedCompetitions, value); }
         }
 
-        void CompetitionsLoaded(object sender, EventArgs e) => AssembleGroups();
+        public string SelectedYear
+        {
+            get { return _selectedYear; }
+            set { SetProperty(ref _selectedYear, value); }
+        }
+
+        private void CompetitionsLoaded(object sender, EventArgs e) => AssembleGroups();
+        private void OnCompetitionYearChanged(object sender, CompetitionYearEventArgs e) => SelectedYear = e.CompetitionYear.Title;
 
         public async override Task Load()
         {
             if (PdbService.Competitions.IsNullOrEmpty())
             {
                 if(HasInternetAccess())
-                    await PdbService.GetCompetitions();
+                    await PdbService.GetCompetitions(PdbService.SelectedCompetitionYear.Url);
                 else
                     await ShowNoConnectionError();
             }
@@ -54,6 +67,8 @@ namespace PeelseDartBond.ViewModel
             {
                 AssembleGroups();
             }
+
+            SelectedYear = PdbService.SelectedCompetitionYear?.Title ?? "Competities";
         }
 
         public async Task ChangeSelection(Competition competition)
@@ -99,6 +114,22 @@ namespace PeelseDartBond.ViewModel
             groups.Add(CG4);
 
             GroupedCompetitions = groups;
+        }
+
+        async Task OpenYearPage()
+        {
+            var contentPage = new YearPage();
+            contentPage.ViewModel.CompetitionYearChanged += async (s, e) => await OnCompetitionChanged(s, e);
+            var navigationPage = new NavigationPage(contentPage);
+            await NavigationService.GoToModalPage(navigationPage);
+        }
+
+        private async Task OnCompetitionChanged(object sender, CompetitionYearEventArgs e)
+        {
+            if (e != null)
+                PdbService.SelectedCompetitionYear = e.CompetitionYear;
+                
+            await NavigationService.PopCurrentModalPage();
         }
     }
 }
