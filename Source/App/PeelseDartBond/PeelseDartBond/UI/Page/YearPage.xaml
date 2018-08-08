@@ -6,7 +6,8 @@
     x:Class="PeelseDartBond.UI.Page.YearPage"
     Title="Kies jaargang">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Name= "Sluit"
+        <ToolbarItem Name="Sluit"
+                     Icon="Close"
                      Command="{Binding CloseCommand}" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>

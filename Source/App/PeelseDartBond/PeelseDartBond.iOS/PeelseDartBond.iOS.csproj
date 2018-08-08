@@ -100,6 +100,16 @@
     <Compile Include="DependencyServicesImpl\DialogService.cs" />
     <Compile Include="UI\Views\FormsDialog_iOS.cs" />
     <Compile Include="CustomRenderers\NavigationPageRenderer.cs" />
+    <Compile Include="CustomRenderers\LabelBoldFontRenderer.cs" />
+    <Compile Include="CustomRenderers\LabelHairlineItalicFontRenderer.cs" />
+    <Compile Include="CustomRenderers\LabelHairlineFontRenderer.cs" />
+    <Compile Include="CustomRenderers\LabelBoldItalicFontRenderer.cs" />
+    <Compile Include="CustomRenderers\LabelHeavyFontRenderer.cs" />
+    <Compile Include="CustomRenderers\LabelHeavytalicFontRenderer.cs" />
+    <Compile Include="CustomRenderers\LabelRegularFontRenderer.cs" />
+    <Compile Include="CustomRenderers\LabelRegularItalicFontRenderer.cs" />
+    <Compile Include="CustomRenderers\LabelLightFontRenderer.cs" />
+    <Compile Include="CustomRenderers\LabelLightItalicFontRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -152,14 +162,14 @@
     <PackageReference Include="Newtonsoft.Json">
       <Version>11.0.2</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Essentials">
-      <Version>0.8.0-preview</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Forms">
-      <Version>3.1.0.637273</Version>
-    </PackageReference>
     <PackageReference Include="SegmentedControl.FormsPlugin">
       <Version>2.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Forms">
+      <Version>3.1.0.697729</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Essentials">
+      <Version>0.9.1-preview</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
@@ -211,6 +221,79 @@
     </BundleResource>
     <BundleResource Include="..\..\..\..\Assets\iOSSpecific\Schedule%403x.png">
       <Link>Resources\Schedule%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\..\Assets\iOSSpecific\Search%402x.png">
+      <Link>Resources\Search%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\..\Assets\iOSSpecific\Search%403x.png">
+      <Link>Resources\Search%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\..\Assets\iOSSpecific\Sort%402x.png">
+      <Link>Resources\Sort%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\..\Assets\iOSSpecific\Sort%403x.png">
+      <Link>Resources\Sort%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\..\Assets\iOSSpecific\Close%402x.png">
+      <Link>Resources\Close%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\..\Assets\iOSSpecific\Close%403x.png">
+      <Link>Resources\Close%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\..\Assets\iOSSpecific\Filter%402x.png">
+      <Link>Resources\Filter%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\..\Assets\iOSSpecific\Filter%403x.png">
+      <Link>Resources\Filter%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\..\Assets\iOSSpecific\Hamburger%402x.png">
+      <Link>Resources\Hamburger%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\..\Assets\iOSSpecific\Hamburger%403x.png">
+      <Link>Resources\Hamburger%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\..\Assets\Common\Fonts\Lato-Black.ttf">
+      <Link>Resources\Lato-Black.ttf</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="..\..\..\..\Assets\Common\Fonts\Lato-BlackItalic.ttf">
+      <Link>Resources\Lato-BlackItalic.ttf</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="..\..\..\..\Assets\Common\Fonts\Lato-Bold.ttf">
+      <Link>Resources\Lato-Bold.ttf</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="..\..\..\..\Assets\Common\Fonts\Lato-BoldItalic.ttf">
+      <Link>Resources\Lato-BoldItalic.ttf</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="..\..\..\..\Assets\Common\Fonts\Lato-Hairline.ttf">
+      <Link>Resources\Lato-Hairline.ttf</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="..\..\..\..\Assets\Common\Fonts\Lato-HairlineItalic.ttf">
+      <Link>Resources\Lato-HairlineItalic.ttf</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="..\..\..\..\Assets\Common\Fonts\Lato-Italic.ttf">
+      <Link>Resources\Lato-Italic.ttf</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="..\..\..\..\Assets\Common\Fonts\Lato-Light.ttf">
+      <Link>Resources\Lato-Light.ttf</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="..\..\..\..\Assets\Common\Fonts\Lato-LightItalic.ttf">
+      <Link>Resources\Lato-LightItalic.ttf</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="..\..\..\..\Assets\Common\Fonts\Lato-Regular.ttf">
+      <Link>Resources\Lato-Regular.ttf</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="..\..\..\..\Assets\Common\UnderConstruction.png">
+      <Link>Resources\UnderConstruction.png</Link>
     </BundleResource>
   </ItemGroup>
 </Project>

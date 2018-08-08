@@ -45,6 +45,8 @@ namespace PeelseDartBond.UI.Page
             switch (segControl.SelectedSegment)
             {
                 case 1:
+                    listView.IsVisible = true;
+                    controlUnderConstruction.IsVisible = false;
                     _vm.UpdatePage(IndividualPageType.DisplayFinishes);
                     listView.ItemsSource = _vm.PlayerFinishes;
                     listView.ItemTemplate = new DataTemplate(() =>
@@ -55,17 +57,21 @@ namespace PeelseDartBond.UI.Page
                     });
                     break;
                 case 2:
-                    _vm.UpdatePage(IndividualPageType.DisplaySingles);
-                    listView.ItemsSource = _vm.PlayerRankings;
-                    listView.ItemTemplate = new DataTemplate(() =>
-                    {
-                        var nativeCell = new PlayerRankingsCell();
-                        nativeCell.SetBinding(PlayerRankingsCell.PlayerProperty, ".");
-                        return nativeCell;
-                    });
+                    listView.IsVisible = false;
+                    controlUnderConstruction.IsVisible = true;
+                    //_vm.UpdatePage(IndividualPageType.DisplaySingles);
+                    //listView.ItemsSource = _vm.PlayerRankings;
+                    //listView.ItemTemplate = new DataTemplate(() =>
+                    //{
+                    //    var nativeCell = new PlayerRankingsCell();
+                    //    nativeCell.SetBinding(PlayerRankingsCell.PlayerProperty, ".");
+                    //    return nativeCell;
+                    //});
                     break;
                 default:
                 case 0:
+                    listView.IsVisible = true;
+                    controlUnderConstruction.IsVisible = false;
                     _vm.UpdatePage(IndividualPageType.Display180s);
                     listView.ItemsSource = _vm.Player180s;
                     listView.ItemTemplate = new DataTemplate(() =>

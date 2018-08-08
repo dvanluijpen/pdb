@@ -1,4 +1,5 @@
 ﻿using System;
+using PeelseDartBond.Constants;
 using PeelseDartBond.Model.Exceptions;
 using Xamarin.Essentials;
 
@@ -10,7 +11,7 @@ namespace PeelseDartBond.Helpers
         {
             if (Connectivity.NetworkAccess != NetworkAccess.Internet)
             {
-                throw new ConnectivityException("U bent niet met het internet verbonden. Controleer uw verbinding, mogelijk moet u eerst via uw browser inloggen.");
+                throw new ConnectivityException(Strings.ConnectionErrorText);
             }
         }
     }

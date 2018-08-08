@@ -8,7 +8,7 @@
     Title="{Binding SelectedYear}">
                 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Name= "Jaar"
+        <ToolbarItem Name= "Wijzig"
                      Command="{Binding OpenYearCommand}" />
     </ContentPage.ToolbarItems>
     

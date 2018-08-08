@@ -3,7 +3,7 @@ using System.Globalization;
 using PeelseDartBond.Constants;
 using Xamarin.Forms;
 
-namespace PeelseDartBond.Utilities
+namespace PeelseDartBond.ValueConverters
 {
     public class MatchColorConverter : IValueConverter
     {

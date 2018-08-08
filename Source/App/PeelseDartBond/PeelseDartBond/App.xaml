@@ -2,14 +2,14 @@
 <Application 
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-    xmlns:utilities="clr-namespace:PeelseDartBond.Utilities;assembly=PeelseDartBond" 
+    xmlns:converters="clr-namespace:PeelseDartBond.ValueConverters;assembly=PeelseDartBond" 
     x:Class="PeelseDartBond.App">
     <Application.Resources>
         <ResourceDictionary>
-            <utilities:MatchColorConverter x:Key="MatchColorConverter" />
-            <utilities:PositionColorConverter x:Key="PositionColorConverter" />
-            <utilities:RowColorConverter x:Key="RowColorConverter" />
-            <utilities:StringVisibilityConverter x:Key="StringVisibilityConverter" />
+            <converters:MatchColorConverter x:Key="MatchColorConverter" />
+            <converters:PositionColorConverter x:Key="PositionColorConverter" />
+            <converters:RowColorConverter x:Key="RowColorConverter" />
+            <converters:StringVisibilityConverter x:Key="StringVisibilityConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

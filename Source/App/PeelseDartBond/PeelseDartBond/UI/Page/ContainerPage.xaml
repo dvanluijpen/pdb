@@ -7,9 +7,7 @@
     x:Class="PeelseDartBond.UI.Page.ContainerPage"
     BackgroundColor="{x:Static constants:Colors.WhiteNormal}">
     <MasterDetailPage.Master>
-<!--        <pages:MenuContainerPage />-->
-        <NavigationPage
-            Title="Menu">
+        <NavigationPage Title="Menu" Icon="Hamburger">
             <x:Arguments>
                 <pages:MenuPage />
             </x:Arguments>  

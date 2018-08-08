@@ -51,9 +51,6 @@
     <PackageReference Include="Newtonsoft.Json">
       <Version>11.0.2</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms">
-      <Version>3.1.0.637273</Version>
-    </PackageReference>
     <PackageReference Include="SegmentedControl.FormsPlugin">
       <Version>2.0.1</Version>
     </PackageReference>
@@ -72,8 +69,11 @@
     <PackageReference Include="Xamarin.Android.Support.v7.MediaRouter">
       <Version>27.0.2.1</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.Forms">
+      <Version>3.1.0.697729</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Essentials">
-      <Version>0.8.0-preview</Version>
+      <Version>0.9.1-preview</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -84,6 +84,16 @@
     <Compile Include="DependencyServicesImpl\DeviceService.cs" />
     <Compile Include="CustomRenderers\RoundedBoxRenderer.cs" />
     <Compile Include="DependencyServicesImpl\DialogService.cs" />
+    <Compile Include="CustomRenderers\LabelBoldFontRenderer.cs" />
+    <Compile Include="CustomRenderers\LabelLightFontRenderer.cs" />
+    <Compile Include="CustomRenderers\LabelLightItalicFontRenderer.cs" />
+    <Compile Include="CustomRenderers\LabelBoldItalicFontRenderer.cs" />
+    <Compile Include="CustomRenderers\LabelHeavyFontRenderer.cs" />
+    <Compile Include="CustomRenderers\LabelHeavyItalicFontRenderer.cs" />
+    <Compile Include="CustomRenderers\LabelHairlineFontRenderer.cs" />
+    <Compile Include="CustomRenderers\LabelHairlineItalicFontRenderer.cs" />
+    <Compile Include="CustomRenderers\LabelRegularFontRenderer.cs" />
+    <Compile Include="CustomRenderers\LabelRegularItalicFontRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
