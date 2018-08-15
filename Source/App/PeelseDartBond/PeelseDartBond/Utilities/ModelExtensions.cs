@@ -218,6 +218,127 @@ namespace PeelseDartBond.Utilities
             return entities;
         }
 
+        public static Model.Entities.Result Flatten(this Model.DataTransferObjects.Result dataTransferObject)
+        {
+            var entity = new Model.Entities.Result();
+            entity.TeamHome = dataTransferObject.TeamHome;
+            entity.TeamAway = dataTransferObject.TeamAway;
+            entity.Score = dataTransferObject.Score;
+            entity.Singles = dataTransferObject.Singles.Flatten();
+            entity.Doubles = dataTransferObject.Doubles.Flatten();
+            entity.Captains = dataTransferObject.Captains.Flatten();
+            entity.Teams = dataTransferObject.Teams.Flatten();
+            entity.Player180s = dataTransferObject.Player180s.Flatten();
+            entity.PlayerFinishes = dataTransferObject.PlayerFinishes.Flatten();
+            return entity;
+        }
+
+        public static List<Model.Entities.ResultSingle> Flatten(this List<Model.DataTransferObjects.ResultSingle> dataTransferObjects)
+        {
+            var entities = new List<Model.Entities.ResultSingle>();
+
+            foreach (var dataTransferObject in dataTransferObjects)
+            {
+                entities.Add(new Model.Entities.ResultSingle
+                {
+                    Position = dataTransferObject.Position,
+                    Home = dataTransferObject.Home,
+                    Away = dataTransferObject.Away,
+                    Score = dataTransferObject.Score,
+                });
+            }
+
+            return entities;
+        }
+
+        public static List<Model.Entities.ResultDouble> Flatten(this List<Model.DataTransferObjects.ResultDouble> dataTransferObjects)
+        {
+            var entities = new List<Model.Entities.ResultDouble>();
+
+            foreach (var dataTransferObject in dataTransferObjects)
+            {
+                entities.Add(new Model.Entities.ResultDouble
+                {
+                    Position = dataTransferObject.Position,
+                    Home1 = dataTransferObject.Home1,
+                    Home2 = dataTransferObject.Home2,
+                    Away1 = dataTransferObject.Away1,
+                    Away2 = dataTransferObject.Away2,
+                    Score = dataTransferObject.Score,
+                });
+            }
+
+            return entities;
+        }
+
+        public static List<Model.Entities.ResultCaptain> Flatten(this List<Model.DataTransferObjects.ResultCaptain> dataTransferObjects)
+        {
+            var entities = new List<Model.Entities.ResultCaptain>();
+
+            foreach (var dataTransferObject in dataTransferObjects)
+            {
+                entities.Add(new Model.Entities.ResultCaptain
+                {
+                    Position = dataTransferObject.Position,
+                    Home = dataTransferObject.Home,
+                    Away = dataTransferObject.Away,
+                    Score = dataTransferObject.Score,
+                });
+            }
+
+            return entities;
+        }
+
+        public static List<Model.Entities.ResultTeam> Flatten(this List<Model.DataTransferObjects.ResultTeam> dataTransferObjects)
+        {
+            var entities = new List<Model.Entities.ResultTeam>();
+
+            foreach (var dataTransferObject in dataTransferObjects)
+            {
+                entities.Add(new Model.Entities.ResultTeam
+                {
+                    Position = dataTransferObject.Position,
+                    Home = dataTransferObject.Home,
+                    Away = dataTransferObject.Away,
+                    Score = dataTransferObject.Score,
+                });
+            }
+
+            return entities;
+        }
+
+        public static List<Model.Entities.Result180> Flatten(this List<Model.DataTransferObjects.Result180> dataTransferObjects)
+        {
+            var entities = new List<Model.Entities.Result180>();
+
+            foreach (var dataTransferObject in dataTransferObjects)
+            {
+                entities.Add(new Model.Entities.Result180
+                {
+                    Player = dataTransferObject.Player,
+                    Amount = dataTransferObject.Amount,
+                });
+            }
+
+            return entities;
+        }
+
+        public static List<Model.Entities.ResultFinish> Flatten(this List<Model.DataTransferObjects.ResultFinish> dataTransferObjects)
+        {
+            var entities = new List<Model.Entities.ResultFinish>();
+
+            foreach (var dataTransferObject in dataTransferObjects)
+            {
+                entities.Add(new Model.Entities.ResultFinish
+                {
+                    Player = dataTransferObject.Player,
+                    Finish = dataTransferObject.Finish,
+                });
+            }
+
+            return entities;
+        }
+
         public static ObservableCollection<T> ToObservableCollection<T>(this IEnumerable<T> enumerable) => new ObservableCollection<T>(enumerable);
     }
 }

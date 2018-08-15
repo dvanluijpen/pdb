@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using PeelseDartBond.Model.Entities;
 using PeelseDartBond.Model.EventArgs;
 using PeelseDartBond.Model.Exceptions;
@@ -31,14 +32,6 @@ namespace PeelseDartBond.ViewModel
 
         public async override Task Load()
         {
-            //if (PdbService.CompetitionYears.IsNullOrEmpty())
-            //    await PdbService.GetCompetitionYearsAsync();
-
-            //if (PdbService.News.IsNullOrEmpty())
-            //    await PdbService.GetNewsAsync();
-            //else
-                //News = PdbService.News;
-
             try
             {
                 Device.BeginInvokeOnMainThread(() =>  DialogService.ShowProgressDialog("Bezig met laden..."));

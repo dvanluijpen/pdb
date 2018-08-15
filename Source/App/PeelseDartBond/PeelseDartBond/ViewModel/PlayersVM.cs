@@ -259,7 +259,7 @@ namespace PeelseDartBond.ViewModel
             await NavigationService.GoToModalPage(navigationPage);
         }
 
-        private async Task OnClose(object sender, EventArgs e)
+        async Task OnClose(object sender, EventArgs e)
         {
             await NavigationService.PopCurrentModalPage();
         }

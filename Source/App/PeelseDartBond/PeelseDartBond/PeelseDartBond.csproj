@@ -33,9 +33,6 @@
     <Folder Include="UI\Template\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Remove="Model\DataTransferObjects\Result.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="UI\Cell\MenuCell.xaml %28copy%29.cs">
       <DependentUpon>UI\Cell\MenuCell.xaml</DependentUpon>
       <SubType>Code</SubType>

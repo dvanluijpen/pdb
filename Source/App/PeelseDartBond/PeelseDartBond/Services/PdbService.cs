@@ -316,6 +316,12 @@ namespace PeelseDartBond.Services
             PlayerFinishes = result.ToList().Flatten();
         }
 
+        public async Task<Model.Entities.Result> GetResultAsync(string url)
+        {
+            var result = await PerformAndDeserializeRequestAsync<Model.DataTransferObjects.Result>(url);
+            return result.Flatten();
+        }
+
         public Model.Entities.Player GetPlayerData(string name, string team, string teamUrl)
         {
             var player = new Model.Entities.Player

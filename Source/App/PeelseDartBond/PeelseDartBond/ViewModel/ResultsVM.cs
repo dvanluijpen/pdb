@@ -7,6 +7,7 @@ using System.Windows.Input;
 using PeelseDartBond.Model.Entities;
 using PeelseDartBond.Model.EventArgs;
 using PeelseDartBond.Services;
+using PeelseDartBond.UI.Page;
 using PeelseDartBond.Utilities;
 using Xamarin.Forms;
 
@@ -41,6 +42,8 @@ namespace PeelseDartBond.ViewModel
 
         public ICommand FilterByTeamCommand { get { return _filterByTeamCommand; } }
         public ICommand FilterByWeekCommand { get { return _filterByWeekCommand; } }
+
+        public ICommand GoToResultCommand { get { return new Command(async url => await OpenResultPage(url)); } }
 
         public bool HasResults
         {
@@ -199,6 +202,20 @@ namespace PeelseDartBond.ViewModel
 
             Groups = groups;
             FilteredGroups = groups;
+        }
+
+        async Task OpenResultPage(object obj)
+        {
+            var result = (string)obj;
+            var contentPage = new ResultPage(result);
+            contentPage.ViewModel.CloseRequested += async (s, e) => await OnClose(s, e);
+            var navigationPage = new NavigationPage(contentPage);
+            await NavigationService.GoToModalPage(navigationPage);
+        }
+
+        async Task OnClose(object sender, EventArgs e)
+        {
+            await NavigationService.PopCurrentModalPage();
         }
     }
 }
