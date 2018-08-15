@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 
 namespace PeelseDartBond.Model.Entities
 {
-    public class BaseEntity : INotifyPropertyChanged
+    public abstract class BaseEntity : INotifyPropertyChanged
     {
         public BaseEntity()
         {

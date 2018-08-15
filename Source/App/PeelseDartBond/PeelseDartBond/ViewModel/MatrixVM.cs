@@ -34,7 +34,7 @@ namespace PeelseDartBond.ViewModel
         {
             if(PdbService.Matrix == null)
             {
-                await PdbService.GetMatrix();
+                await PdbService.GetMatrixAsync();
             }
             else
             {

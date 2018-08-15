@@ -16,6 +16,8 @@ namespace PeelseDartBond.Services
 
         protected async Task<T> PerformAndDeserializeRequestAsync<T>(string url, HttpMethod httpMethod = null, HttpContent httpContent = null)
         {
+            if (string.IsNullOrWhiteSpace(url)) return default(T);
+
             T serializedResult = default(T);
             HttpResponseMessage httpResponse;
 

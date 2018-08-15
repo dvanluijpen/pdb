@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using PeelseDartBond.Model.Entities;
 using PeelseDartBond.Model.EventArgs;
+using PeelseDartBond.Model.Exceptions;
 using PeelseDartBond.Services;
 using PeelseDartBond.UI.Page;
 using PeelseDartBond.Utilities;
+using Xamarin.Forms;
 
 namespace PeelseDartBond.ViewModel
 {
@@ -29,13 +31,38 @@ namespace PeelseDartBond.ViewModel
 
         public async override Task Load()
         {
-            if (PdbService.CompetitionYears.IsNullOrEmpty())
-                await PdbService.GetCompetitionYears();
+            //if (PdbService.CompetitionYears.IsNullOrEmpty())
+            //    await PdbService.GetCompetitionYearsAsync();
 
-            if (PdbService.News.IsNullOrEmpty())
-                await PdbService.GetNews();
-            else
-                News = PdbService.News;
+            //if (PdbService.News.IsNullOrEmpty())
+            //    await PdbService.GetNewsAsync();
+            //else
+                //News = PdbService.News;
+
+            try
+            {
+                Device.BeginInvokeOnMainThread(() =>  DialogService.ShowProgressDialog("Bezig met laden..."));
+                if (PdbService.CompetitionYears.IsNullOrEmpty())
+                    await PdbService.GetCompetitionYearsAsync();
+
+                if (PdbService.News.IsNullOrEmpty())
+                    await PdbService.GetNewsAsync();
+                else
+                    News = PdbService.News;
+            }
+            catch (ConnectivityException ex)
+            {
+                Logger.Error("Connectivity Issue", ex);
+                await ShowNoConnectionError();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Other Exception", ex);
+            }
+            finally
+            {
+                Device.BeginInvokeOnMainThread(() => DialogService.HideProgressDialog());
+            }
         }
 
         public async Task GoToDetailPage(News news)

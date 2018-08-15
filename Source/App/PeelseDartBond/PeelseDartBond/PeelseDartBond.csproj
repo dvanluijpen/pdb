@@ -30,6 +30,7 @@
     <Folder Include="Helpers\" />
     <Folder Include="Model\Entities\Interfaces\" />
     <Folder Include="ValueConverters\" />
+    <Folder Include="UI\Template\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Model\DataTransferObjects\Result.cs" />

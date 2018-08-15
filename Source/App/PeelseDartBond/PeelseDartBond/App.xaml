@@ -3,13 +3,32 @@
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     xmlns:converters="clr-namespace:PeelseDartBond.ValueConverters;assembly=PeelseDartBond" 
+    xmlns:cells="clr-namespace:PeelseDartBond.UI.Cell;assembly=PeelseDartBond" 
+    xmlns:templates="clr-namespace:PeelseDartBond.UI.Template;assembly=PeelseDartBond" 
     x:Class="PeelseDartBond.App">
     <Application.Resources>
         <ResourceDictionary>
+            <converters:BoolNegationConverter x:Key="BoolNegationConverter" />
             <converters:MatchColorConverter x:Key="MatchColorConverter" />
             <converters:PositionColorConverter x:Key="PositionColorConverter" />
             <converters:RowColorConverter x:Key="RowColorConverter" />
             <converters:StringVisibilityConverter x:Key="StringVisibilityConverter" />
+
+            <DataTemplate x:Key="player180sTemplate">
+                <cells:Player180sCell Player="{Binding .}" />
+            </DataTemplate>
+            <DataTemplate x:Key="playerFinishesTemplate">
+                <cells:PlayerFinishesCell Player="{Binding .}" />
+            </DataTemplate>
+            <DataTemplate x:Key="playerRankingsTemplate">
+                <cells:PlayerRankingsCell Player="{Binding .}" />
+            </DataTemplate>
+
+            <templates:PlayerDataTemplateSelector x:Key="playerDataTemplateSelector"
+                Player180sTemplate="{StaticResource player180sTemplate}"
+                PlayerFinishesTemplate="{StaticResource playerFinishesTemplate}"
+                PlayerRankingsTemplate="{StaticResource playerRankingsTemplate}" />
+            
         </ResourceDictionary>
     </Application.Resources>
 </Application>

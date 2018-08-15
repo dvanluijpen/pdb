@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     xmlns:cells="clr-namespace:PeelseDartBond.UI.Cell;assembly=PeelseDartBond"
     xmlns:constants="clr-namespace:PeelseDartBond.Constants;assembly=PeelseDartBond"
+    xmlns:controls="clr-namespace:PeelseDartBond.UI.Control;assembly=PeelseDartBond" 
     x:Class="PeelseDartBond.UI.Page.ResultsPage">
     <ContentPage.Content>
         <Grid
@@ -81,6 +82,7 @@
                 x:Name="listView"
                 Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
                 HorizontalOptions="Fill" VerticalOptions="FillAndExpand"
+                IsVisible="{Binding HasResults}"
                 ItemSelected="OnItemSelected" 
                 ItemsSource="{Binding FilteredGroups}"
                 IsGroupingEnabled="true" 
@@ -92,6 +94,11 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <controls:NoData
+                x:Name="controlNoData"
+                Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
+                IsVisible="{Binding HasResults, Converter={StaticResource BoolNegationConverter}}"
+                Caption="Geen uitslagen gevonden" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

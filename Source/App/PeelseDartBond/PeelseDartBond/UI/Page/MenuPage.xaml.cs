@@ -46,7 +46,8 @@ namespace PeelseDartBond.UI.Page
                 }
 
                 // Show a competition
-                var divisionNavigationPage = new NavigationPage(new DivisionPage());
+                var divisionPage = new DivisionPage();
+                var divisionNavigationPage = new NavigationPage(divisionPage);
                 divisionNavigationPage.BarBackgroundColor = Colors.GreenDark;
                 divisionNavigationPage.BarTextColor = Colors.WhiteNormal;
                 ((ContainerPage)App.Current.MainPage).Detail = divisionNavigationPage;

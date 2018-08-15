@@ -1,19 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using PeelseDartBond.DependencyServices;
 using PeelseDartBond.Helpers;
-using PeelseDartBond.Model;
 using PeelseDartBond.Model.EventArgs;
-using PeelseDartBond.Model.Exceptions;
 using PeelseDartBond.Utilities;
-using Xamarin.Essentials;
-using Xamarin.Forms;
 
 namespace PeelseDartBond.Services
 {
@@ -80,16 +71,13 @@ namespace PeelseDartBond.Services
 
         private void WireEvents()
         {
-            SelectedCompetitionChanged -= OnCompetitionChanged;
-            SelectedCompetitionChanged += OnCompetitionChanged;
-
             SelectedCompetitionYearChanged -= OnCompetitionYearChanged;
             SelectedCompetitionYearChanged += OnCompetitionYearChanged;
         }
 
         public void Initialize()
         {
-            Task.Run(async () => await GetCompetitionYears());
+            Task.Run(async () => await GetCompetitionYearsAsync());
         }
 
         #endregion Constructors & Initialization
@@ -203,17 +191,17 @@ namespace PeelseDartBond.Services
             Competitions = e.CompetitionYear.Competitions;
         }
 
-        async void OnCompetitionChanged(object sender, CompetitionEventArgs e)
+        public async Task GetCompetitionData()
         {
             ConnectivityHelper.CheckForInternetAccess();
 
-            await GetRankings();
-            await GetSchedule();
-            await GetResults();
-            await GetMatrix();
-            await GetPlayer180s();
+            await GetRankingsAsync();
+            await GetScheduleAsync();
+            await GetResultsAsync();
+            await GetMatrixAsync();
+            await GetPlayer180sAsync();
             //await GetPlayerRankings();
-            await GetPlayerFinishes();
+            await GetPlayerFinishesAsync();
         }
 
         #endregion Event Handlers
@@ -221,18 +209,14 @@ namespace PeelseDartBond.Services
 
         #region Methods
 
-        public async Task GetNews()
+        public async Task GetNewsAsync()
         {
-            ConnectivityHelper.CheckForInternetAccess();
-
             var result = await PerformAndDeserializeRequestAsync<IEnumerable<Model.DataTransferObjects.News>>(Constants.Urls.News);
             News = result.ToList().Flatten();
         }
 
-        public async Task GetCompetitionYears()
+        public async Task GetCompetitionYearsAsync()
         {
-            ConnectivityHelper.CheckForInternetAccess();
-
             var competitionYears = new List<Model.Entities.CompetitionYear>();
             var year = 13;
             var caughtException = false;
@@ -263,15 +247,13 @@ namespace PeelseDartBond.Services
 
         }
 
-        public async Task GetCompetitions(string url)
+        public async Task GetCompetitionsAsync(string url)
         {
-            ConnectivityHelper.CheckForInternetAccess();
-
             var result = await PerformAndDeserializeRequestAsync<IEnumerable<Model.DataTransferObjects.Competition>>(url);
             Competitions = result.ToList().Flatten();
         }
 
-        public async Task GetRankings()
+        public async Task GetRankingsAsync()
         {
             if (SelectedCompetition?.Rankings == null)
                 return;
@@ -280,7 +262,7 @@ namespace PeelseDartBond.Services
             Rankings = result.ToList().Flatten();
         }
 
-        public async Task GetSchedule()
+        public async Task GetScheduleAsync()
         {
             if (SelectedCompetition?.Schedule == null)
                 return;
@@ -289,7 +271,7 @@ namespace PeelseDartBond.Services
             Schedule = results.ToList();
         }
 
-        public async Task GetResults()
+        public async Task GetResultsAsync()
         {
             if (SelectedCompetition?.Results == null)
                 return;
@@ -298,7 +280,7 @@ namespace PeelseDartBond.Services
             Results = results.ToList();
         }
 
-        public async Task GetMatrix()
+        public async Task GetMatrixAsync()
         {
             if (SelectedCompetition?.Matrix == null)
                 return;
@@ -307,7 +289,7 @@ namespace PeelseDartBond.Services
             Matrix = result.ToList().Flatten();
         }
 
-        public async Task GetPlayer180s()
+        public async Task GetPlayer180sAsync()
         {
             if (SelectedCompetition?.Player180s == null)
                 return;
@@ -316,7 +298,7 @@ namespace PeelseDartBond.Services
             Player180s = result.ToList().Flatten();
         }
 
-        public async Task GetPlayerRankings()
+        public async Task GetPlayerRankingsAsync()
         {
             if (SelectedCompetition?.PlayerRankings == null)
                 return;
@@ -325,13 +307,44 @@ namespace PeelseDartBond.Services
             PlayerRankings = result.ToList().Flatten();
         }
 
-        public async Task GetPlayerFinishes()
+        public async Task GetPlayerFinishesAsync()
         {
             if (SelectedCompetition?.PlayerFinishes == null)
                 return;
 
             var result = await PerformAndDeserializeRequestAsync<IEnumerable<Model.DataTransferObjects.PlayerFinishes>>(SelectedCompetition.PlayerFinishes);
             PlayerFinishes = result.ToList().Flatten();
+        }
+
+        public Model.Entities.Player GetPlayerData(string name, string team, string teamUrl)
+        {
+            var player = new Model.Entities.Player
+            {
+                Name = name,
+                Team = team,
+                TeamUrl = teamUrl,
+            };
+
+            var p180s = Player180s?.SingleOrDefault(p => p.Name == name && p.Team == team);
+            var pFinishes = PlayerFinishes?.Where(p => p.Name == name && p.Team == team);
+            var pRankings = PlayerRankings?.SingleOrDefault(p => p.Name == name && p.Team == team);
+
+            var pMax180s = Player180s.IsNullOrEmpty() ? 1 : Player180s.Max(p => p.Position) + 1;
+            var pMaxFinishes = PlayerFinishes.IsNullOrEmpty() ? 1 : PlayerFinishes.Max(p => p.Position) + 1;
+            var pMaxRankings = PlayerRankings.IsNullOrEmpty() ? 1 : PlayerRankings.Max(p => p.Position) + 1;
+
+            player.Position180s = p180s == null ? pMax180s : p180s.Position;
+            player.Player180s = p180s == null ? 0 : p180s.Amount;
+
+            player.PositionFinishes = pFinishes == null ? pMaxFinishes : pFinishes.Min(p => p.Position);
+            player.PlayerFinishes = pFinishes == null ? new List<int> { 0 } : pFinishes.Select(p => p.Finish).ToList();
+
+            player.PositionRanking = pRankings == null ? pMaxRankings : pRankings.Position;
+            player.Played = pRankings == null ? 0 : pRankings.Played;
+            player.Won = pRankings == null ? 0 : pRankings.Won;
+            player.Percentage = pRankings == null ? 0 : pRankings.Percentage;
+
+            return player;
         }
 
         #endregion Methods

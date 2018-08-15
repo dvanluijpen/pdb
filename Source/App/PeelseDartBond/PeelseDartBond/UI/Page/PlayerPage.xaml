@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:constants="clr-namespace:PeelseDartBond.Constants;assembly=PeelseDartBond"
+    xmlns:customRenderers="clr-namespace:PeelseDartBond.CustomRenderers;assembly=PeelseDartBond"
+    x:Class="PeelseDartBond.UI.Page.PlayerPage"
+    BackgroundColor="{x:Static constants:Colors.WhiteNormal}"
+    Title="{Binding Player.Name}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="Sluit"
+                     Icon="Close"
+                     Command="{Binding CloseCommand}" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <Grid 
+            RowSpacing="0" ColumnSpacing="0"
+            VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="60" />
+                <RowDefinition Height="108" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="1" />
+                <RowDefinition Height="32" />
+                <RowDefinition Height="1" />
+                <RowDefinition Height="32" />
+                <RowDefinition Height="1" />
+                <RowDefinition Height="32" />
+                <RowDefinition Height="1" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="12" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="12" />
+            </Grid.ColumnDefinitions>
+
+            <BoxView 
+                Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4"
+                VerticalOptions="Fill" HorizontalOptions="Fill"
+                BackgroundColor="{x:Static constants:Colors.Gray3}" />
+
+            <BoxView 
+                Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4"
+                VerticalOptions="Fill" HorizontalOptions="Fill"
+                BackgroundColor="{x:Static constants:Colors.Gray4}" />
+
+            <Grid
+                Grid.Row="0" Grid.RowSpan="2" Grid.Column="1"
+                RowSpacing="0" ColumnSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="96" />
+                </Grid.ColumnDefinitions>
+
+                <customRenderers:RoundedBox
+                    Grid.Column="1"
+                    VerticalOptions="Center" HorizontalOptions="Center" 
+                    WidthRequest="96" HeightRequest="96"
+                    BackgroundColor="{x:Static constants:Colors.WhiteNormal}"
+                    BorderWidth="1"
+                    BorderColor="{x:Static constants:Colors.Gray1}">
+                </customRenderers:RoundedBox>
+                
+                <Image
+                    Grid.Column="1"
+                    VerticalOptions="Center" HorizontalOptions="Center" 
+                    WidthRequest="60" HeightRequest="60"
+                    Source="JohnDoe" />
+                
+            </Grid>
+            
+            <customRenderers:LabelHeavyFont
+                Grid.Row="0" Grid.Column="2"
+                Margin="8,0,8,4"
+                VerticalOptions="End" HorizontalOptions="Start" 
+                FontSize="{x:Static constants:Fonts.SizePhoneXXL}"
+                TextColor="{x:Static constants:Colors.Gray1}"
+                Text="{Binding Player.Name}" />
+            
+            <customRenderers:LabelRegularItalicFont
+                Grid.Row="1" Grid.Column="2"
+                Margin="8,4,8,0"
+                VerticalOptions="Start" HorizontalOptions="Start" 
+                FontSize="{x:Static constants:Fonts.SizePhoneXL}"
+                TextColor="{x:Static constants:Colors.Gray2}"
+                Text="{Binding Player.Team}" />
+
+            <Grid
+                Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
+                Margin="0,12">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="2*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <customRenderers:RoundedBox
+                    Grid.Row="0" Grid.RowSpan="3" Grid.Column="0"
+                    VerticalOptions="Fill" HorizontalOptions="Fill"
+                    Margin="0,4,2,4"
+                    CornerRadius="8"
+                    BackgroundColor="{x:Static constants:Colors.GreenLight}"
+                    BorderWidth="1"
+                    BorderColor="{x:Static constants:Colors.GreenNormal}" />
+                <customRenderers:LabelBoldFont
+                    Grid.Row="0" Grid.Column="0"
+                    VerticalOptions="Fill" HorizontalOptions="Fill"
+                    VerticalTextAlignment="Start" HorizontalTextAlignment="Center"
+                    Margin="0,8,0,0"
+                    FontSize="{x:Static constants:Fonts.SizePhoneXXL}"
+                    TextColor="{x:Static constants:Colors.WhiteNormal}"
+                    Text="{x:Static constants:Strings.PlayerSingles}" />
+                <customRenderers:LabelHeavyFont
+                    Grid.Row="1" Grid.Column="0"
+                    VerticalOptions="Fill" HorizontalOptions="Fill"
+                    VerticalTextAlignment="End" HorizontalTextAlignment="Center"
+                    FontSize="{x:Static constants:Fonts.SizePhoneXXXL}"
+                    TextColor="{x:Static constants:Colors.WhiteNormal}"
+                    Text="{Binding Player.PositionRanking, StringFormat='{0}e'}" />
+                <customRenderers:LabelRegularFont
+                    Grid.Row="2" Grid.Column="0"
+                    VerticalOptions="Fill" HorizontalOptions="Fill"
+                    VerticalTextAlignment="End" HorizontalTextAlignment="Center"
+                    Margin="0,0,0,8"
+                    FontSize="{x:Static constants:Fonts.SizePhoneXL}"
+                    TextColor="{x:Static constants:Colors.WhiteNormal}"
+                    Text="{Binding Player.Percentage, StringFormat='{0}% winst'}" />
+
+                <customRenderers:RoundedBox
+                    Grid.Row="0" Grid.RowSpan="3" Grid.Column="1"
+                    VerticalOptions="Fill" HorizontalOptions="Fill"
+                    Margin="2,4,2,4"
+                    CornerRadius="8"
+                    BackgroundColor="{x:Static constants:Colors.GreenLight}"
+                    BorderWidth="1"
+                    BorderColor="{x:Static constants:Colors.GreenNormal}" />
+                <customRenderers:LabelBoldFont
+                    Grid.Row="0" Grid.Column="1"
+                    VerticalOptions="Fill" HorizontalOptions="Fill"
+                    VerticalTextAlignment="Start" HorizontalTextAlignment="Center"
+                    Margin="0,8,0,0"
+                    FontSize="{x:Static constants:Fonts.SizePhoneXXL}"
+                    TextColor="{x:Static constants:Colors.WhiteNormal}"
+                    Text="{x:Static constants:Strings.Player180s}" />
+                <customRenderers:LabelHeavyFont
+                    Grid.Row="1" Grid.Column="1"
+                    VerticalOptions="Fill" HorizontalOptions="Fill"
+                    VerticalTextAlignment="End" HorizontalTextAlignment="Center"
+                    FontSize="{x:Static constants:Fonts.SizePhoneXXXL}"
+                    TextColor="{x:Static constants:Colors.WhiteNormal}"
+                    Text="{Binding Player.Position180s, StringFormat='{0}e'}" />
+                <customRenderers:LabelRegularFont
+                    Grid.Row="2" Grid.Column="1"
+                    VerticalOptions="Fill" HorizontalOptions="Fill"
+                    VerticalTextAlignment="End" HorizontalTextAlignment="Center"
+                    Margin="0,0,0,8"
+                    FontSize="{x:Static constants:Fonts.SizePhoneXL}"
+                    TextColor="{x:Static constants:Colors.WhiteNormal}"
+                    Text="{Binding Player.Player180s, StringFormat='{0} gegooid'}" />
+
+                <customRenderers:RoundedBox
+                    Grid.Row="0" Grid.RowSpan="3" Grid.Column="2"
+                    VerticalOptions="Fill" HorizontalOptions="Fill"
+                    Margin="2,4,2,4"
+                    CornerRadius="8"
+                    BackgroundColor="{x:Static constants:Colors.GreenLight}"
+                    BorderWidth="1"
+                    BorderColor="{x:Static constants:Colors.GreenNormal}" />
+                <customRenderers:LabelBoldFont
+                    Grid.Row="0" Grid.Column="2"
+                    VerticalOptions="Fill" HorizontalOptions="Fill"
+                    VerticalTextAlignment="Start" HorizontalTextAlignment="Center"
+                    Margin="0,8,0,0"
+                    FontSize="{x:Static constants:Fonts.SizePhoneXXL}"
+                    TextColor="{x:Static constants:Colors.WhiteNormal}"
+                    Text="{x:Static constants:Strings.PlayerFinishes}" />
+                <customRenderers:LabelHeavyFont
+                    Grid.Row="1" Grid.Column="2"
+                    VerticalOptions="Fill" HorizontalOptions="Fill"
+                    VerticalTextAlignment="End" HorizontalTextAlignment="Center"
+                    FontSize="{x:Static constants:Fonts.SizePhoneXXXL}"
+                    TextColor="{x:Static constants:Colors.WhiteNormal}"
+                    Text="{Binding Player.PositionFinishes, StringFormat='{0}e'}" />
+                <customRenderers:LabelRegularFont
+                    Grid.Row="2" Grid.Column="2"
+                    VerticalOptions="Fill" HorizontalOptions="Fill"
+                    VerticalTextAlignment="End" HorizontalTextAlignment="Center"
+                    Margin="0,0,0,8"
+                    FontSize="{x:Static constants:Fonts.SizePhoneXL}"
+                    TextColor="{x:Static constants:Colors.WhiteNormal}"
+                    Text="{Binding Player.PlayerHighestFinish, StringFormat='{0} hoogst'}" />
+                
+            </Grid>
+
+            <BoxView 
+                Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4"
+                VerticalOptions="Fill" HorizontalOptions="Fill"
+                BackgroundColor="{x:Static constants:Colors.Gray1}" />
+
+            <BoxView 
+                Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4"
+                VerticalOptions="Fill" HorizontalOptions="Fill"
+                BackgroundColor="{x:Static constants:Colors.Gray4}" />
+            
+            <customRenderers:LabelBoldItalicFont
+                Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2"
+                VerticalOptions="Fill" HorizontalOptions="Fill"
+                VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
+                Margin="0"
+                FontSize="{x:Static constants:Fonts.SizePhoneXXXL}"
+                TextColor="{x:Static constants:Colors.Gray1}"
+                Text="{x:Static constants:Strings.PlayerStats}" />
+            
+            <BoxView 
+                Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4"
+                VerticalOptions="Fill" HorizontalOptions="Fill"
+                BackgroundColor="{x:Static constants:Colors.Gray1}" />
+
+            <Grid Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <customRenderers:LabelRegularItalicFont
+                    Grid.Column="0"
+                    VerticalOptions="Fill" HorizontalOptions="Fill"
+                    VerticalTextAlignment="Center" HorizontalTextAlignment="Start"
+                    Margin="0"
+                    FontSize="{x:Static constants:Fonts.SizePhoneL}"
+                    TextColor="{x:Static constants:Colors.Gray2}"
+                    Text="{x:Static constants:Strings.PlayerSingles}" />
+
+                <customRenderers:LabelRegularFont
+                    Grid.Column="1"
+                    VerticalOptions="Fill" HorizontalOptions="Fill"
+                    VerticalTextAlignment="Center" HorizontalTextAlignment="End"
+                    Margin="0"
+                    FontSize="{x:Static constants:Fonts.SizePhoneXXL}"
+                    TextColor="{x:Static constants:Colors.Gray1}"
+                    Text="{Binding Player.TextRank}" />
+            </Grid>
+
+            <BoxView 
+                Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="4"
+                VerticalOptions="Fill" HorizontalOptions="Fill"
+                BackgroundColor="{x:Static constants:Colors.Gray1}" />
+
+            <Grid 
+                Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <customRenderers:LabelRegularItalicFont
+                    Grid.Column="0"
+                    VerticalOptions="Fill" HorizontalOptions="Fill"
+                    VerticalTextAlignment="Center" HorizontalTextAlignment="Start"
+                    Margin="0"
+                    FontSize="{x:Static constants:Fonts.SizePhoneL}"
+                    TextColor="{x:Static constants:Colors.Gray2}"
+                    Text="{x:Static constants:Strings.Player180s}" />
+
+                <customRenderers:LabelRegularFont
+                    Grid.Column="1"
+                    VerticalOptions="Fill" HorizontalOptions="Fill"
+                    VerticalTextAlignment="Center" HorizontalTextAlignment="End"
+                    Margin="0"
+                    FontSize="{x:Static constants:Fonts.SizePhoneXXL}"
+                    TextColor="{x:Static constants:Colors.Gray1}"
+                    Text="{Binding Player.Text180s}" />
+            </Grid>
+
+            <BoxView 
+                Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="4"
+                VerticalOptions="Fill" HorizontalOptions="Fill"
+                BackgroundColor="{x:Static constants:Colors.Gray1}" />
+
+            <Grid 
+                Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <customRenderers:LabelRegularItalicFont
+                    Grid.Column="0"
+                    VerticalOptions="Fill" HorizontalOptions="Fill"
+                    VerticalTextAlignment="Start" HorizontalTextAlignment="Start"
+                    Margin="0,4,0,0"
+                    FontSize="{x:Static constants:Fonts.SizePhoneL}"
+                    TextColor="{x:Static constants:Colors.Gray2}"
+                    Text="{x:Static constants:Strings.PlayerFinishes}" />
+
+                <customRenderers:LabelRegularFont
+                    Grid.Column="1"
+                    VerticalOptions="Fill" HorizontalOptions="Fill"
+                    VerticalTextAlignment="Start" HorizontalTextAlignment="End"
+                    Margin="0"
+                    FontSize="{x:Static constants:Fonts.SizePhoneXXL}"
+                    TextColor="{x:Static constants:Colors.Gray1}"
+                    Text="{Binding Player.TextFinishes}" />
+            </Grid>
+
+            <BoxView 
+                Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="4"
+                VerticalOptions="Fill" HorizontalOptions="Fill"
+                BackgroundColor="{x:Static constants:Colors.Gray1}" />
+            
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

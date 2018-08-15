@@ -14,6 +14,7 @@ namespace PeelseDartBond.ViewModel
 {
     public class ResultsVM : BaseRefreshViewModel
     {
+        bool _hasResults;
         List<WeekResult> _results;
         ObservableCollection<Group<WeekResult>> _groups;
         ObservableCollection<Group<WeekResult>> _filteredGroups;
@@ -41,10 +42,16 @@ namespace PeelseDartBond.ViewModel
         public ICommand FilterByTeamCommand { get { return _filterByTeamCommand; } }
         public ICommand FilterByWeekCommand { get { return _filterByWeekCommand; } }
 
+        public bool HasResults
+        {
+            get { return _hasResults; }
+            set { SetProperty(ref _hasResults, value); }
+        }
+
         public List<WeekResult> Results
         {
             get { return _results; }
-            set { SetProperty(ref _results, value); }
+            set { SetProperty(ref _results, value); HasResults = !value.IsNullOrEmpty(); }
         }
 
         public ObservableCollection<Group<WeekResult>> Groups
@@ -100,7 +107,7 @@ namespace PeelseDartBond.ViewModel
         {
             if (PdbService.Results == null)
             {
-                await PdbService.GetResults();
+                await PdbService.GetResultsAsync();
             }
             else
             {
@@ -110,7 +117,7 @@ namespace PeelseDartBond.ViewModel
             
             if (PdbService.Rankings == null)
             {
-                await PdbService.GetRankings();
+                await PdbService.GetRankingsAsync();
             }
             else
             {

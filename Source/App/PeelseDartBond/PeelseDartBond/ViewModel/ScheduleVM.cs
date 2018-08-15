@@ -101,7 +101,7 @@ namespace PeelseDartBond.ViewModel
         {
             if(PdbService.Schedule == null)
             {
-                await PdbService.GetSchedule();
+                await PdbService.GetScheduleAsync();
             }
             else
             {
@@ -111,7 +111,7 @@ namespace PeelseDartBond.ViewModel
 
             if (PdbService.Rankings == null)
             {
-                await PdbService.GetRankings();
+                await PdbService.GetRankingsAsync();
             }
             else
             {

@@ -34,7 +34,7 @@ namespace PeelseDartBond.ViewModel
         {
             if(PdbService.Rankings == null)
             {
-                await PdbService.GetRankings();
+                await PdbService.GetRankingsAsync();
             }
             else
             {

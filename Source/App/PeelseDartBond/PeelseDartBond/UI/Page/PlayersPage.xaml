@@ -9,6 +9,82 @@
     x:Class="PeelseDartBond.UI.Page.PlayersPage">
     <ContentPage.Content>
         <Grid
+            VerticalOptions="Fill" HorizontalOptions="Fill"
+            RowSpacing="0" ColumnSpacing="0"
+            BackgroundColor="{x:Static constants:Colors.WhiteNormal}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="32" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <StackLayout
+                Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                VerticalOptions="Fill" HorizontalOptions="Fill" 
+                BackgroundColor="{x:Static constants:Colors.Gray1}">
+                <Label
+                    VerticalOptions="FillAndExpand" HorizontalOptions="Fill" 
+                    VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
+                    FontSize="{x:Static constants:Fonts.SizePhoneXXL}"
+                    TextColor="{x:Static constants:Colors.Gray3}"
+                    Text="Filter" />
+            </StackLayout>
+            <Label 
+                Grid.Row="1" Grid.Column="0"
+                VerticalOptions="CenterAndExpand" HorizontalOptions="Fill"
+                VerticalTextAlignment="Center" HorizontalTextAlignment="Start"
+                Margin="8,0,4,0"
+                FontSize="{x:Static constants:Fonts.SizePhoneL}"
+                Text="Team" />
+            <Picker 
+                x:Name="pickerTeam"
+                Grid.Row="1" Grid.Column="1"
+                VerticalOptions="CenterAndExpand" HorizontalOptions="Fill"
+                Margin="4,0,8,0"
+                FontSize="{x:Static constants:Fonts.SizePhoneXL}"
+                Title="Selecteer een Team"
+                ItemsSource="{Binding Teams}"
+                SelectedItem="{Binding SelectedTeam}"
+                Unfocused="FilterByTeam" />
+            <plugins:SegmentedControl 
+                x:Name="segControl" 
+                Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                VerticalOptions="Start" HorizontalOptions="Fill"
+                IsEnabled="true"
+                TintColor="{x:Static constants:Colors.GreenDark}"
+                SelectedSegment="{Binding SelectedPageType}">
+                <plugins:SegmentedControl.Children>
+                    <plugins:SegmentedControlOption Text="180s" />
+                    <plugins:SegmentedControlOption Text="Finishes" />
+                    <plugins:SegmentedControlOption Text="Singels" />
+                </plugins:SegmentedControl.Children>
+            </plugins:SegmentedControl>
+            <ListView 
+                x:Name="listView"
+                Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
+                VerticalOptions="FillAndExpand" HorizontalOptions="Fill" 
+                ItemSelected="OnItemSelected" 
+                ItemsSource="{Binding Player180s}"
+                ItemTemplate="{StaticResource playerDataTemplateSelector}"
+                SeparatorColor="{x:Static constants:Colors.Gray1}">
+            </ListView>
+            <controls:UnderConstruction
+                x:Name="controlUnderConstruction"
+                Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" />
+            <controls:NoData
+                x:Name="controlNoData"
+                Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
+                Caption="(Nog) Geen uitslagen gevonden" />
+        </Grid>
+
+
+
+        
+        <!--<Grid
             VerticalOptions="FillAndExpand" HorizontalOptions="Fill" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -33,16 +109,16 @@
                 VerticalOptions="FillAndExpand" HorizontalOptions="Fill" 
                 ItemSelected="OnItemSelected" 
                 ItemsSource="{Binding Player180s}"
-                SeparatorColor="{x:Static constants:Colors.Gray1}" >
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <cells:Player180sCell Player="{Binding .}" />
-                    </DataTemplate>
-                </ListView.ItemTemplate>
+                ItemTemplate="{StaticResource playerDataTemplateSelector}"
+                SeparatorColor="{x:Static constants:Colors.Gray1}">
             </ListView>
             <controls:UnderConstruction
                 x:Name="controlUnderConstruction"
                 Grid.Row="1" />
-        </Grid>
+            <controls:NoData
+                x:Name="controlNoData"
+                Grid.Row="1"
+                Caption="(Nog) Geen uitslagen gevonden" />
+        </Grid>-->
     </ContentPage.Content>
 </ContentPage>

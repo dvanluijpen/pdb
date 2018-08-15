@@ -59,7 +59,7 @@ namespace PeelseDartBond.ViewModel
             if (PdbService.Competitions.IsNullOrEmpty())
             {
                 if(HasInternetAccess())
-                    await PdbService.GetCompetitions(PdbService.SelectedCompetitionYear.Url);
+                    await PdbService.GetCompetitionsAsync(PdbService.SelectedCompetitionYear.Url);
                 else
                     await ShowNoConnectionError();
             }

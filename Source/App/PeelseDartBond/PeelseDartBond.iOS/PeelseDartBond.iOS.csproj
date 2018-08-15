@@ -295,5 +295,23 @@
     <BundleResource Include="..\..\..\..\Assets\Common\UnderConstruction.png">
       <Link>Resources\UnderConstruction.png</Link>
     </BundleResource>
+    <BundleResource Include="..\..\..\..\Assets\iOSSpecific\Configuration%402x.png">
+      <Link>Resources\Configuration%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\..\Assets\iOSSpecific\Configuration%403x.png">
+      <Link>Resources\Configuration%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\..\Assets\iOSSpecific\Fixtures%402x.png">
+      <Link>Resources\Fixtures%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\..\Assets\iOSSpecific\Fixtures%403x.png">
+      <Link>Resources\Fixtures%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\..\Assets\Common\NoDataFound.png">
+      <Link>Resources\NoDataFound.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\..\Assets\Common\JohnDoe.png">
+      <Link>Resources\JohnDoe.png</Link>
+    </BundleResource>
   </ItemGroup>
 </Project>
