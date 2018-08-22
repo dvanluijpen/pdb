@@ -3,7 +3,9 @@
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     xmlns:constants="clr-namespace:PeelseDartBond.Constants;assembly=PeelseDartBond"
-    x:Class="PeelseDartBond.UI.Cell.PlayerRankingsCell">
+    xmlns:customrenderers="clr-namespace:PeelseDartBond.CustomRenderers;assembly=PeelseDartBond"
+    x:Class="PeelseDartBond.UI.Cell.PlayerRankingsCell"
+    x:Name="view">
     <ViewCell.View>
     </ViewCell.View>
 </ViewCell>

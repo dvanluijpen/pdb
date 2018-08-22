@@ -28,5 +28,10 @@ namespace PeelseDartBond.Model.DataTransferObjects
         public List<Result180> Player180s { get; set; }
         [JsonProperty("high_finishes")]
         public List<ResultFinish> PlayerFinishes { get; set; }
+
+        internal List<object> CollectAllResults()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

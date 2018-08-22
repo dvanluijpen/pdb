@@ -5,6 +5,7 @@
     xmlns:cells="clr-namespace:PeelseDartBond.UI.Cell;assembly=PeelseDartBond"
     xmlns:constants="clr-namespace:PeelseDartBond.Constants;assembly=PeelseDartBond"
     xmlns:controls="clr-namespace:PeelseDartBond.UI.Control;assembly=PeelseDartBond" 
+    xmlns:customrenderers="clr-namespace:PeelseDartBond.CustomRenderers;assembly=PeelseDartBond"
     x:Class="PeelseDartBond.UI.Page.ResultsPage">
     <ContentPage.Content>
         <Grid
@@ -26,14 +27,14 @@
                 Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
                 VerticalOptions="Fill" HorizontalOptions="Fill" 
                 BackgroundColor="{x:Static constants:Colors.Gray1}">
-                <Label
+                <customrenderers:LabelRegularFont
                     VerticalOptions="FillAndExpand" HorizontalOptions="Fill" 
                     VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
                     FontSize="{x:Static constants:Fonts.SizePhoneXXL}"
                     TextColor="{x:Static constants:Colors.Gray3}"
                     Text="Filter" />
             </StackLayout>
-            <Label 
+            <customrenderers:LabelRegularFont 
                 Grid.Row="1" Grid.Column="0"
                 VerticalOptions="CenterAndExpand" HorizontalOptions="Fill"
                 VerticalTextAlignment="Center" HorizontalTextAlignment="Start"
@@ -50,7 +51,7 @@
                 ItemsSource="{Binding Teams}"
                 SelectedItem="{Binding SelectedTeam}"
                 Unfocused="FilterByTeam" />
-            <Label 
+            <customrenderers:LabelRegularFont 
                 Grid.Row="2" Grid.Column="0"
                 VerticalOptions="CenterAndExpand" HorizontalOptions="Fill"
                 VerticalTextAlignment="Center" HorizontalTextAlignment="Start"
@@ -71,7 +72,7 @@
                 Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
                 VerticalOptions="Fill" HorizontalOptions="Fill" 
                 BackgroundColor="{x:Static constants:Colors.Gray1}">
-                <Label
+                <customrenderers:LabelRegularFont
                     VerticalOptions="FillAndExpand" HorizontalOptions="Fill" 
                     VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
                     FontSize="{x:Static constants:Fonts.SizePhoneXXL}"

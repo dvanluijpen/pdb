@@ -9,6 +9,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <converters:BoolNegationConverter x:Key="BoolNegationConverter" />
+            <converters:HeaderVisibilityConverter x:Key="HeaderVisibilityConverter" />
             <converters:MatchColorConverter x:Key="MatchColorConverter" />
             <converters:PositionColorConverter x:Key="PositionColorConverter" />
             <converters:RowColorConverter x:Key="RowColorConverter" />
@@ -23,11 +24,44 @@
             <DataTemplate x:Key="playerRankingsTemplate">
                 <cells:PlayerRankingsCell Player="{Binding .}" />
             </DataTemplate>
-
             <templates:PlayerDataTemplateSelector x:Key="playerDataTemplateSelector"
                 Player180sTemplate="{StaticResource player180sTemplate}"
                 PlayerFinishesTemplate="{StaticResource playerFinishesTemplate}"
                 PlayerRankingsTemplate="{StaticResource playerRankingsTemplate}" />
+
+            <DataTemplate x:Key="resultSingleTemplate">
+                <cells:ResultSingleCell Result="{Binding .}" />
+            </DataTemplate>
+            <DataTemplate x:Key="resultSingleWithHeaderTemplate">
+                <cells:ResultSingleWithHeaderCell Result="{Binding .}" />
+            </DataTemplate>
+            <DataTemplate x:Key="resultDoubleTemplate">
+                <cells:ResultDoubleCell Result="{Binding .}" />
+            </DataTemplate>
+            <DataTemplate x:Key="resultDoubleWithHeaderTemplate">
+                <cells:ResultDoubleWithHeaderCell Result="{Binding .}" />
+            </DataTemplate>
+            <DataTemplate x:Key="result180sTemplate">
+                <cells:Result180sCell Result="{Binding .}" />
+            </DataTemplate>
+            <DataTemplate x:Key="result180sWithHeaderTemplate">
+                <cells:Result180sWithHeaderCell Result="{Binding .}" />
+            </DataTemplate>
+            <DataTemplate x:Key="resultFinishesTemplate">
+                <cells:ResultFinishesCell Result="{Binding .}" />
+            </DataTemplate>
+            <DataTemplate x:Key="resultFinishesWithHeaderTemplate">
+                <cells:ResultFinishesWithHeaderCell Result="{Binding .}" />
+            </DataTemplate>
+            <templates:ResultDataTemplateSelector x:Key="resultDataTemplateSelector"
+                ResultSingleTemplate="{StaticResource resultSingleTemplate}"
+                ResultSingleWithHeaderTemplate="{StaticResource resultSingleWithHeaderTemplate}"
+                ResultDoubleTemplate="{StaticResource resultDoubleTemplate}"
+                ResultDoubleWithHeaderTemplate="{StaticResource resultDoubleWithHeaderTemplate}"
+                Result180sTemplate="{StaticResource result180sTemplate}"
+                Result180sWithHeaderTemplate="{StaticResource result180sWithHeaderTemplate}"
+                ResultFinishesTemplate="{StaticResource resultFinishesTemplate}"
+                ResultFinishesWithHeaderTemplate="{StaticResource resultFinishesWithHeaderTemplate}" />
             
         </ResourceDictionary>
     </Application.Resources>

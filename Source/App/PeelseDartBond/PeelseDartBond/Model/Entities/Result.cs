@@ -14,6 +14,7 @@ namespace PeelseDartBond.Model.Entities
         List<ResultTeam> _teams;
         List<Result180> _player180s;
         List<ResultFinish> _playerFinishes;
+        List<object> _all;
 
         public Result()
         {
@@ -63,6 +64,20 @@ namespace PeelseDartBond.Model.Entities
         {
             get { return _playerFinishes; }
             set { SetProperty(ref _playerFinishes, value); }
+        }
+        public List<object> All
+        {
+            get
+            {
+                var all = new List<object>();
+                all.AddRange(Singles);
+                all.AddRange(Doubles);
+                all.AddRange(Captains);
+                all.AddRange(Teams);
+                all.AddRange(Player180s);
+                all.AddRange(PlayerFinishes);
+                return all;
+            }
         }
     }
 }

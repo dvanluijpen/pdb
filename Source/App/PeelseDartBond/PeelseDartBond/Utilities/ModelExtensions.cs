@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using PeelseDartBond.Constants;
 
 namespace PeelseDartBond.Utilities
 {
@@ -245,6 +246,7 @@ namespace PeelseDartBond.Utilities
                     Home = dataTransferObject.Home,
                     Away = dataTransferObject.Away,
                     Score = dataTransferObject.Score,
+                    HeaderText = Strings.HeaderTextSingles,
                 });
             }
 
@@ -265,6 +267,7 @@ namespace PeelseDartBond.Utilities
                     Away1 = dataTransferObject.Away1,
                     Away2 = dataTransferObject.Away2,
                     Score = dataTransferObject.Score,
+                    HeaderText = Strings.HeaderTextDoubles,
                 });
             }
 
@@ -283,6 +286,7 @@ namespace PeelseDartBond.Utilities
                     Home = dataTransferObject.Home,
                     Away = dataTransferObject.Away,
                     Score = dataTransferObject.Score,
+                    HeaderText = Strings.HeaderTextCaptain,
                 });
             }
 
@@ -301,6 +305,7 @@ namespace PeelseDartBond.Utilities
                     Home = dataTransferObject.Home,
                     Away = dataTransferObject.Away,
                     Score = dataTransferObject.Score,
+                    HeaderText = Strings.HeaderTextTeam,
                 });
             }
 
@@ -310,13 +315,17 @@ namespace PeelseDartBond.Utilities
         public static List<Model.Entities.Result180> Flatten(this List<Model.DataTransferObjects.Result180> dataTransferObjects)
         {
             var entities = new List<Model.Entities.Result180>();
+            var position = 0;
 
             foreach (var dataTransferObject in dataTransferObjects)
             {
+                position += 1;
                 entities.Add(new Model.Entities.Result180
                 {
+                    Position = position,
                     Player = dataTransferObject.Player,
                     Amount = dataTransferObject.Amount,
+                    HeaderText = Strings.HeaderText180s,
                 });
             }
 
@@ -326,13 +335,17 @@ namespace PeelseDartBond.Utilities
         public static List<Model.Entities.ResultFinish> Flatten(this List<Model.DataTransferObjects.ResultFinish> dataTransferObjects)
         {
             var entities = new List<Model.Entities.ResultFinish>();
+            var position = 0;
 
             foreach (var dataTransferObject in dataTransferObjects)
             {
+                position += 1;
                 entities.Add(new Model.Entities.ResultFinish
                 {
+                    Position = position,
                     Player = dataTransferObject.Player,
                     Finish = dataTransferObject.Finish,
+                    HeaderText = Strings.HeaderTextFinishes,
                 });
             }
 

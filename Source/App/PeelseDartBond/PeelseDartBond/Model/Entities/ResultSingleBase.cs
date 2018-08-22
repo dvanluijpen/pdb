@@ -1,19 +1,15 @@
 ﻿using System;
-using Newtonsoft.Json;
-
 namespace PeelseDartBond.Model.Entities
 {
-    public class ResultDouble : BaseEntity
+    public class ResultSingleBase : BaseEntity
     {
         int _position;
-        string _home1;
-        string _home2;
-        string _away1;
-        string _away2;
+        string _home;
+        string _away;
         string _score;
         string _headerText;
 
-        public ResultDouble()
+        public ResultSingleBase()
         {
         }
 
@@ -22,25 +18,15 @@ namespace PeelseDartBond.Model.Entities
             get { return _position; }
             set { SetProperty(ref _position, value); }
         }
-        public string Home1
+        public string Home
         {
-            get { return _home1; }
-            set { SetProperty(ref _home1, value); }
+            get { return _home; }
+            set { SetProperty(ref _home, value); }
         }
-        public string Home2
+        public string Away
         {
-            get { return _home2; }
-            set { SetProperty(ref _home2, value); }
-        }
-        public string Away1
-        {
-            get { return _away1; }
-            set { SetProperty(ref _away1, value); }
-        }
-        public string Away2
-        {
-            get { return _away2; }
-            set { SetProperty(ref _away2, value); }
+            get { return _away; }
+            set { SetProperty(ref _away, value); }
         }
         public string Score
         {
@@ -58,7 +44,7 @@ namespace PeelseDartBond.Model.Entities
         }
         public string AwayScore
         {
-            get { return _score.Substring(_score.Length - 1, 1); }
+            get { return _score.Substring(_score.Length-1, 1); }
         }
     }
 }

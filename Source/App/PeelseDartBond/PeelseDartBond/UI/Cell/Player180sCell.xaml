@@ -1,10 +1,11 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ViewCell 
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     xmlns:constants="clr-namespace:PeelseDartBond.Constants;assembly=PeelseDartBond"
-    xmlns:customRenderers="clr-namespace:PeelseDartBond.CustomRenderers;assembly=PeelseDartBond"
-    x:Class="PeelseDartBond.UI.Cell.Player180sCell">
+    xmlns:customrenderers="clr-namespace:PeelseDartBond.CustomRenderers;assembly=PeelseDartBond"
+    x:Class="PeelseDartBond.UI.Cell.Player180sCell"
+    x:Name="view">
     <ViewCell.View>
         <Grid 
             BackgroundColor="{x:Static constants:Colors.WhiteNormal}"
@@ -20,15 +21,14 @@
                 <ColumnDefinition Width="24" />
             </Grid.ColumnDefinitions>
             
-            <customRenderers:RoundedBox
+            <customrenderers:RoundedBox
                 Grid.Row="0" Grid.RowSpan="2" Grid.Column="0"
                 VerticalOptions="Center" HorizontalOptions="Center" 
                 WidthRequest="32" HeightRequest="32"
                 Margin="6"
                 BackgroundColor="{Binding Position, Converter={StaticResource PositionColorConverter}}"
                 BorderWidth="1"
-                BorderColor="{x:Static constants:Colors.PositionBorder}">
-            </customRenderers:RoundedBox>
+                BorderColor="{x:Static constants:Colors.PositionBorder}" />
             <Label
                 Grid.Row="0" Grid.RowSpan="2" Grid.Column="0"
                 VerticalOptions="Center" HorizontalOptions="Center" 
@@ -57,13 +57,12 @@
                 Grid.Row="0" Grid.RowSpan="2" Grid.Column="2"
                 Padding="4,4,1,4">
 
-                <customRenderers:RoundedBox
+                <customrenderers:RoundedBox
                     VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" 
                     CornerRadius="8"
                     BorderWidth="3"
                     BorderColor="{x:Static constants:Colors.PointsGreenBorder}"
-                    BackgroundColor="{x:Static constants:Colors.PointsGreenFill}">
-                </customRenderers:RoundedBox>
+                    BackgroundColor="{x:Static constants:Colors.PointsGreenFill}" />
 
                 <Label
                     VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" 

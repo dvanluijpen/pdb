@@ -8,5 +8,7 @@ namespace PeelseDartBond.CustomRenderers
         public HtmlLabel()
         {
         }
+
+        public int MaxLines { get; set; }
     }
 }

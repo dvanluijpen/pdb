@@ -80,45 +80,5 @@
                 Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
                 Caption="(Nog) Geen uitslagen gevonden" />
         </Grid>
-
-
-
-        
-        <!--<Grid
-            VerticalOptions="FillAndExpand" HorizontalOptions="Fill" >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <plugins:SegmentedControl 
-                x:Name="segControl" 
-                Grid.Row="0"
-                VerticalOptions="Start" HorizontalOptions="Fill"
-                IsEnabled="true"
-                TintColor="{x:Static constants:Colors.GreenDark}"
-                SelectedSegment="{Binding SelectedPageType}">
-                <plugins:SegmentedControl.Children>
-                    <plugins:SegmentedControlOption Text="180s" />
-                    <plugins:SegmentedControlOption Text="Finishes" />
-                    <plugins:SegmentedControlOption Text="Singels" />
-                </plugins:SegmentedControl.Children>
-            </plugins:SegmentedControl>
-            <ListView 
-                x:Name="listView"
-                Grid.Row="1"
-                VerticalOptions="FillAndExpand" HorizontalOptions="Fill" 
-                ItemSelected="OnItemSelected" 
-                ItemsSource="{Binding Player180s}"
-                ItemTemplate="{StaticResource playerDataTemplateSelector}"
-                SeparatorColor="{x:Static constants:Colors.Gray1}">
-            </ListView>
-            <controls:UnderConstruction
-                x:Name="controlUnderConstruction"
-                Grid.Row="1" />
-            <controls:NoData
-                x:Name="controlNoData"
-                Grid.Row="1"
-                Caption="(Nog) Geen uitslagen gevonden" />
-        </Grid>-->
     </ContentPage.Content>
 </ContentPage>

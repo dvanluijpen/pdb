@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:constants="clr-namespace:PeelseDartBond.Constants;assembly=PeelseDartBond"
+    xmlns:customrenderers="clr-namespace:PeelseDartBond.CustomRenderers;assembly=PeelseDartBond"
+    x:Class="PeelseDartBond.UI.Cell.ResultFinishesCell"
+    x:Name="view">
+    <ViewCell.View>
+        <Grid RowSpacing="0" ColumnSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="48" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            
+            <customrenderers:LabelRegularItalicFont
+                Grid.Row="0" Grid.Column="0"
+                VerticalOptions="FillAndExpand" HorizontalOptions="Fill" 
+                VerticalTextAlignment="Center" HorizontalTextAlignment="Start"
+                Margin="12,0"
+                FontSize="{x:Static constants:Fonts.SizePhoneXXL}"
+                TextColor="{x:Static constants:Colors.Gray2}"
+                Text="{Binding Result.Player}"
+                BindingContext="{x:Reference view}" />
+            
+            <customrenderers:LabelRegularFont
+                Grid.Row="0" Grid.Column="2"
+                VerticalOptions="FillAndExpand" HorizontalOptions="Fill" 
+                VerticalTextAlignment="Center" HorizontalTextAlignment="End"
+                Margin="12,0"
+                FontSize="{x:Static constants:Fonts.SizePhoneXL}"
+                TextColor="{x:Static constants:Colors.Gray1}"
+                Text="{Binding Result.Finish, StringFormat='{0}'}"
+                BindingContext="{x:Reference view}" />
+        </Grid>
+    </ViewCell.View>
+</ViewCell>

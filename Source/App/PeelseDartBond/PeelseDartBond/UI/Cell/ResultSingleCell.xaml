@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:constants="clr-namespace:PeelseDartBond.Constants;assembly=PeelseDartBond"
+    xmlns:customrenderers="clr-namespace:PeelseDartBond.CustomRenderers;assembly=PeelseDartBond"
+    x:Class="PeelseDartBond.UI.Cell.ResultSingleCell"
+    x:Name="view">
+    <ViewCell.View>
+        <Grid RowSpacing="0" ColumnSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20" />
+                <RowDefinition Height="48" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <BoxView
+                Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                VerticalOptions="Fill" HorizontalOptions="Fill" 
+                BackgroundColor="{x:Static constants:Colors.Gray4}" />
+            <customrenderers:LabelRegularItalicFont
+                Grid.Row="0" Grid.Column="0"
+                Margin="0"
+                VerticalOptions="Fill" HorizontalOptions="Fill" 
+                VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
+                FontSize="{x:Static constants:Fonts.SizePhoneXL}"
+                TextColor="{x:Static constants:Colors.Gray1}"
+                Text="{Binding Result.Home}"
+                BindingContext="{x:Reference view}" />
+            <customrenderers:LabelRegularItalicFont
+                Grid.Row="0" Grid.Column="1"
+                Margin="0"
+                VerticalOptions="Fill" HorizontalOptions="Fill" 
+                VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
+                FontSize="{x:Static constants:Fonts.SizePhoneXL}"
+                TextColor="{x:Static constants:Colors.Gray1}"
+                Text="{Binding Result.Away}"
+                BindingContext="{x:Reference view}" />
+
+            <BoxView
+                Grid.Row="1" Grid.Column="0"
+                VerticalOptions="Center" HorizontalOptions="Center"
+                WidthRequest="32" HeightRequest="32"
+                BackgroundColor="{x:Static constants:Colors.Gray4}" />
+            <customrenderers:LabelHeavyFont
+                Grid.Row="1" Grid.Column="0"
+                Margin="0"
+                VerticalOptions="Fill" HorizontalOptions="Fill" 
+                VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
+                FontSize="{x:Static constants:Fonts.SizePhoneXXXL}"
+                TextColor="{x:Static constants:Colors.Gray1}"
+                Text="{Binding Result.HomeScore}"
+                BindingContext="{x:Reference view}" />
+            <BoxView
+                Grid.Row="1" Grid.Column="1"
+                VerticalOptions="Center" HorizontalOptions="Center"
+                WidthRequest="32" HeightRequest="32"
+                BackgroundColor="{x:Static constants:Colors.Gray4}" />
+            <customrenderers:LabelHeavyFont
+                Grid.Row="1" Grid.Column="1"
+                Margin="0"
+                VerticalOptions="Fill" HorizontalOptions="Fill" 
+                VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
+                FontSize="{x:Static constants:Fonts.SizePhoneXXXL}"
+                TextColor="{x:Static constants:Colors.Gray1}"
+                Text="{Binding Result.AwayScore}"
+                BindingContext="{x:Reference view}" />
+        </Grid>
+    </ViewCell.View>
+</ViewCell>

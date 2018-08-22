@@ -12,7 +12,7 @@
             HorizontalOptions="Fill" VerticalOptions="Start"
             ItemSelected="OnItemSelected" 
             ItemsSource="{Binding News}"
-            RowHeight="88"
+            HasUnevenRows="true"
             SeparatorColor="{x:Static constants:Colors.Gray1}">
             <ListView.ItemTemplate>
                 <DataTemplate>

@@ -41,6 +41,22 @@
       <DependentUpon>UI\Cell\MenuCell.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="UI\Cell\ResultDoubleCell.xaml %28copy%29.cs">
+      <DependentUpon>UI\Cell\ResultDoubleCell.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="UI\Cell\ResultSingleCell.xaml %28copy%29.cs">
+      <DependentUpon>UI\Cell\ResultSingleCell.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="UI\Cell\ResultFinishesCell.xaml %28copy%29.cs">
+      <DependentUpon>UI\Cell\ResultFinishesCell.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="UI\Cell\Result180sCell.xaml %28copy%29.cs">
+      <DependentUpon>UI\Cell\Result180sCell.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Mono.Android">

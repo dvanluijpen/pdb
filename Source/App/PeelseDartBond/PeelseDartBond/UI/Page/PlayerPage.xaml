@@ -3,7 +3,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     xmlns:constants="clr-namespace:PeelseDartBond.Constants;assembly=PeelseDartBond"
-    xmlns:customRenderers="clr-namespace:PeelseDartBond.CustomRenderers;assembly=PeelseDartBond"
+    xmlns:customrenderers="clr-namespace:PeelseDartBond.CustomRenderers;assembly=PeelseDartBond"
     x:Class="PeelseDartBond.UI.Page.PlayerPage"
     BackgroundColor="{x:Static constants:Colors.WhiteNormal}"
     Title="{Binding Player.Name}">
@@ -55,14 +55,13 @@
                     <ColumnDefinition Width="96" />
                 </Grid.ColumnDefinitions>
 
-                <customRenderers:RoundedBox
+                <customrenderers:RoundedBox
                     Grid.Column="1"
                     VerticalOptions="Center" HorizontalOptions="Center" 
                     WidthRequest="96" HeightRequest="96"
                     BackgroundColor="{x:Static constants:Colors.WhiteNormal}"
                     BorderWidth="1"
-                    BorderColor="{x:Static constants:Colors.Gray1}">
-                </customRenderers:RoundedBox>
+                    BorderColor="{x:Static constants:Colors.Gray1}" />
                 
                 <Image
                     Grid.Column="1"
@@ -72,7 +71,7 @@
                 
             </Grid>
             
-            <customRenderers:LabelHeavyFont
+            <customrenderers:LabelHeavyFont
                 Grid.Row="0" Grid.Column="2"
                 Margin="8,0,8,4"
                 VerticalOptions="End" HorizontalOptions="Start" 
@@ -80,7 +79,7 @@
                 TextColor="{x:Static constants:Colors.Gray1}"
                 Text="{Binding Player.Name}" />
             
-            <customRenderers:LabelRegularItalicFont
+            <customrenderers:LabelRegularItalicFont
                 Grid.Row="1" Grid.Column="2"
                 Margin="8,4,8,0"
                 VerticalOptions="Start" HorizontalOptions="Start" 
@@ -102,7 +101,7 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <customRenderers:RoundedBox
+                <customrenderers:RoundedBox
                     Grid.Row="0" Grid.RowSpan="3" Grid.Column="0"
                     VerticalOptions="Fill" HorizontalOptions="Fill"
                     Margin="0,4,2,4"
@@ -110,7 +109,7 @@
                     BackgroundColor="{x:Static constants:Colors.GreenLight}"
                     BorderWidth="1"
                     BorderColor="{x:Static constants:Colors.GreenNormal}" />
-                <customRenderers:LabelBoldFont
+                <customrenderers:LabelBoldFont
                     Grid.Row="0" Grid.Column="0"
                     VerticalOptions="Fill" HorizontalOptions="Fill"
                     VerticalTextAlignment="Start" HorizontalTextAlignment="Center"
@@ -118,14 +117,14 @@
                     FontSize="{x:Static constants:Fonts.SizePhoneXXL}"
                     TextColor="{x:Static constants:Colors.WhiteNormal}"
                     Text="{x:Static constants:Strings.PlayerSingles}" />
-                <customRenderers:LabelHeavyFont
+                <customrenderers:LabelHeavyFont
                     Grid.Row="1" Grid.Column="0"
                     VerticalOptions="Fill" HorizontalOptions="Fill"
                     VerticalTextAlignment="End" HorizontalTextAlignment="Center"
                     FontSize="{x:Static constants:Fonts.SizePhoneXXXL}"
                     TextColor="{x:Static constants:Colors.WhiteNormal}"
                     Text="{Binding Player.PositionRanking, StringFormat='{0}e'}" />
-                <customRenderers:LabelRegularFont
+                <customrenderers:LabelRegularFont
                     Grid.Row="2" Grid.Column="0"
                     VerticalOptions="Fill" HorizontalOptions="Fill"
                     VerticalTextAlignment="End" HorizontalTextAlignment="Center"
@@ -134,7 +133,7 @@
                     TextColor="{x:Static constants:Colors.WhiteNormal}"
                     Text="{Binding Player.Percentage, StringFormat='{0}% winst'}" />
 
-                <customRenderers:RoundedBox
+                <customrenderers:RoundedBox
                     Grid.Row="0" Grid.RowSpan="3" Grid.Column="1"
                     VerticalOptions="Fill" HorizontalOptions="Fill"
                     Margin="2,4,2,4"
@@ -142,7 +141,7 @@
                     BackgroundColor="{x:Static constants:Colors.GreenLight}"
                     BorderWidth="1"
                     BorderColor="{x:Static constants:Colors.GreenNormal}" />
-                <customRenderers:LabelBoldFont
+                <customrenderers:LabelBoldFont
                     Grid.Row="0" Grid.Column="1"
                     VerticalOptions="Fill" HorizontalOptions="Fill"
                     VerticalTextAlignment="Start" HorizontalTextAlignment="Center"
@@ -150,14 +149,14 @@
                     FontSize="{x:Static constants:Fonts.SizePhoneXXL}"
                     TextColor="{x:Static constants:Colors.WhiteNormal}"
                     Text="{x:Static constants:Strings.Player180s}" />
-                <customRenderers:LabelHeavyFont
+                <customrenderers:LabelHeavyFont
                     Grid.Row="1" Grid.Column="1"
                     VerticalOptions="Fill" HorizontalOptions="Fill"
                     VerticalTextAlignment="End" HorizontalTextAlignment="Center"
                     FontSize="{x:Static constants:Fonts.SizePhoneXXXL}"
                     TextColor="{x:Static constants:Colors.WhiteNormal}"
                     Text="{Binding Player.Position180s, StringFormat='{0}e'}" />
-                <customRenderers:LabelRegularFont
+                <customrenderers:LabelRegularFont
                     Grid.Row="2" Grid.Column="1"
                     VerticalOptions="Fill" HorizontalOptions="Fill"
                     VerticalTextAlignment="End" HorizontalTextAlignment="Center"
@@ -166,7 +165,7 @@
                     TextColor="{x:Static constants:Colors.WhiteNormal}"
                     Text="{Binding Player.Player180s, StringFormat='{0} gegooid'}" />
 
-                <customRenderers:RoundedBox
+                <customrenderers:RoundedBox
                     Grid.Row="0" Grid.RowSpan="3" Grid.Column="2"
                     VerticalOptions="Fill" HorizontalOptions="Fill"
                     Margin="2,4,2,4"
@@ -174,7 +173,7 @@
                     BackgroundColor="{x:Static constants:Colors.GreenLight}"
                     BorderWidth="1"
                     BorderColor="{x:Static constants:Colors.GreenNormal}" />
-                <customRenderers:LabelBoldFont
+                <customrenderers:LabelBoldFont
                     Grid.Row="0" Grid.Column="2"
                     VerticalOptions="Fill" HorizontalOptions="Fill"
                     VerticalTextAlignment="Start" HorizontalTextAlignment="Center"
@@ -182,14 +181,14 @@
                     FontSize="{x:Static constants:Fonts.SizePhoneXXL}"
                     TextColor="{x:Static constants:Colors.WhiteNormal}"
                     Text="{x:Static constants:Strings.PlayerFinishes}" />
-                <customRenderers:LabelHeavyFont
+                <customrenderers:LabelHeavyFont
                     Grid.Row="1" Grid.Column="2"
                     VerticalOptions="Fill" HorizontalOptions="Fill"
                     VerticalTextAlignment="End" HorizontalTextAlignment="Center"
                     FontSize="{x:Static constants:Fonts.SizePhoneXXXL}"
                     TextColor="{x:Static constants:Colors.WhiteNormal}"
                     Text="{Binding Player.PositionFinishes, StringFormat='{0}e'}" />
-                <customRenderers:LabelRegularFont
+                <customrenderers:LabelRegularFont
                     Grid.Row="2" Grid.Column="2"
                     VerticalOptions="Fill" HorizontalOptions="Fill"
                     VerticalTextAlignment="End" HorizontalTextAlignment="Center"
@@ -210,7 +209,7 @@
                 VerticalOptions="Fill" HorizontalOptions="Fill"
                 BackgroundColor="{x:Static constants:Colors.Gray4}" />
             
-            <customRenderers:LabelBoldItalicFont
+            <customrenderers:LabelBoldItalicFont
                 Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2"
                 VerticalOptions="Fill" HorizontalOptions="Fill"
                 VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
@@ -230,7 +229,7 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <customRenderers:LabelRegularItalicFont
+                <customrenderers:LabelRegularItalicFont
                     Grid.Column="0"
                     VerticalOptions="Fill" HorizontalOptions="Fill"
                     VerticalTextAlignment="Center" HorizontalTextAlignment="Start"
@@ -239,7 +238,7 @@
                     TextColor="{x:Static constants:Colors.Gray2}"
                     Text="{x:Static constants:Strings.PlayerSingles}" />
 
-                <customRenderers:LabelRegularFont
+                <customrenderers:LabelRegularFont
                     Grid.Column="1"
                     VerticalOptions="Fill" HorizontalOptions="Fill"
                     VerticalTextAlignment="Center" HorizontalTextAlignment="End"
@@ -261,7 +260,7 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <customRenderers:LabelRegularItalicFont
+                <customrenderers:LabelRegularItalicFont
                     Grid.Column="0"
                     VerticalOptions="Fill" HorizontalOptions="Fill"
                     VerticalTextAlignment="Center" HorizontalTextAlignment="Start"
@@ -270,7 +269,7 @@
                     TextColor="{x:Static constants:Colors.Gray2}"
                     Text="{x:Static constants:Strings.Player180s}" />
 
-                <customRenderers:LabelRegularFont
+                <customrenderers:LabelRegularFont
                     Grid.Column="1"
                     VerticalOptions="Fill" HorizontalOptions="Fill"
                     VerticalTextAlignment="Center" HorizontalTextAlignment="End"
@@ -292,7 +291,7 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <customRenderers:LabelRegularItalicFont
+                <customrenderers:LabelRegularItalicFont
                     Grid.Column="0"
                     VerticalOptions="Fill" HorizontalOptions="Fill"
                     VerticalTextAlignment="Start" HorizontalTextAlignment="Start"
@@ -301,7 +300,7 @@
                     TextColor="{x:Static constants:Colors.Gray2}"
                     Text="{x:Static constants:Strings.PlayerFinishes}" />
 
-                <customRenderers:LabelRegularFont
+                <customrenderers:LabelRegularFont
                     Grid.Column="1"
                     VerticalOptions="Fill" HorizontalOptions="Fill"
                     VerticalTextAlignment="Start" HorizontalTextAlignment="End"

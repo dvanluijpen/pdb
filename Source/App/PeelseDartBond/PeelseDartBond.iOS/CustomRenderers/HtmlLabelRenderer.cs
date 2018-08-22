@@ -19,12 +19,13 @@ namespace PeelseDartBond.iOS.CustomRenderers
 
             if (Control != null && Element != null && !string.IsNullOrWhiteSpace(Element.Text))
             {
+                var element = this.Element as HtmlLabel;
                 var attr = new NSAttributedStringDocumentAttributes();
                 var nsError = new NSError();
                 attr.DocumentType = NSDocumentType.HTML;
 
                 var myHtmlData = NSData.FromString(Element.Text, NSStringEncoding.Unicode);
-                Control.Lines = 0;
+                Control.Lines = element.MaxLines;
                 Control.Font = UIFont.FromName(Control.Font.FamilyName, new nfloat(Element.FontSize));
                 Control.AttributedText = new NSAttributedString(myHtmlData, attr, ref nsError);
             }

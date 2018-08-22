@@ -9,6 +9,7 @@ namespace PeelseDartBond.ViewModel
     public class ResultVM : BaseViewModel
     {
         Result _result;
+        string _title;
         string _url;
 
         public ResultVM(string url)
@@ -28,6 +29,12 @@ namespace PeelseDartBond.ViewModel
             set { SetProperty(ref _result, value); }
         }
 
+        public string Title
+        {
+            get { return _title; }
+            set { SetProperty(ref _title, value); }
+        }
+
         public string Url
         {
             get { return _url; }
@@ -40,6 +47,7 @@ namespace PeelseDartBond.ViewModel
         {
             var result = await PdbService.GetResultAsync(Url);
             Result = result;
+            Title = $"{result.TeamHome} - {result.TeamAway} ({result.Score})";
         }
     }
 }

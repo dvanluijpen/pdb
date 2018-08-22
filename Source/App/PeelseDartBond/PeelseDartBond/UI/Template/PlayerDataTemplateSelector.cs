@@ -12,13 +12,13 @@ namespace PeelseDartBond.UI.Template
 
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {
-            if (item.GetType() == typeof(Player180s))
+            if (item is Player180s)
                 return Player180sTemplate;
 
-            if (item.GetType() == typeof(PlayerFinish))
+            if (item is PlayerFinish)
                 return PlayerFinishesTemplate;
             
-            if (item.GetType() == typeof(PlayerRanking))
+            if (item is PlayerRanking)
                 return PlayerRankingsTemplate;
 
             return null;

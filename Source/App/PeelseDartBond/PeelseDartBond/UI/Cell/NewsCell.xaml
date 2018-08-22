@@ -23,6 +23,7 @@
                 Grid.Row="1"
                 Margin="8,0"
                 VerticalOptions="Start" HorizontalOptions="Fill" 
+                MaxLines="3"
                 FontSize="{x:Static constants:Fonts.SizePhoneL}"
                 TextColor="{x:Static constants:Colors.Gray2}"
                 Text="{Binding Text}" />

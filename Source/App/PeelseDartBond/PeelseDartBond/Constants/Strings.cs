@@ -23,10 +23,16 @@ namespace PeelseDartBond.Constants
         public static string CompetitionGroup3 = "3e Divisie";
         public static string CompetitionGroup4 = "4e Divisie";
 
+        public static string HeaderTextSingles = "SINGLES RONDE";
+        public static string HeaderTextDoubles = "DOUBLES RONDE";
+        public static string HeaderTextCaptain = "CAPTAINS RONDE";
+        public static string HeaderTextTeam = "TEAMRONDE";
+        public static string HeaderText180s = "180ers";
+        public static string HeaderTextFinishes = "HOGE FINISHES";
+
         public static string ConnectionErrorTitle = "Connectie probleem";
         public static string ConnectionErrorText = "Helaas kan er geen verbinding met internet gemaakt worden. Staat je internet aan?";
         public static string ServiceErrorTitle = "Server probleem";
         public static string ServiceErrorText = "Helaas kan er geen informatie opgehaald worden. Probeer het later nog eens.";
-
     }
 }

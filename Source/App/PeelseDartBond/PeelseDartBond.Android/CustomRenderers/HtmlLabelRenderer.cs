@@ -33,6 +33,7 @@ namespace PeelseDartBond.Droid.CustomRenderers
 
                 //Control.SetTypeface(Typeface.CreateFromAsset(Android.App.Application.Context.Assets, Fonts.WeightRegularDroid), TypefaceStyle.Normal);
                 Control.SetText(htmlText, TextView.BufferType.Spannable);
+                Control.SetMaxLines(view.MaxLines);
             }
         }
     }
