@@ -79,5 +79,13 @@ namespace PeelseDartBond.Model.Entities
                 return all;
             }
         }
+        public string TeamHomeScore
+        {
+            get { return _score.Substring(0, 1); }
+        }
+        public string TeamAwayScore
+        {
+            get { return _score.Substring(_score.Length - 1, 1); }
+        }
     }
 }

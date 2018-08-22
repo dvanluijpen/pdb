@@ -30,6 +30,11 @@ namespace PeelseDartBond.Constants
         public static string HeaderText180s = "180ers";
         public static string HeaderTextFinishes = "HOGE FINISHES";
 
+        public static string Result = "Uitslag";
+        public static string Results = "Uitslagen";
+        public static string TeamHome = "THUIS TEAM";
+        public static string TeamAway = "UIT TEAM";
+
         public static string ConnectionErrorTitle = "Connectie probleem";
         public static string ConnectionErrorText = "Helaas kan er geen verbinding met internet gemaakt worden. Staat je internet aan?";
         public static string ServiceErrorTitle = "Server probleem";

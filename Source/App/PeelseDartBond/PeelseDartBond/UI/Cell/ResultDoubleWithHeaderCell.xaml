@@ -22,7 +22,6 @@
             <StackLayout
                 Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
                 VerticalOptions="Fill" HorizontalOptions="Fill" 
-                IsVisible="{Binding Result.Position, Converter={StaticResource HeaderVisibilityConverter}}"
                 BackgroundColor="{x:Static constants:Colors.Gray1}"
                 BindingContext="{x:Reference view}">
                 <customrenderers:LabelRegularFont

@@ -9,7 +9,6 @@
     <Application.Resources>
         <ResourceDictionary>
             <converters:BoolNegationConverter x:Key="BoolNegationConverter" />
-            <converters:HeaderVisibilityConverter x:Key="HeaderVisibilityConverter" />
             <converters:MatchColorConverter x:Key="MatchColorConverter" />
             <converters:PositionColorConverter x:Key="PositionColorConverter" />
             <converters:RowColorConverter x:Key="RowColorConverter" />

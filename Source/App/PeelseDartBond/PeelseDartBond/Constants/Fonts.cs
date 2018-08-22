@@ -3,6 +3,10 @@ namespace PeelseDartBond.Constants
 {
     public static class Fonts
     {
+        public static double SizePhoneXXXXXXXL = 32;
+        public static double SizePhoneXXXXXXL = 28;
+        public static double SizePhoneXXXXXL = 24;
+        public static double SizePhoneXXXXL = 20;
         public static double SizePhoneXXXL = 18;
         public static double SizePhoneXXL = 16;
         public static double SizePhoneXL = 14;
