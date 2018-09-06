@@ -67,17 +67,16 @@
                 x:Name="listView"
                 Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
                 VerticalOptions="FillAndExpand" HorizontalOptions="Fill" 
+                IsVisible="{Binding HasResults}"
                 ItemSelected="OnItemSelected" 
-                ItemsSource="{Binding Player180s}"
+                ItemsSource="{Binding FilteredPlayer180s}"
                 ItemTemplate="{StaticResource playerDataTemplateSelector}"
                 SeparatorColor="{x:Static constants:Colors.Gray1}">
             </ListView>
-            <controls:UnderConstruction
-                x:Name="controlUnderConstruction"
-                Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" />
             <controls:NoData
                 x:Name="controlNoData"
                 Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
+                IsVisible="{Binding HasResults, Converter={StaticResource BoolNegationConverter}}"
                 Caption="(Nog) Geen uitslagen gevonden" />
         </Grid>
     </ContentPage.Content>

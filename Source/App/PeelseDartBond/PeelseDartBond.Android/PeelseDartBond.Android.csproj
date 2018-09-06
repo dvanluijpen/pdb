@@ -94,6 +94,7 @@
     <Compile Include="CustomRenderers\LabelHairlineItalicFontRenderer.cs" />
     <Compile Include="CustomRenderers\LabelRegularFontRenderer.cs" />
     <Compile Include="CustomRenderers\LabelRegularItalicFontRenderer.cs" />
+    <Compile Include="CustomRenderers\ExtendedViewCellRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

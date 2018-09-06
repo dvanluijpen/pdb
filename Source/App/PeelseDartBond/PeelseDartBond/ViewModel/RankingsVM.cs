@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using PeelseDartBond.Model;
 using PeelseDartBond.Model.Entities;
 using PeelseDartBond.Model.EventArgs;
 using PeelseDartBond.Services;
+using PeelseDartBond.UI.Page;
+using Xamarin.Forms;
 
 namespace PeelseDartBond.ViewModel
 {
@@ -18,6 +21,8 @@ namespace PeelseDartBond.ViewModel
 
             PdbService.RankingsLoaded += RankingsLoaded;
         }
+
+        public ICommand GoToTeamCommand { get { return new Command(async team => await OpenTeamPage(team)); } }
 
         public List<Ranking> Teams
         {
@@ -40,6 +45,21 @@ namespace PeelseDartBond.ViewModel
             {
                 Teams = PdbService.Rankings;
             }
+        }
+
+        async Task OpenTeamPage(object ranking)
+        {
+            var r = (Ranking)ranking;
+            var team = await PdbService.GetTeamData(r);
+            var contentPage = new TeamPage(team);
+            contentPage.ViewModel.CloseRequested += async (s, e) => await OnClose(s, e);
+            var navigationPage = new NavigationPage(contentPage);
+            await NavigationService.GoToModalPage(navigationPage);
+        }
+
+        async Task OnClose(object sender, EventArgs e)
+        {
+            await NavigationService.PopCurrentModalPage();
         }
     }
 }

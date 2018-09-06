@@ -17,5 +17,7 @@ namespace PeelseDartBond.UI.Page
             _vm = new TeamVM(team);
             BindingContext = _vm;
         }
+
+        public TeamVM ViewModel { get { return _vm; } }
     }
 }

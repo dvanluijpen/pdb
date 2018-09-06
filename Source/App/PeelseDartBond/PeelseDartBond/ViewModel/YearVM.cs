@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using PeelseDartBond.Model.Entities;
@@ -12,11 +13,13 @@ namespace PeelseDartBond.ViewModel
 {
     public class YearVM : BaseRefreshViewModel
     {
-        List<CompetitionYear> _competitionYears;
+        ObservableCollection<CompetitionYear> _competitionYears;
+        CompetitionYear _selectedCompetitionYear;
 
         public YearVM() : base()
         {
-            _competitionYears = new List<CompetitionYear>();
+            _competitionYears = new List<CompetitionYear>().ToObservableCollection();
+            SelectedCompetitionYear = PdbService.SelectedCompetitionYear;
 
             Task.Run(async () => await Load());
 
@@ -28,14 +31,20 @@ namespace PeelseDartBond.ViewModel
 
         public event EventHandler<CompetitionYearEventArgs> CompetitionYearChanged;
 
-        public List<CompetitionYear> CompetitionYears
+        public ObservableCollection<CompetitionYear> CompetitionYears
         {
             get { return _competitionYears; }
             set { SetProperty(ref _competitionYears, value); }
         }
 
+        public CompetitionYear SelectedCompetitionYear
+        {
+            get { return _selectedCompetitionYear; }
+            set { if (value != null && value != _selectedCompetitionYear) SetProperty(ref _selectedCompetitionYear, value); }
+        }
+
         private void CompetitionYearsLoaded(object sender, CompetitionYearsEventArgs e) => AssembleYears(e.CompetitionYears);
-        private void AssembleYears(List<CompetitionYear> competitionYears) => CompetitionYears = competitionYears;
+        private void AssembleYears(List<CompetitionYear> competitionYears) => CompetitionYears = competitionYears.ToObservableCollection();
         private void OnClose() => CompetitionYearChanged?.Invoke(this, null);
         private void OnSelect(object competitionYear) => CompetitionYearChanged?.Invoke(this, new CompetitionYearEventArgs((CompetitionYear)competitionYear));
 

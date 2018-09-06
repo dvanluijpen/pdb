@@ -17,32 +17,22 @@ namespace PeelseDartBond.UI.Page
         {
             InitializeComponent();
 
-            _vm = new PlayersVM(this);
+            _vm = new PlayersVM();
             BindingContext = _vm;
 
             segControl.ValueChanged += DisplayChanged;
         }
 
+        protected override async void OnAppearing()
+        {
+            await _vm.Load();
+            DisplayChanged(null, null);
+        }
+
         protected void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            if (segControl.SelectedSegment == 0)
-            {
-                var p1 = e.SelectedItem as Player180s;
-                if (p1 != null)
-                    _vm.GoToPlayerCommand.Execute(new BasePlayer(p1.Name, p1.Team, p1.TeamUrl));
-            }
-            else if (segControl.SelectedSegment == 1)
-            {
-                var pf = e.SelectedItem as PlayerFinish;
-                if (pf != null)
-                    _vm.GoToPlayerCommand.Execute(new BasePlayer(pf.Name, pf.Team, pf.TeamUrl));
-            }
-            else if(segControl.SelectedSegment == 2)
-            {
-                var pr = e.SelectedItem as PlayerRanking;
-                if (pr != null)
-                    _vm.GoToPlayerCommand.Execute(new BasePlayer(pr.Name, pr.Team, pr.TeamUrl));
-            }
+            var player = e.SelectedItem as BasePlayer;
+            _vm.GoToPlayerCommand.Execute(player);
 
             listView.SelectedItem = null;
         }
@@ -59,34 +49,10 @@ namespace PeelseDartBond.UI.Page
                 _vm.UpdatePage(IndividualPageType.DisplayFinishes);
                 listView.ItemsSource = _vm.FilteredPlayerFinishes;
             }
-            else if (segControl.SelectedSegment == 2)
+            else
             {
                 _vm.UpdatePage(IndividualPageType.DisplaySingles);
                 listView.ItemsSource = _vm.FilteredPlayerRankings;
-            }
-
-            UpdateDisplay();
-        }
-
-        public void UpdateDisplay()
-        {
-            if (segControl.SelectedSegment == 0)
-            {
-                listView.IsVisible = _vm.HasResults;
-                controlNoData.IsVisible = !_vm.HasResults;
-                controlUnderConstruction.IsVisible = false;
-            }
-            else if (segControl.SelectedSegment == 1)
-            {
-                listView.IsVisible = _vm.HasResults;
-                controlNoData.IsVisible = !_vm.HasResults;
-                controlUnderConstruction.IsVisible = false;
-            }
-            else if (segControl.SelectedSegment == 2)
-            {
-                listView.IsVisible = false;
-                controlNoData.IsVisible = false;
-                controlUnderConstruction.IsVisible = true;
             }
         }
 

@@ -3,6 +3,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     xmlns:constants="clr-namespace:PeelseDartBond.Constants;assembly=PeelseDartBond"
+    xmlns:customrenderers="clr-namespace:PeelseDartBond.CustomRenderers;assembly=PeelseDartBond"
     x:Class="PeelseDartBond.UI.Page.YearPage"
     Title="Kies jaargang">
     <ContentPage.ToolbarItems>
@@ -11,17 +12,38 @@
                      Command="{Binding CloseCommand}" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <ListView 
-            x:Name="listView" 
-            HorizontalOptions="Fill" VerticalOptions="FillAndExpand"
-            ItemSelected="OnItemSelected" 
-            ItemsSource="{Binding CompetitionYears}"
-            SeparatorColor="{x:Static constants:Colors.Gray4}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextCell Text="{Binding Title}" />
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <ListView 
+                x:Name="listView" 
+                Grid.Row="0"
+                HorizontalOptions="Fill" VerticalOptions="Start"
+                ItemSelected="OnItemSelected" 
+                ItemsSource="{Binding CompetitionYears}"
+                SelectedItem="{Binding SelectedCompetitionYear, Mode=TwoWay}"
+                SeparatorColor="{x:Static constants:Colors.Gray4}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Title}" />
+                        <!--<customrenderers:ExtendedViewCell SelectedBackgroundColor="{x:Static constants:Colors.GreenDark}">
+                            <ViewCell.View>
+                                <StackLayout 
+                                    HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Orientation="Vertical" 
+                                    Padding="4" Spacing="8">
+                                <Label 
+                                    HorizontalOptions="Fill" VerticalOptions="CenterAndExpand"
+                                    HorizontalTextAlignment="Start" VerticalTextAlignment="Center"
+                                    TextColor="{x:Static constants:Colors.Gray1}" 
+                                    Text="{Binding Title}"/>
+                            </StackLayout>
+                          </ViewCell.View>
+                        </customrenderers:ExtendedViewCell>-->
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

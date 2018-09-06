@@ -193,15 +193,31 @@ namespace PeelseDartBond.Services
 
         public async Task GetCompetitionData()
         {
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+
             ConnectivityHelper.CheckForInternetAccess();
 
-            await GetRankingsAsync();
-            await GetScheduleAsync();
-            await GetResultsAsync();
-            await GetMatrixAsync();
-            await GetPlayer180sAsync();
-            //await GetPlayerRankings();
-            await GetPlayerFinishesAsync();
+            var tasks = new List<Task>();
+            tasks.Add(GetRankingsAsync());
+            tasks.Add(GetScheduleAsync());
+            tasks.Add(GetResultsAsync());
+            tasks.Add(GetMatrixAsync());
+            tasks.Add(GetPlayer180sAsync());
+            tasks.Add(GetPlayerFinishesAsync());
+            //tasks.Add(GetPlayerRankings);
+
+            await Task.WhenAll(tasks).ConfigureAwait(false);
+
+            //await GetRankingsAsync().ConfigureAwait(false);
+            //await GetScheduleAsync().ConfigureAwait(false);
+            //await GetResultsAsync().ConfigureAwait(false);
+            //await GetMatrixAsync().ConfigureAwait(false);
+            //await GetPlayer180sAsync().ConfigureAwait(false);
+            //await GetPlayerFinishesAsync().ConfigureAwait(false);
+            ////await GetPlayerRankings().ConfigureAwait(false);
+
+            watch.Stop();
+            Logger.Verbose($"Elapsed: {watch.Elapsed.Minutes}m, {watch.Elapsed.Seconds}s, {watch.Elapsed.Milliseconds}ms");
         }
 
         #endregion Event Handlers
@@ -244,7 +260,6 @@ namespace PeelseDartBond.Services
 
             CompetitionYears = competitionYears.OrderByDescending(y => y.Title).ToList();
             SelectedCompetitionYear = CompetitionYears.FirstOrDefault();
-
         }
 
         public async Task GetCompetitionsAsync(string url)
@@ -320,6 +335,31 @@ namespace PeelseDartBond.Services
         {
             var result = await PerformAndDeserializeRequestAsync<Model.DataTransferObjects.Result>(url);
             return result.Flatten();
+        }
+
+        public async Task<Model.Entities.Team> GetTeamData(Model.Entities.Ranking ranking)
+        {
+            //var result = await PerformAndDeserializeRequestAsync<Model.DataTransferObjects.Team>(ranking.TeamUrl);
+            //return result.Flatten();
+            return new Model.Entities.Team
+            {
+                Position = ranking.Position,
+                Name = ranking.Team,
+                Url = ranking.TeamUrl,
+                Division = SelectedCompetition.Name,
+                Players = new List<Model.Entities.Player>
+                {
+                    new Model.Entities.Player { Name = "Daniel Verhoeven" },
+                    new Model.Entities.Player { Name = "Bart Scheepers" },
+                    new Model.Entities.Player { Name = "Martien Beekmans" },
+                    new Model.Entities.Player { Name = "Christian Meulendijks" },
+                    new Model.Entities.Player { Name = "Jordy Hofmans" },
+                    new Model.Entities.Player { Name = "Martijn van Creij" },
+                    new Model.Entities.Player { Name = "Ron v.d Bruggen" },
+                    new Model.Entities.Player { Name = "Danny van Luijpen" },
+                    new Model.Entities.Player { Name = "Luuk van Kaathoven" },
+                }
+            };
         }
 
         public Model.Entities.Player GetPlayerData(string name, string team, string teamUrl)

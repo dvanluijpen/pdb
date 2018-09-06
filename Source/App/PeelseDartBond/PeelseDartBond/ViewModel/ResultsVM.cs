@@ -66,7 +66,7 @@ namespace PeelseDartBond.ViewModel
         public ObservableCollection<Group<WeekResult>> FilteredGroups
         {
             get { return _filteredGroups; }
-            set { SetProperty(ref _filteredGroups, value); }
+            set { SetProperty(ref _filteredGroups, value); HasResults = !value.IsNullOrEmpty(); }
         }
 
         public List<string> Teams
@@ -168,7 +168,7 @@ namespace PeelseDartBond.ViewModel
             {
                 var filteredGroups = Groups;
 
-                if (SelectedTeam != "Alle")
+                if (SelectedTeam != "Alle" || string.IsNullOrWhiteSpace(SelectedTeam))
                 {
                     var subGroups = new ObservableCollection<Group<WeekResult>>();
                     foreach (var group in filteredGroups)
@@ -179,7 +179,7 @@ namespace PeelseDartBond.ViewModel
                     filteredGroups = subGroups;
                 }
 
-                if (SelectedWeek != "Alle")
+                if (SelectedWeek != "Alle" || string.IsNullOrWhiteSpace(SelectedWeek))
                     filteredGroups = filteredGroups.Where(r => r.ShortName == SelectedWeek).ToObservableCollection();
 
                 FilteredGroups = filteredGroups;

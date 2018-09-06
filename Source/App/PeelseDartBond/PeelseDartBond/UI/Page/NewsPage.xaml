@@ -16,7 +16,8 @@
             SeparatorColor="{x:Static constants:Colors.Gray1}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <cells:NewsCell News="{Binding .}" />
+<!--                    <cells:NewsCell News="{Binding .}" />-->
+                    <ImageCell Text="{Binding Title}" ImageSource="News" />
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

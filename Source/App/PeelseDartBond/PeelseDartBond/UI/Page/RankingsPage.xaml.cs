@@ -23,7 +23,7 @@ namespace PeelseDartBond.UI.Page
             var item = e.SelectedItem as Ranking;
             if (item != null)
             {
-                //_vm.ChangeSelection(item);
+                _vm.GoToTeamCommand.Execute(item);
                 listView.SelectedItem = null;
             }
         }

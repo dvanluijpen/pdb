@@ -110,6 +110,7 @@
     <Compile Include="CustomRenderers\LabelRegularItalicFontRenderer.cs" />
     <Compile Include="CustomRenderers\LabelLightFontRenderer.cs" />
     <Compile Include="CustomRenderers\LabelLightItalicFontRenderer.cs" />
+    <Compile Include="CustomRenderers\ExtendedViewCellRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -312,6 +313,12 @@
     </BundleResource>
     <BundleResource Include="..\..\..\..\Assets\Common\JohnDoe.png">
       <Link>Resources\JohnDoe.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\..\Assets\iOSSpecific\News%402x.png">
+      <Link>Resources\News%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\..\Assets\iOSSpecific\News%403x.png">
+      <Link>Resources\News%403x.png</Link>
     </BundleResource>
   </ItemGroup>
 </Project>
