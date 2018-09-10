@@ -1,0 +1,24 @@
+LICO Innovations
+Davy Cardinaal
+secretaris@pdbdarts.nl
+
+http://www.pdbdarts.nl/berichten.json
+http://pdbarts.nl/seizoen/1415/competitie.json
+
+
+
+Wensen PDB App:
+- Nieuws ophalen (http://www.pdbdarts.nl/berichten.json) toont 5 berichten, maar onduidelijk welke. Liefst gewoon circa laatste 20 berichten tonen.
+- Er is geen goed mechanisme om de jaren te checken. Nu wordt er gegokt op het jaartal aanwezig bij aanroepen competitie.json (1213, 1314, etc tot fout) 
+- Ophalen team via url (http://www.pdbdarts.nl/seizoen/1718/teams/257-oranjebar-lions.json) geeft 500 Internal Server Error
+- Ophalen singles via url (http://www.pdbdarts.nl/seizoen/1718/competitie/240-eredivisie/singels.json) geeft 500 Internal Server Error
+- Uitslagen en schema is lelijk en geen fatsoenlijke json. Voorstel: weeknr als getal key, omzetten naar weekuitslagen als key met daarin dezelfde data.
+
+
+
+
+
+
+Nog te doen:
+- Match url
+- Delivery pipeline VSTS

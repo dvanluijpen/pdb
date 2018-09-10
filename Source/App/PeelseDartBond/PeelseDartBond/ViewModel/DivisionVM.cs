@@ -32,7 +32,7 @@ namespace PeelseDartBond.ViewModel
 
         async void OnCompetitionChanged(object sender, CompetitionEventArgs e)
         {
-            if (e.Competition.IsNullOrEmpty())
+            if (e.Competition.IsNullOrEmpty() || e.Competition.Rankings == null)
                 return;
 
             Division = e.Competition.Name;

@@ -2,6 +2,7 @@
 <ContentPage 
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:cells="clr-namespace:PeelseDartBond.UI.Cell;assembly=PeelseDartBond"
     xmlns:constants="clr-namespace:PeelseDartBond.Constants;assembly=PeelseDartBond"
     xmlns:customrenderers="clr-namespace:PeelseDartBond.CustomRenderers;assembly=PeelseDartBond"
     x:Class="PeelseDartBond.UI.Page.YearPage"
@@ -27,7 +28,8 @@
                 SeparatorColor="{x:Static constants:Colors.Gray4}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding Title}" />
+                        <cells:YearCell Year="{Binding Title}" />
+                        <!--<TextCell Text="{Binding Title}" />-->
                         <!--<customrenderers:ExtendedViewCell SelectedBackgroundColor="{x:Static constants:Colors.GreenDark}">
                             <ViewCell.View>
                                 <StackLayout 

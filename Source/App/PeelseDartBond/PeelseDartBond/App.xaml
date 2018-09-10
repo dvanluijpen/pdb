@@ -12,6 +12,7 @@
             <converters:MatchColorConverter x:Key="MatchColorConverter" />
             <converters:PositionColorConverter x:Key="PositionColorConverter" />
             <converters:RowColorConverter x:Key="RowColorConverter" />
+            <converters:SelectedRowColorConverter x:Key="SelectedRowColorConverter" />
             <converters:StringVisibilityConverter x:Key="StringVisibilityConverter" />
 
             <DataTemplate x:Key="player180sTemplate">

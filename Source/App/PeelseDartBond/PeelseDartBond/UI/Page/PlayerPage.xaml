@@ -8,9 +8,7 @@
     BackgroundColor="{x:Static constants:Colors.WhiteNormal}"
     Title="{Binding Player.Name}">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Name="Sluit"
-                     Icon="Close"
-                     Command="{Binding CloseCommand}" />
+        <ToolbarItem Name="Sluit" Icon="Close" Command="{Binding CloseCommand}" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <ScrollView Orientation="Vertical">
@@ -314,7 +312,7 @@
                 <BoxView 
                     Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="4"
                     VerticalOptions="Fill" HorizontalOptions="Fill"
-                    BackgroundColor="{x:Static constants:Colors.Gray1}" />
+                    BackgroundColor="{x:Static constants:Colors.WhiteNormal}" />
                 
             </Grid>
         </ScrollView>

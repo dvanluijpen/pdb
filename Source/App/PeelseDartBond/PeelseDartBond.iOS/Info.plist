@@ -62,5 +62,9 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>UIRequiresFullScreen</key>
+	<true/>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>nl</string>
 </dict>
 </plist>

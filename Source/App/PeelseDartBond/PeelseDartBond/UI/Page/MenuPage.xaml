@@ -18,12 +18,10 @@
             ItemsSource="{Binding GroupedCompetitions}"
             IsGroupingEnabled="true" 
             GroupDisplayBinding="{Binding LongName}"
-            SeparatorColor="{x:Static constants:Colors.Gray4}"
-            RowHeight="32">
+            SeparatorColor="{x:Static constants:Colors.Gray4}">
             <ListView.GroupHeaderTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding LongName}" />
-<!--                        <cells:MenuHeaderCell Name="{Binding LongName}" />-->
+                    <cells:MenuGroupCell Name="{Binding LongName}" />
                 </DataTemplate>
             </ListView.GroupHeaderTemplate>
             <ListView.ItemTemplate>

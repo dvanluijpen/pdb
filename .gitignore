@@ -5,3 +5,6 @@ Source/App/PeelseDartBond/PeelseDartBond.Android/bin
 Source/App/PeelseDartBond/PeelseDartBond.Android/obj
 Source/App/PeelseDartBond/PeelseDartBond.iOS/bin
 Source/App/PeelseDartBond/PeelseDartBond.iOS/obj
+Assets/AndroidSpecific/Thumbs.db
+Assets/Common/Thumbs.db
+Assets/iOSSpecific/Thumbs.db

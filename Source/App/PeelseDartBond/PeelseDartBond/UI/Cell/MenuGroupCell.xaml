@@ -3,20 +3,17 @@
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     xmlns:constants="clr-namespace:PeelseDartBond.Constants;assembly=PeelseDartBond"
-    x:Class="PeelseDartBond.UI.Cell.MenuCell"
+    x:Class="PeelseDartBond.UI.Cell.MenuGroupCell"
     x:Name="view">
     <ViewCell.View>
         <StackLayout 
-            x:Name="slContainer"
             VerticalOptions="FillAndExpand" HorizontalOptions="Fill"
             CompressedLayout.IsHeadless="true"
-            HeightRequest="32"
             BackgroundColor="{x:Static constants:Colors.Gray1}">
             <Label
-                x:Name="lblDivision"
-                Margin="24,0"
+                Margin="12,0"
                 VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" 
-                FontSize="{x:Static constants:Fonts.SizePhoneXL}"
+                FontSize="{x:Static constants:Fonts.SizePhoneXXL}"
                 TextColor="{x:Static constants:Colors.Gray3}"
                 Text="{Binding Name}"
                 BindingContext="{x:Reference view}" />

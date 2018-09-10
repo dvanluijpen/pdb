@@ -83,6 +83,7 @@
                 x:Name="listView"
                 Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
                 HorizontalOptions="Fill" VerticalOptions="FillAndExpand"
+                RowHeight="52"
                 IsVisible="{Binding HasResults}"
                 ItemSelected="OnItemSelected" 
                 ItemsSource="{Binding FilteredGroups}"

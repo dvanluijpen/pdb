@@ -16,13 +16,14 @@ namespace PeelseDartBond.ViewModel
 {
     public class MenuVM : BaseRefreshViewModel
     {
-        string _selectedYear = "Competities";
         List<Competition> _competitions;
         ObservableCollection<Group<Competition>> _groupedCompetitions;
+        string _selectedYear = "Competities";
 
         public MenuVM() : base()
         {
-            _competitions = new List<Competition> { new Competition { Name = Strings.Loading } };
+            var loadingCompetition = new Competition { Name = Strings.Loading };
+            _competitions = new List<Competition> { loadingCompetition };
             _groupedCompetitions = new ObservableCollection<Group<Competition>>();
 
             Task.Run(async () => await Load());
@@ -73,8 +74,8 @@ namespace PeelseDartBond.ViewModel
 
         public async Task ChangeSelection(Competition competition)
         {
-            if (string.IsNullOrEmpty(competition.Rankings))
-                return;
+            //if (string.IsNullOrEmpty(competition.Rankings))
+                //return;
 
             if(HasInternetAccess())
                 PdbService.SelectedCompetition = competition;

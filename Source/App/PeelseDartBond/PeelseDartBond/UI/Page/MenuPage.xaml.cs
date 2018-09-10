@@ -34,25 +34,26 @@ namespace PeelseDartBond.UI.Page
                 {
                     if(item.Name.Equals(Strings.News))
                     {
-                        var newsNavigationPage = new NavigationPage(new NewsPage());
-                        newsNavigationPage.BarBackgroundColor = Colors.GreenDark;
-                        newsNavigationPage.BarTextColor = Colors.WhiteNormal;
+                        var newsNavigationPage = new NavigationPage(new NewsPage())
+                        {
+                            BarBackgroundColor = Colors.GreenDark,
+                            BarTextColor = Colors.WhiteNormal
+                        };
                         ((ContainerPage)App.Current.MainPage).Detail = newsNavigationPage;
                         ((ContainerPage)App.Current.MainPage).IsPresented = false;
                     }
 
-                    listView.SelectedItem = null;
                     return;
                 }
 
                 // Show a competition
-                var divisionPage = new DivisionPage();
-                var divisionNavigationPage = new NavigationPage(divisionPage);
-                divisionNavigationPage.BarBackgroundColor = Colors.GreenDark;
-                divisionNavigationPage.BarTextColor = Colors.WhiteNormal;
+                var divisionNavigationPage = new NavigationPage(new DivisionPage())
+                {
+                    BarBackgroundColor = Colors.GreenDark,
+                    BarTextColor = Colors.WhiteNormal
+                };
                 ((ContainerPage)App.Current.MainPage).Detail = divisionNavigationPage;
                 await _vm.ChangeSelection(item);
-                listView.SelectedItem = null;
                 ((ContainerPage)App.Current.MainPage).IsPresented = false;
             }
         }

@@ -11,10 +11,13 @@ namespace PeelseDartBond.Constants
         public static string Loading = "Bezig met laden...";
 
         public static string News = "Nieuws";
+        public static string NewsDetail = "Nieuwsbericht";
         public static string PlayerSingles = "Singels";
         public static string Player180s = "180ers";
         public static string PlayerFinishes = "Finishes";
         public static string PlayerStats = "SPELER STATISTIEKEN";
+
+
 
         public static string CompetitionGroupA = "Algemeen";
         public static string CompetitionGroupE = "Eredivisie";
