@@ -10,6 +10,7 @@
         <ResourceDictionary>
             <converters:BoolNegationConverter x:Key="BoolNegationConverter" />
             <converters:MatchColorConverter x:Key="MatchColorConverter" />
+            <converters:MatchResultColorConverter x:Key="MatchResultColorConverter" />
             <converters:PositionColorConverter x:Key="PositionColorConverter" />
             <converters:RowColorConverter x:Key="RowColorConverter" />
             <converters:SelectedRowColorConverter x:Key="SelectedRowColorConverter" />

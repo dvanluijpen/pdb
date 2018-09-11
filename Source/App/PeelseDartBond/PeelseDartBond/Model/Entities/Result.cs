@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using PeelseDartBond.Model.Types;
+using PeelseDartBond.Utilities;
 
 namespace PeelseDartBond.Model.Entities
 {
@@ -14,7 +16,6 @@ namespace PeelseDartBond.Model.Entities
         List<ResultTeam> _teams;
         List<Result180> _player180s;
         List<ResultFinish> _playerFinishes;
-        List<object> _all;
 
         public Result()
         {
@@ -86,6 +87,28 @@ namespace PeelseDartBond.Model.Entities
         public string TeamAwayScore
         {
             get { return _score.Substring(_score.Length - 1, 1); }
+        }
+        public MatchResultType TeamHomeResult
+        {
+            get 
+            {
+                return TeamHomeScore.ToInt() == TeamAwayScore.ToInt()
+                    ? MatchResultType.Draw
+                    : TeamHomeScore.ToInt() > TeamAwayScore.ToInt()
+                        ? MatchResultType.Win
+                        : MatchResultType.Lose;
+            }
+        }
+        public MatchResultType TeamAwayResult
+        {
+            get
+            {
+                return TeamAwayScore.ToInt() == TeamHomeScore.ToInt()
+                    ? MatchResultType.Draw
+                    : TeamAwayScore.ToInt() > TeamHomeScore.ToInt()
+                        ? MatchResultType.Win
+                        : MatchResultType.Lose;
+            }
         }
     }
 }

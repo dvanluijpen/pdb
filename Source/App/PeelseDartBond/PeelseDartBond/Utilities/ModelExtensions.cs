@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Xamarin.Forms;
 using PeelseDartBond.Constants;
+using PeelseDartBond.Model.Types;
 
 namespace PeelseDartBond.Utilities
 {
@@ -350,6 +352,15 @@ namespace PeelseDartBond.Utilities
             }
 
             return entities;
+        }
+
+        public static Color ToColor(this MatchResultType matchResultType)
+        {
+            return matchResultType == MatchResultType.Draw
+                 ? Colors.TeamDrawFill
+                 : matchResultType == MatchResultType.Win
+                    ? Colors.TeamWinFill
+                     : Colors.TeamLoseFill;
         }
 
         public static ObservableCollection<T> ToObservableCollection<T>(this IEnumerable<T> enumerable) => new ObservableCollection<T>(enumerable);

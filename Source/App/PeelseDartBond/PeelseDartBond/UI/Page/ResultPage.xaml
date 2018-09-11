@@ -71,27 +71,27 @@
                 Grid.Row="2" Grid.Column="0"
                 VerticalOptions="Center" HorizontalOptions="Center"
                 WidthRequest="60" HeightRequest="60"
-                BackgroundColor="{x:Static constants:Colors.Gray4}" />
+                BackgroundColor="{Binding Result.TeamHomeResult, Converter={StaticResource MatchResultColorConverter}, ConverterParameter=true}" />
             <customrenderers:LabelHeavyFont
                 Grid.Row="2" Grid.Column="0"
                 Margin="0"
                 VerticalOptions="Fill" HorizontalOptions="Fill" 
                 VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
                 FontSize="{x:Static constants:Fonts.SizePhoneXXXXXXXL}"
-                TextColor="{x:Static constants:Colors.Gray1}"
+                TextColor="{Binding Result.TeamHomeResult, Converter={StaticResource MatchResultColorConverter}, ConverterParameter=false}"
                 Text="{Binding Result.TeamHomeScore}" />
             <BoxView
                 Grid.Row="2" Grid.Column="1"
                 VerticalOptions="Center" HorizontalOptions="Center"
                 WidthRequest="60" HeightRequest="60"
-                BackgroundColor="{x:Static constants:Colors.Gray4}" />
+                BackgroundColor="{Binding Result.TeamAwayResult, Converter={StaticResource MatchResultColorConverter}, ConverterParameter=true}" />
             <customrenderers:LabelHeavyFont
                 Grid.Row="2" Grid.Column="1"
                 Margin="0"
                 VerticalOptions="Fill" HorizontalOptions="Fill" 
                 VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
                 FontSize="{x:Static constants:Fonts.SizePhoneXXXXXXXL}"
-                TextColor="{x:Static constants:Colors.Gray1}"
+                TextColor="{Binding Result.TeamAwayResult, Converter={StaticResource MatchResultColorConverter}, ConverterParameter=false}"
                 Text="{Binding Result.TeamAwayScore}" />
 
             <BoxView

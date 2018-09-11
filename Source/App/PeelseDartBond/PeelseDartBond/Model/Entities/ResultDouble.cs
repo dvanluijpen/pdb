@@ -1,5 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
+using PeelseDartBond.Model.Types;
+using PeelseDartBond.Utilities;
 
 namespace PeelseDartBond.Model.Entities
 {
@@ -59,6 +61,28 @@ namespace PeelseDartBond.Model.Entities
         public string AwayScore
         {
             get { return _score.Substring(_score.Length - 1, 1); }
+        }
+        public MatchResultType HomeResult
+        {
+            get
+            {
+                return HomeScore.ToInt() == AwayScore.ToInt()
+                    ? MatchResultType.Draw
+                    : HomeScore.ToInt() > AwayScore.ToInt()
+                        ? MatchResultType.Win
+                        : MatchResultType.Lose;
+            }
+        }
+        public MatchResultType AwayResult
+        {
+            get
+            {
+                return AwayScore.ToInt() == HomeScore.ToInt()
+                    ? MatchResultType.Draw
+                    : AwayScore.ToInt() > HomeScore.ToInt()
+                        ? MatchResultType.Win
+                        : MatchResultType.Lose;
+            }
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 using PeelseDartBond.Model.Entities;
+using PeelseDartBond.Utilities;
 using Xamarin.Forms;
 
 namespace PeelseDartBond.ViewModel
@@ -11,6 +12,8 @@ namespace PeelseDartBond.ViewModel
         Result _result;
         string _title;
         string _url;
+        Color _homeResultColor;
+        Color _awayResultColor;
 
         public ResultVM(string url)
         {
@@ -41,6 +44,18 @@ namespace PeelseDartBond.ViewModel
             set { SetProperty(ref _url, value); }
         }
 
+        public Color HomeResultColor
+        {
+            get { return _homeResultColor; }
+            set { SetProperty(ref _homeResultColor, value); }
+        }
+
+        public Color AwayResultColor
+        {
+            get { return _awayResultColor; }
+            set { SetProperty(ref _awayResultColor, value); }
+        }
+
         private void OnClose() => CloseRequested?.Invoke(this, null);
 
         public async Task Load()
@@ -48,6 +63,9 @@ namespace PeelseDartBond.ViewModel
             var result = await PdbService.GetResultAsync(Url);
             Result = result;
             Title = $"{result.TeamHome} - {result.TeamAway} ({result.Score})";
+            HomeResultColor = result.TeamHomeResult.ToColor();
+            AwayResultColor = result.TeamAwayResult.ToColor();
+            var ff = "";
         }
     }
 }

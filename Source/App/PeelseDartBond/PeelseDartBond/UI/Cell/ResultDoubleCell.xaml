@@ -68,28 +68,30 @@
                 Grid.Row="2" Grid.Column="0"
                 VerticalOptions="Center" HorizontalOptions="Center"
                 WidthRequest="32" HeightRequest="32"
-                BackgroundColor="{x:Static constants:Colors.Gray4}" />
+                BackgroundColor="{Binding Result.HomeResult, Converter={StaticResource MatchResultColorConverter}, ConverterParameter=true}"
+                BindingContext="{x:Reference view}" />
             <customrenderers:LabelHeavyFont
                 Grid.Row="2" Grid.Column="0"
                 Margin="0"
                 VerticalOptions="Fill" HorizontalOptions="Fill" 
                 VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
                 FontSize="{x:Static constants:Fonts.SizePhoneXXXL}"
-                TextColor="{x:Static constants:Colors.Gray1}"
+                TextColor="{Binding Result.HomeResult, Converter={StaticResource MatchResultColorConverter}, ConverterParameter=false}"
                 Text="{Binding Result.HomeScore}"
                 BindingContext="{x:Reference view}" />
             <BoxView
                 Grid.Row="2" Grid.Column="1"
                 VerticalOptions="Center" HorizontalOptions="Center"
                 WidthRequest="32" HeightRequest="32"
-                BackgroundColor="{x:Static constants:Colors.Gray4}" />
+                BackgroundColor="{Binding Result.AwayResult, Converter={StaticResource MatchResultColorConverter}, ConverterParameter=true}"
+                BindingContext="{x:Reference view}" />
             <customrenderers:LabelHeavyFont
                 Grid.Row="2" Grid.Column="1"
                 Margin="0"
                 VerticalOptions="Fill" HorizontalOptions="Fill" 
                 VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
                 FontSize="{x:Static constants:Fonts.SizePhoneXXXL}"
-                TextColor="{x:Static constants:Colors.Gray1}"
+                TextColor="{Binding Result.AwayResult, Converter={StaticResource MatchResultColorConverter}, ConverterParameter=false}"
                 Text="{Binding Result.AwayScore}"
                 BindingContext="{x:Reference view}" />
         </Grid>
