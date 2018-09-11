@@ -113,7 +113,6 @@
     <Compile Include="CustomRenderers\ExtendedViewCellRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
@@ -152,6 +151,11 @@
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon180.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon120.png" />
+    <InterfaceDefinition Include="LaunchScreen.storyboard" />
+    <ImageAsset Include="Assets.xcassets\LaunchScreenImage.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\LaunchScreenImage.imageset\Banner.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchScreenImage.imageset\Banner%402x.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchScreenImage.imageset\Banner%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -185,6 +189,7 @@
     <Folder Include="DependencyServicesImpl\" />
     <Folder Include="UI\" />
     <Folder Include="UI\Views\" />
+    <Folder Include="Assets.xcassets\LaunchScreenImage.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="..\..\..\..\Assets\Common\CheckmarkGreen.png">
