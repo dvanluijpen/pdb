@@ -26,7 +26,6 @@ namespace PeelseDartBond.UI.Page
                 if (item == _vm.PdbService.SelectedCompetition)
                 {
                     ((ContainerPage)App.Current.MainPage).IsPresented = false;
-                    listView.SelectedItem = null;
                     return;
                 }
                 
@@ -56,8 +55,8 @@ namespace PeelseDartBond.UI.Page
                 };
                 ((ContainerPage)App.Current.MainPage).Detail = divisionNavigationPage;
                 await _vm.ChangeSelection(item);
-                ((ContainerPage)App.Current.MainPage).IsPresented = false;
                 listView.SelectedItem = null;
+                ((ContainerPage)App.Current.MainPage).IsPresented = false;
             }
         }
     }
